@@ -27,8 +27,8 @@
 
 ## Backend
 - [] Seamless communication with database 
-
 - [] Simple queries for business intelligence
+- [] Full CRUD operations on database
 
 ## Database Management
 Via SQLite
@@ -37,3 +37,25 @@ Via SQLite
 |ID_Product [PK]| INTEGER |
 |Product_Name| TEXT |
 |Price| REAL |
+
+|Orders| Data Type |
+|----| --- |
+|ID_Order [PK]| INTEGER |
+|Start_Date| TEXT** |
+|End_Date| TEXT** |
+|Status| TEXT |
+|Total_Cost| REAL |
+|Payment_Type| TEXT |
+|Tip| REAL |
+|Total_Income| REAL |
+
+|Product_Orders| Data Type |
+|----| --- |
+|ID_Order [FK]| INTEGER |
+|ID_Product [FK]| INTEGER |
+|Qty| INTEGER |
+|Product_Price| REAL |
+|Additional_Info| TEXT |
+
+
+** Obtained via the datetime function of sqlite
