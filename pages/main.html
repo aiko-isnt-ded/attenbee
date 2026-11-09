@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Menú Principal · Attenbee</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Playpen+Sans:wght@100..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+
+
+  <!-- Style Sheets -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol><symbol id="icon-orders" viewBox="0 0 24 24"><path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6M9 12h6"/></symbol><symbol id="icon-products" viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></symbol><symbol id="icon-exit" viewBox="0 0 24 24"><path d="M10 4H5v16h5"/><path d="M15 8l4 4-4 4M19 12H9"/></symbol></defs></svg>
+  <a class="skip-link" href="#content">Saltar al contenido</a>
+
+  <!-- Top Bar -->
+  <header class="app-bar">
+    <p class="app-bar__title">Colmena Café</p>
+  </header>
+
+  <!-- Content -->
+  <main id="content">
+    <h1 class="visually-hidden">Inicio</h1>
+    <nav class="hub" aria-label="Acciones principales">
+      <a class="hub__item hub__item--primary" href="new_order.html">
+        <svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#icon-plus"></use></svg>
+        <span class="hub__title">Nuevo pedido</span>
+        <span class="hub__hint">Empieza un pedido vacío</span>
+      </a>
+      <a class="hub__item hub__item--small" href="orders.html">
+        <svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#icon-orders"></use></svg>
+        <span class="hub__title">Pedidos</span>
+        <span class="hub__hint">3 sin cobrar</span>
+      </a>
+      <a class="hub__item hub__item--wide" href="products.html">
+        <svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#icon-products"></use></svg>
+        <span class="hub__title">Productos</span>
+        <span class="hub__hint">Catálogo y existencias</span>
+      </a>
+      <a class="hub__item hub__item--wide" href="logout.html">
+        <svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#icon-exit"></use></svg>
+        <span class="hub__title">Cerrar sesión</span>
+        <span class="hub__hint">Cerrar caja y salir</span>
+      </a>
+    </nav>
+  </main>
+</body>
+</html>

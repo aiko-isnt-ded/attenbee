@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pedido · Attenbee</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Playpen+Sans:wght@100..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+  
+  <!-- Style Sheets -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/pages.css">
+</head>
+
+<body>
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="icon-back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol><symbol id="icon-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></symbol><symbol id="icon-hot" viewBox="0 0 24 24"><path d="M5 11h11v4a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5z"/><path d="M16 12h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3c-1 1.5 1 2.5 0 4M12 3c-1 1.5 1 2.5 0 4"/></symbol><symbol id="icon-cold" viewBox="0 0 24 24"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7"/><path d="M9.5 3.5L12 6l2.5-2.5M9.5 20.5L12 18l2.5 2.5"/></symbol></defs></svg>
+  <a class="skip-link" href="#content">Saltar al contenido</a>
+  
+  <!-- Top Bar -->
+  <header class="app-bar">
+    <a class="btn" href="main.html"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-back"></use></svg><span>Inicio</span></a>
+    <h1 class="app-bar__title">Pedido</h1>
+  </header>
+
+  <!-- Content -->
+  <main class="order-layout" id="content">
+    <div class="catalog card">
+      <nav class="category-nav" aria-label="Categorías de productos">
+        <a class="category-nav__link" href="#cafe">Café</a>
+        <a class="category-nav__link" href="#te">Té</a>
+        <a class="category-nav__link" href="#pasteleria">Pastelería</a>
+        <a class="category-nav__link category-nav__link--order" href="#order">Ver pedido</a>
+      </nav>
+      <section class="product-section" id="cafe" aria-labelledby="cafe-title">
+        <h2 class="product-section__title" id="cafe-title">Café</h2>
+        <ul class="product-grid">
+          <li><a class="product-card" href="customize.html">
+            <div class="placeholder" aria-hidden="true"></div>
+            <h3 class="product-card__name">Café Colmena</h3>
+            <p class="product-card__meta">desde $2.50</p>
+          </a></li>
+          <li><a class="product-card" href="customize.html">
+            <div class="placeholder" aria-hidden="true"></div>
+            <h3 class="product-card__name">Americano</h3>
+            <p class="product-card__meta">desde $3.00</p>
+          </a></li>
+          <li><a class="product-card" href="customize.html">
+            <div class="placeholder" aria-hidden="true"></div>
+            <h3 class="product-card__name">Espresso</h3>
+            <p class="product-card__meta">desde $4.00</p>
+          </a></li>
+          <li><a class="product-card" href="customize.html">
+            <div class="placeholder" aria-hidden="true"></div>
+            <h3 class="product-card__name">Capuchino<svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg><span class="visually-hidden">Caliente</span></h3>
+            <p class="product-card__meta">desde $4.00</p>
+          </a></li>
+          <li><a class="product-card" href="customize.html">
+            <div class="placeholder" aria-hidden="true"></div>
+            <h3 class="product-card__name">Capuchino<svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-cold"></use></svg><span class="visually-hidden">Frío</span></h3>
+            <p class="product-card__meta">desde $4.50</p>
+          </a></li>
+          <li><a class="product-card" href="customize.html">
+            <div class="placeholder" aria-hidden="true"></div>
+            <h3 class="product-card__name">Latte</h3>
+            <p class="product-card__meta">desde $4.00</p>
+          </a></li>
+          <li><a class="product-card" href="customize.html">
+            <div class="placeholder" aria-hidden="true"></div>
+            <h3 class="product-card__name">Cold brew</h3>
+            <p class="product-card__meta">desde $3.50</p>
+          </a></li>
+          <li><a class="product-card" href="customize.html">
+            <div class="placeholder" aria-hidden="true"></div>
+            <h3 class="product-card__name">Macchiato</h3>
+            <p class="product-card__meta">desde $3.00</p>
+          </a></li>
+        </ul>
+      </section>
+      <section class="product-section" id="te" aria-labelledby="te-title">
+        <h2 class="product-section__title" id="te-title">Té</h2>
+        <ul class="product-grid">
+          <li><a class="product-card" href="customize.html">
+            <div class="placeholder" aria-hidden="true"></div>
+            <h3 class="product-card__name">Chai</h3>
+            <p class="product-card__meta">desde $2.50</p>
+          </a></li>
+          <li><a class="product-card" href="customize.html">
+            <div class="placeholder" aria-hidden="true"></div>
+            <h3 class="product-card__name">Matcha</h3>
+            <p class="product-card__meta">desde $3.00</p>
+          </a></li>
+          <li><a class="product-card" href="customize.html">
+            <div class="placeholder" aria-hidden="true"></div>
+            <h3 class="product-card__name">Taro</h3>
+            <p class="product-card__meta">desde $4.00</p>
+          </a></li>
+          <li><a class="product-card" href="customize.html">
+            <div class="placeholder" aria-hidden="true"></div>
+            <h3 class="product-card__name">Smoothie</h3>
+            <p class="product-card__meta">desde $4.00</p>
+          </a></li>
+        </ul>
+      </section>
+      <section class="product-section" id="pasteleria" aria-labelledby="pasteleria-title">
+        <h2 class="product-section__title" id="pasteleria-title">Pastelería</h2>
+        <ul class="product-grid">
+          <li><a class="product-card" href="#order">
+            <div class="placeholder" aria-hidden="true"></div>
+            <h3 class="product-card__name">Pan de Muerto</h3>
+            <p class="product-card__meta">$40 · 4 disponibles</p>
+          </a></li>
+          <li><a class="product-card" href="#order">
+            <div class="placeholder" aria-hidden="true"></div>
+            <h3 class="product-card__name">Brownie</h3>
+            <p class="product-card__meta">$40 · 8 disponibles</p>
+          </a></li>
+          <li><a class="product-card" href="#order">
+            <div class="placeholder" aria-hidden="true"></div>
+            <h3 class="product-card__name">Croissant</h3>
+            <p class="product-card__meta">$35 · 7 disponibles</p>
+          </a></li>
+        </ul>
+      </section>
+    </div>
+
+    <aside class="order-pane card" id="order" aria-labelledby="order-title">
+      <div class="order-pane__header">
+        <h2 id="order-title">Pedido #1</h2>
+      </div>
+      <div class="order-pane__lines">
+        <p class="order-pane__empty">Aún sin productos</p>
+        <!-- Example order line (used once products are added):
+        <div class="order-line">
+          <div class="order-line__main"><span>Latte</span><span>$4.50</span></div>
+          <div class="order-line__detail">
+            <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-hot"></use></svg>
+            <span class="visually-hidden">Caliente</span><span>Para aquí · Miel</span>
+          </div>
+        </div> -->
+      </div>
+      <p class="order-pane__total"><span>Total</span><span class="order-pane__total-value">$0.00</span></p>
+      <div class="order-pane__actions">
+        <a class="btn" href="main.html">Guardar y salir</a>
+        <button class="btn btn--confirm" type="button" disabled><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg><span>Cobrar $0.00</span></button>
+      </div>
+      <p class="order-pane__hint">Agrega un producto para cobrar.</p>
+    </aside>
+  </main>
+</body>
+</html>
