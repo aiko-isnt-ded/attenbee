@@ -10,7 +10,6 @@
 .order-pane { min-height: 28rem; }
 
 /* INHERENT TO ADD PRODUCTS PAGE */
-
 .add-form { gap: var(--space-4); }
 .add-form__product { display: flex; align-items: center; gap: var(--space-4); }
 .add-form__image { width: 5rem; flex: none; }
@@ -27,7 +26,7 @@
 }
 .add-form__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
 
-/* Desktop shell: the top bar, category buttons and order pane never move.
+/* LAYOUT. Top bar, category buttons and order pane never move.
    Only the product list scrolls, and each category fills the visible list,
    so choosing "Té" shows only Té. */
 @media (min-width: 901px) {

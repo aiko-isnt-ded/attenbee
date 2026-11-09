@@ -1,3 +1,4 @@
+/* NEW ORDER STYLES */
 .order-layout {
   display: grid;
   grid-template-columns: 1fr 28rem;
@@ -8,9 +9,34 @@
 .catalog { gap: var(--space-6); }
 .order-pane { min-height: 28rem; }
 
+/* LAYOUT. Top bar, category buttons and order pane never move.
+   Only the product list scrolls, and each category fills the visible list,
+   so choosing "Té" shows only Té. */
+@media (min-width: 901px) {
+  .page-order { height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+  .order-layout { flex: 1; min-height: 0; grid-template-rows: minmax(0, 1fr); align-items: stretch; }
+  .catalog { min-height: 0; padding-bottom: 0; gap: var(--space-4); }
+  .category-nav { position: static; padding-bottom: 0; }
+  .catalog__scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    container-type: size;                 /* lets sections use cqh units */
+    scroll-snap-type: y proximity;
+    padding-right: var(--space-2);
+  }
+  .product-section { min-height: 100cqh; }
+  .order-pane { overflow-y: auto; }
+
+    /* Add product: header and footer stay put, only the options scroll */
+  .add-form { min-height: 0; }
+  .add-form__options { flex: 1; min-height: 0; overflow-y: auto; padding-right: var(--space-2); }
+}
+
 /* =========================== */
 /* RESPONSIVENESS */
 /* =========================== */
+
 @media (max-width: 1100px) {
   .order-layout { grid-template-columns: 1fr 23rem; }
 }
