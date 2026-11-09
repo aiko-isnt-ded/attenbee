@@ -1,0 +1,101 @@
+/* SHARED WITH NEW_ORDER (PANE AND CATALOGUE) */
+.order-layout {
+  display: grid;
+  grid-template-columns: 1fr 28rem;
+  gap: var(--space-5);
+  align-items: start;
+  padding: var(--space-5);
+}
+.catalog { gap: var(--space-6); }
+.order-pane { min-height: 28rem; }
+
+/* INHERENT TO ADD PRODUCTS PAGE */
+.add-form { gap: var(--space-4); }
+.add-form__product { display: flex; align-items: center; gap: var(--space-4); }
+.add-form__image { width: 5rem; flex: none; }
+.add-form__base { color: var(--color-muted); }
+.add-form__options { display: flex; flex-direction: column; gap: var(--space-5); }
+.add-form__footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  padding-top: var(--space-4);
+  border-top: var(--border-width) dotted var(--color-line-soft);
+}
+.add-form__actions { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+/* LAYOUT. Top bar, category buttons and order pane never move.
+   Only the product list scrolls, and each category fills the visible list,
+   so choosing "Té" shows only Té. */
+@media (min-width: 901px) {
+  .page-order { height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+  .order-layout { flex: 1; min-height: 0; grid-template-rows: minmax(0, 1fr); align-items: stretch; }
+  .catalog { min-height: 0; padding-bottom: 0; gap: var(--space-4); }
+  .category-nav { position: static; padding-bottom: 0; }
+  .catalog__scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    container-type: size;                 /* lets sections use cqh units */
+    scroll-snap-type: y proximity;
+    padding-right: var(--space-2);
+  }
+  .product-section { min-height: 100cqh; }
+  .order-pane { overflow-y: auto; }
+
+    /* Add product: header and footer stay put, only the options scroll */
+  .add-form { min-height: 0; }
+  .add-form__options { flex: 1; min-height: 0; overflow-y: auto; padding-right: var(--space-2); }
+}
+
+/* =========================== */
+/* BAKERY */
+/* =========================== */
+
+/* The stepper sits centred in the card; the buttons go to the right */
+.add-form__options--center { align-items: center; justify-content: center; }
+.page-bakery .add-form__footer { justify-content: flex-end; }
+
+/* Large stepper: quantity is the only choice on this page */
+.stepper--lg { flex-direction: column; gap: var(--space-4); }
+.stepper--lg .stepper__label { font-size: var(--fs-lg); }
+.stepper--lg .stepper__controls { gap: var(--space-3); }
+.stepper--lg .stepper__btn { width: 5rem; min-height: 5rem; font-size: var(--fs-xl); }
+.stepper--lg .stepper__input { width: 7rem; min-height: 5rem; font-size: var(--fs-xl); }
+.stepper__hint { font-size: var(--fs-sm); color: var(--color-muted); }
+
+/* =========================== */
+/* RESPONSIVENESS */
+/* =========================== */
+@media (max-width: 1100px) {
+  .order-layout { grid-template-columns: 1fr 23rem; }
+}
+
+@media (max-width: 900px) {
+  .page-home .hub { grid-template-rows: none; }
+  .hub { grid-template-columns: repeat(2, 1fr); gap: var(--space-4); padding: var(--space-5) var(--space-4); }
+  .hub__item--primary { grid-column: 1 / -1; }
+  .hub__item--small, .hub__item--wide { grid-column: span 1; }
+  .hub__item { min-height: 11rem; }
+
+  .order-layout { grid-template-columns: 1fr; padding: var(--space-4); }
+  .order-pane { min-height: 0; }
+  /* On small screens the page scrolls; bars stay stuck to the top */
+  .product-section {
+    min-height: calc(100svh - var(--app-bar-height) - 6rem);
+    scroll-margin-top: calc(var(--app-bar-height) + 5.5rem);
+  }
+  .category-nav__link--order { display: inline-flex; margin-left: auto; background: var(--color-orange); border-color: var(--color-brown); }
+}
+
+@media (max-width: 560px) {
+  .app-bar { padding: var(--space-3) var(--space-4); gap: var(--space-3); }
+  .hub { grid-template-columns: 1fr; }
+  .hub__item { min-height: 9rem; }
+  .hub__title { font-size: var(--fs-lg); }
+  .login__card { padding: var(--space-6) var(--space-4); }
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .add-form__actions { display: grid; grid-template-columns: 1fr; width: 100%; }
+}

@@ -13,7 +13,10 @@
   <!-- Style Sheets -->
   <link rel="stylesheet" href="css/base.css">
   <link rel="stylesheet" href="css/components.css">
-  <link rel="stylesheet" href="css/add_product.css">
+  <link rel="stylesheet" href="css/add_beverage.css">
+
+  <!-- JavaScript -->
+  <script src="js/fill_product.js" defer></script>
 </head>
 
 <!-- ONE page for every drink (Café and Té). Panadería never comes here.
@@ -112,7 +115,7 @@
       <!-- Footer: quantity + actions, always visible -->
       <div class="add-form__footer">
         <div class="stepper">
-          <label class="stepper__label" for="qty">Cantidad</label>
+          <label class="stepper__label visually-hidden" for="qty">Cantidad</label>
           <div class="stepper__controls">
             <button class="btn stepper__btn" type="button" data-action="qty-decrease" aria-label="Quitar uno">−</button>
             <input class="stepper__input" id="qty" type="number" name="cantidad" value="1" min="1" max="20" inputmode="numeric" data-field="qty">
@@ -146,7 +149,7 @@
               <span data-field="details">Para llevar · Miel</span>
             </div>
             <div class="order-line__actions">
-              <a class="btn" href="add_product.html" data-action="edit-line">Editar<span class="visually-hidden" data-field="name"> Latte</span></a>
+              <a class="btn" href="add_beverage.html" data-action="edit-line">Editar<span class="visually-hidden" data-field="name"> Latte</span></a>
               <button class="btn" type="button" data-action="remove-line">Quitar<span class="visually-hidden" data-field="name"> Latte</span></button>
             </div>
           </li>

@@ -257,3 +257,5 @@
 }
 .stepper__input::-webkit-inner-spin-button,
 .stepper__input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
+/* Number between − and + when it isn't an input (pastry cards) */
+.stepper__value { min-width: 2ch; text-align: center; font-family: var(--font-ui); font-size: var(--fs-md); font-weight: var(--fw-bold); color: var(--color-brown); }

@@ -8,6 +8,9 @@
 }
 .catalog { gap: var(--space-6); }
 .order-pane { min-height: 28rem; }
+/* Panadería cards: not a link; − and + sit at the bottom of the card */
+.product-card--bakery:hover { border-style: dotted; border-color: var(--color-line-soft); }
+.product-card__stepper { justify-content: space-between; margin-top: auto; padding-top: var(--space-2); }
 
 /* LAYOUT. Top bar, category buttons and order pane never move.
    Only the product list scrolls, and each category fills the visible list,
