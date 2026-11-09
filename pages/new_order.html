@@ -16,8 +16,37 @@
   <link rel="stylesheet" href="css/pages.css">
 </head>
 
-<body>
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><symbol id="icon-back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol><symbol id="icon-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></symbol><symbol id="icon-hot" viewBox="0 0 24 24"><path d="M5 11h11v4a5 5 0 0 1-5 5h-1a5 5 0 0 1-5-5z"/><path d="M16 12h1.5a2.5 2.5 0 0 1 0 5H16"/><path d="M8 3c-1 1.5 1 2.5 0 4M12 3c-1 1.5 1 2.5 0 4"/></symbol><symbol id="icon-cold" viewBox="0 0 24 24"><path d="M12 2v20M3.3 7l17.4 10M3.3 17L20.7 7"/><path d="M9.5 3.5L12 6l2.5-2.5M9.5 20.5L12 18l2.5 2.5"/></symbol></defs></svg>
+<body class="page-order">
+  <!-- Icons -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+  
+  <!-- Hot -->
+  <symbol id="icon-hot" viewBox="0 0 24 24">
+    <path d="M0 0h24v24H0z" fill="none" stroke="none"/>
+    <path d="M12 10.941c2.333 -3.308 .167 -7.823 -1 -8.941c0 3.395 -2.235 5.299 -3.667 6.706c-1.43 1.408 -2.333 3.294 -2.333 5.588c0 3.704 3.134 6.706 7 6.706c3.866 0 7 -3.002 7 -6.706c0 -1.712 -1.232 -4.403 -2.333 -5.588c-2.084 3.353 -3.257 3.353 -4.667 2.235"/>
+  </symbol>
+
+  <!-- Col-->
+  <symbol id="icon-cold" viewBox="0 0 24 24">
+  <path d="m10 20-1.25-2.5L6 18"/>
+  <path d="M10 4 8.75 6.5 6 6"/>
+  <path d="m14 20 1.25-2.5L18 18"/>
+  <path d="m14 4 1.25 2.5L18 6"/>
+  <path d="m17 21-3-6h-4"/>
+  <path d="m17 3-3 6 1.5 3"/>
+  <path d="M2 12h6.5L10 9"/>
+  <path d="m20 10-1.5 2 1.5 2"/>
+  <path d="M22 12h-6.5L14 15"/>
+  <path d="m4 10 1.5 2L4 14"/>
+  <path d="m7 21 3-6-1.5-3"/>
+  <path d="m7 3 3 6h4"/>
+  </symbol>
+
+  <!-- Arrows -->
+  <symbol id="icon-back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></symbol>
+
+  </defs></svg>
   <a class="skip-link" href="#content">Saltar al contenido</a>
   
   <!-- Top Bar -->
@@ -29,102 +58,148 @@
   <!-- Content -->
   <main class="order-layout" id="content">
     <div class="catalog card">
+      
+      <!-- Product Selection -->
       <nav class="category-nav" aria-label="Categorías de productos">
         <a class="category-nav__link" href="#cafe">Café</a>
         <a class="category-nav__link" href="#te">Té</a>
-        <a class="category-nav__link" href="#pasteleria">Pastelería</a>
+        <a class="category-nav__link" href="#panaderia">Panadería</a>
         <a class="category-nav__link category-nav__link--order" href="#order">Ver pedido</a>
       </nav>
+
+      <!-- Products -->
+      <div class="catalog__scroll" tabindex="0" role="region" aria-label="Lista de Productos">
       <section class="product-section" id="cafe" aria-labelledby="cafe-title">
         <h2 class="product-section__title" id="cafe-title">Café</h2>
         <ul class="product-grid">
-          <li><a class="product-card" href="customize.html">
+
+          <li><a class="product-card" href="customize.html"
+                 data-action="add-product" data-product-id="cafe-colmena"
+                 data-category="cafe" data-price-cents="250" data-customizable="true">
             <div class="placeholder" aria-hidden="true"></div>
             <h3 class="product-card__name">Café Colmena</h3>
             <p class="product-card__meta">desde $2.50</p>
           </a></li>
-          <li><a class="product-card" href="customize.html">
+
+          <li><a class="product-card" href="customize.html"
+                 data-action="add-product" data-product-id="americano"
+                 data-category="cafe" data-price-cents="300" data-customizable="true">
             <div class="placeholder" aria-hidden="true"></div>
             <h3 class="product-card__name">Americano</h3>
             <p class="product-card__meta">desde $3.00</p>
           </a></li>
-          <li><a class="product-card" href="customize.html">
+
+          <li><a class="product-card" href="customize.html"
+                 data-action="add-product" data-product-id="espresso"
+                 data-category="cafe" data-price-cents="400" data-customizable="true">
             <div class="placeholder" aria-hidden="true"></div>
             <h3 class="product-card__name">Espresso</h3>
             <p class="product-card__meta">desde $4.00</p>
           </a></li>
-          <li><a class="product-card" href="customize.html">
+
+          <li><a class="product-card" href="customize.html"
+                 data-action="add-product" data-product-id="capuchino-caliente"
+                 data-category="cafe" data-price-cents="400" data-customizable="true" data-temp="hot">
             <div class="placeholder" aria-hidden="true"></div>
             <h3 class="product-card__name">Capuchino<svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg><span class="visually-hidden">Caliente</span></h3>
             <p class="product-card__meta">desde $4.00</p>
           </a></li>
-          <li><a class="product-card" href="customize.html">
+
+          <li><a class="product-card" href="customize.html"
+                 data-action="add-product" data-product-id="capuchino-frio"
+                 data-category="cafe" data-price-cents="450" data-customizable="true" data-temp="cold">
             <div class="placeholder" aria-hidden="true"></div>
             <h3 class="product-card__name">Capuchino<svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-cold"></use></svg><span class="visually-hidden">Frío</span></h3>
             <p class="product-card__meta">desde $4.50</p>
           </a></li>
-          <li><a class="product-card" href="customize.html">
+
+          <li><a class="product-card" href="customize.html"
+                 data-action="add-product" data-product-id="latte"
+                 data-category="cafe" data-price-cents="400" data-customizable="true">
             <div class="placeholder" aria-hidden="true"></div>
             <h3 class="product-card__name">Latte</h3>
             <p class="product-card__meta">desde $4.00</p>
           </a></li>
-          <li><a class="product-card" href="customize.html">
+
+          <li><a class="product-card" href="customize.html"
+                 data-action="add-product" data-product-id="cold-brew"
+                 data-category="cafe" data-price-cents="350" data-customizable="true">
             <div class="placeholder" aria-hidden="true"></div>
             <h3 class="product-card__name">Cold brew</h3>
             <p class="product-card__meta">desde $3.50</p>
           </a></li>
-          <li><a class="product-card" href="customize.html">
+
+          <li><a class="product-card" href="customize.html"
+                 data-action="add-product" data-product-id="macchiato"
+                 data-category="cafe" data-price-cents="300" data-customizable="true">
             <div class="placeholder" aria-hidden="true"></div>
             <h3 class="product-card__name">Macchiato</h3>
             <p class="product-card__meta">desde $3.00</p>
           </a></li>
         </ul>
       </section>
+
       <section class="product-section" id="te" aria-labelledby="te-title">
         <h2 class="product-section__title" id="te-title">Té</h2>
         <ul class="product-grid">
-          <li><a class="product-card" href="customize.html">
+          <li><a class="product-card" href="customize.html"
+                 data-action="add-product" data-product-id="chai"
+                 data-category="te" data-price-cents="250" data-customizable="true">
             <div class="placeholder" aria-hidden="true"></div>
             <h3 class="product-card__name">Chai</h3>
             <p class="product-card__meta">desde $2.50</p>
           </a></li>
-          <li><a class="product-card" href="customize.html">
+          <li><a class="product-card" href="customize.html"
+                 data-action="add-product" data-product-id="matcha"
+                 data-category="te" data-price-cents="300" data-customizable="true">
             <div class="placeholder" aria-hidden="true"></div>
             <h3 class="product-card__name">Matcha</h3>
             <p class="product-card__meta">desde $3.00</p>
           </a></li>
-          <li><a class="product-card" href="customize.html">
+          <li><a class="product-card" href="customize.html"
+                 data-action="add-product" data-product-id="taro"
+                 data-category="te" data-price-cents="400" data-customizable="true">
             <div class="placeholder" aria-hidden="true"></div>
             <h3 class="product-card__name">Taro</h3>
             <p class="product-card__meta">desde $4.00</p>
           </a></li>
-          <li><a class="product-card" href="customize.html">
+          <li><a class="product-card" href="customize.html"
+                 data-action="add-product" data-product-id="smoothie"
+                 data-category="te" data-price-cents="400" data-customizable="true">
             <div class="placeholder" aria-hidden="true"></div>
             <h3 class="product-card__name">Smoothie</h3>
             <p class="product-card__meta">desde $4.00</p>
           </a></li>
         </ul>
       </section>
-      <section class="product-section" id="pasteleria" aria-labelledby="pasteleria-title">
-        <h2 class="product-section__title" id="pasteleria-title">Pastelería</h2>
+
+      <section class="product-section" id="panaderia" aria-labelledby="panaderia-title">
+        <h2 class="product-section__title" id="panaderia-title">Panadería</h2>
         <ul class="product-grid">
-          <li><a class="product-card" href="#order">
+          <li><a class="product-card" href="#order"
+                 data-action="add-product" data-product-id="pan-de-muerto"
+                 data-category="panaderia" data-price-cents="4000" data-customizable="false" data-stock="4">
             <div class="placeholder" aria-hidden="true"></div>
             <h3 class="product-card__name">Pan de Muerto</h3>
             <p class="product-card__meta">$40 · 4 disponibles</p>
           </a></li>
-          <li><a class="product-card" href="#order">
+          <li><a class="product-card" href="#order"
+                 data-action="add-product" data-product-id="brownie"
+                 data-category="panaderia" data-price-cents="4000" data-customizable="false" data-stock="8">
             <div class="placeholder" aria-hidden="true"></div>
             <h3 class="product-card__name">Brownie</h3>
             <p class="product-card__meta">$40 · 8 disponibles</p>
           </a></li>
-          <li><a class="product-card" href="#order">
+          <li><a class="product-card" href="#order"
+                 data-action="add-product" data-product-id="croissant"
+                 data-category="panaderia" data-price-cents="3500" data-customizable="false" data-stock="7">
             <div class="placeholder" aria-hidden="true"></div>
             <h3 class="product-card__name">Croissant</h3>
             <p class="product-card__meta">$35 · 7 disponibles</p>
           </a></li>
         </ul>
       </section>
+    </div>  
     </div>
 
     <aside class="order-pane card" id="order" aria-labelledby="order-title">
@@ -133,22 +208,66 @@
       </div>
       <div class="order-pane__lines">
         <p class="order-pane__empty">Aún sin productos</p>
-        <!-- Example order line (used once products are added):
-        <div class="order-line">
-          <div class="order-line__main"><span>Latte</span><span>$4.50</span></div>
-          <div class="order-line__detail">
-            <svg class="icon icon--sm" aria-hidden="true"><use href="#icon-hot"></use></svg>
-            <span class="visually-hidden">Caliente</span><span>Para aquí · Miel</span>
-          </div>
-        </div> -->
+
+      <div class="order-pane__lines">
+        <p class="order-pane__empty">Aún sin productos</p>
+        <ul class="order-pane__list" data-order-lines>
+
+          <!-- DEMO lines for styling: delete them, or JS removes every [data-demo] -->
+          <li class="order-line" data-demo data-line-id="demo-1" data-product-id="latte">
+            <div class="order-line__main">
+              <span><span data-field="qty">1</span> × <span data-field="name">Latte</span></span>
+              <span data-field="price">$4.00</span>
+            </div>
+            <div class="order-line__detail">
+              <span data-field="temp"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg><span class="visually-hidden">Caliente</span></span>
+              <span data-field="details">Para llevar · Miel</span>
+            </div>
+            <div class="order-line__actions">
+              <a class="btn" href="customize.html" data-action="edit-line">Editar<span class="visually-hidden" data-field="name"> Latte</span></a>
+              <button class="btn" type="button" data-action="remove-line">Quitar<span class="visually-hidden" data-field="name"> Latte</span></button>
+            </div>
+          </li>
+
+          <li class="order-line" data-demo data-line-id="demo-2" data-product-id="croissant">
+            <div class="order-line__main">
+              <span><span data-field="qty">1</span> × <span data-field="name">Croissant</span></span>
+              <span data-field="price">$35.00</span>
+            </div>
+            <div class="order-line__actions">
+              <button class="btn" type="button" data-action="remove-line">Quitar<span class="visually-hidden" data-field="name"> Croissant</span></button>
+            </div>
+          </li>
+
+        </ul>
       </div>
-      <p class="order-pane__total"><span>Total</span><span class="order-pane__total-value">$0.00</span></p>
+      <p class="order-pane__total"><span>Total</span><span class="order-pane__total-value" data-order-total>$0.00</span></p>
       <div class="order-pane__actions">
-        <a class="btn" href="main.html">Guardar y salir</a>
-        <button class="btn btn--confirm" type="button" disabled><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg><span>Cobrar $0.00</span></button>
+        <a class="btn" href="main.html" data-action="save-and-exit">Guardar y salir</a>
+        <button class="btn btn--confirm" type="button" data-action="checkout" disabled><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg><span>Cobrar <span data-order-total>$0.00</span></span></button>
       </div>
-      <p class="order-pane__hint">Agrega un producto para cobrar.</p>
+      <p class="order-pane__hint" data-checkout-hint>Agrega un producto para cobrar.</p>
     </aside>
+
   </main>
+
+  <!-- Order-line template: never shown; JS copies it, fills every [data-field], sets the icon -->
+  <template id="tpl-order-line">
+    <li class="order-line" data-line-id="" data-product-id="">
+      <div class="order-line__main">
+        <span><span data-field="qty">1</span> × <span data-field="name"></span></span>
+        <span data-field="price"></span>
+      </div>
+      <div class="order-line__detail">
+        <span data-field="temp"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg><span class="visually-hidden">Caliente</span></span>
+        <span data-field="details"></span>
+      </div>
+      <div class="order-line__actions">
+        <a class="btn" href="customize.html" data-action="edit-line">Editar<span class="visually-hidden" data-field="name"></span></a>
+        <button class="btn" type="button" data-action="remove-line">Quitar<span class="visually-hidden" data-field="name"></span></button>
+      </div>
+    </li>
+  </template>
+
 </body>
 </html>

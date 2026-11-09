@@ -14,8 +14,8 @@
   stroke-linecap: round;
   stroke-linejoin: round;
 }
-.icon--lg { width: 2.75rem; height: 2.75rem; }
-.icon--sm { width: 1.25em; height: 1.25em; vertical-align: -0.2em; }
+.icon--lg { width: 4rem; height: 4rem; }
+.icon--sm { width: 1.75em; height: 1.75em; vertical-align: -0.35em; }
 
 /* BUTTONS ---------------------------------------------------------------- */
 .btn {
@@ -50,7 +50,7 @@
 .btn:disabled,
 .btn[aria-disabled="true"] {
   background: transparent;
-  border-style: dashed;
+  border-style: dotted;
   border-color: var(--color-muted);
   color: var(--color-muted);
   cursor: not-allowed;
@@ -61,11 +61,14 @@
   display: flex;
   align-items: center;
   gap: var(--space-5);
-  min-height: 5.5rem;
+  min-height: var(--app-bar-height);
   padding: var(--space-3) var(--space-5);
   background: var(--color-brown);
   border-bottom: 4px solid var(--color-yellow);
   color: var(--color-on-dark);
+  position: sticky;
+  top: 0;
+  z-index: 20;
 }
 .app-bar__title,
 .app-bar__brand {
@@ -104,7 +107,7 @@
 /* CATEGORY NAV (anchor links to catalog sections) ------------------------- */
 .category-nav {
   position: sticky;
-  top: 0;
+  top: var(--app-bar-height);
   z-index: 5;
   display: flex;
   flex-wrap: wrap;
@@ -129,15 +132,24 @@
 .catalog:not(:has(:target)) .category-nav__link[href="#cafe"],
 .catalog:has(#cafe:target) .category-nav__link[href="#cafe"],
 .catalog:has(#te:target) .category-nav__link[href="#te"],
-.catalog:has(#pasteleria:target) .category-nav__link[href="#pasteleria"] {
+.catalog:has(#panaderia:target) .category-nav__link[href="#panaderia"] {
   background: var(--color-brown);
   border-color: var(--color-brown);
   color: var(--color-on-dark);
 }
 .category-nav__link--order { display: none; }
+.catalog__scroll {
+  display: flex; 
+  flex-direction: column; 
+  gap: var(--space-6); 
+}
 
 /* PRODUCT SECTIONS AND CARDS ---------------------------------------------- */
-.product-section { scroll-margin-top: 5rem; }
+.product-section {
+  flex: none;
+  min-height: 60vh;
+  scroll-snap-align: start;
+}
 .product-section__title {
   padding-bottom: var(--space-2);
   margin-bottom: var(--space-4);
@@ -145,7 +157,7 @@
 }
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
   gap: var(--space-4);
 }
 .product-card {
@@ -155,7 +167,7 @@
   height: 100%;
   padding: var(--space-3);
   background: #fff;
-  border: var(--border-width) dashed var(--color-line-soft);
+  border: var(--border-width) dotted var(--color-line-soft);
   border-radius: var(--radius);
 }
 .product-card:hover { border-style: solid; border-color: var(--color-orange); }
@@ -164,7 +176,7 @@
 
 /* Image placeholder: grey-brown square with a cross (swap for real photos) */
 .placeholder {
-  aspect-ratio: 16 / 7;
+  aspect-ratio: 4 / 3;
   border: var(--border-width) solid var(--color-line-soft);
   background:
     linear-gradient(to top right, transparent calc(50% - 1px), var(--color-line-soft) 50%, transparent calc(50% + 1px)),
@@ -179,9 +191,14 @@
 .order-pane__empty { color: var(--color-muted); }
 .order-pane__total { display: flex; justify-content: space-between; align-items: baseline; }
 .order-pane__total-value { font-family: var(--font-ui); font-size: var(--fs-xl); font-weight: var(--fw-bold); color: var(--color-brown); }
-.order-pane__actions { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+.order-pane__actions { display: grid; grid-template-columns: 1fr; gap: var(--space-3); }
 .order-pane__hint { font-size: var(--fs-sm); color: var(--color-muted); }
 
-.order-line { display: flex; flex-direction: column; gap: var(--space-1); padding-bottom: var(--space-3); border-bottom: 2px dashed var(--color-line-soft); }
+.order-line { display: flex; flex-direction: column; gap: var(--space-1); padding-bottom: var(--space-3); border-bottom: 2px dotted var(--color-line-soft); }
 .order-line__main { display: flex; justify-content: space-between; gap: var(--space-3); font-family: var(--font-ui); font-weight: var(--fw-bold); }
 .order-line__detail { display: flex; align-items: center; gap: var(--space-2); font-size: var(--fs-sm); color: var(--color-muted); }
+
+.order-pane__list { display: flex; flex-direction: column; gap: var(--space-3); }
+/* Hide "Aún sin productos" as soon as the list has a line (CSS only, no JS) */
+.order-pane__lines:has(.order-line) .order-pane__empty { display: none; }
+.order-line__actions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-2); }

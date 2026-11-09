@@ -20,21 +20,33 @@
 /* =========================== */
 /* MAIN (home hub) */
 /* =========================== */
+/* The page is exactly one screen tall, so the buttons can use all the space
+   under the top bar. The same padding above and below keeps them centred. */
+.page-home {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-height: 100dvh;       /* phones: ignores the browser's address bar */
+}
+.page-home main { flex: 1; display: flex; }
 .hub {
+  flex: 1;
   display: grid;
   grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: repeat(2, 1fr);   /* two rows share all the free height */
   gap: var(--space-6);
-  max-width: 76rem;
+  width: 100%;
+  max-width: 90rem;
   margin: 0 auto;
-  padding: var(--space-7) var(--space-5);
+  padding: var(--space-7) var(--space-6);  /* same margin above and below */
 }
 .hub__item {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2);
-  min-height: 16rem;
+  gap: var(--space-3);
+  min-height: 14rem;
   padding: var(--space-5);
   background: var(--color-surface);
   border: var(--border-width) solid var(--color-line);
@@ -43,7 +55,8 @@
   color: var(--color-brown);
 }
 .hub__item:hover { background: var(--color-yellow); }
-.hub__title { font-family: var(--font-ui); font-size: var(--fs-xl); font-weight: var(--fw-bold); }
+/* Typeface comes from the .source-serif-4-hub-title class (see base.css) */
+.hub__title { font-family: var(--font-ui); font-weight: var(--fw-bold); font-size: var(--fs-xl); line-height: 1.2; }
 .hub__hint { font-size: var(--fs-sm); color: var(--color-muted); }
 .hub__item--primary { grid-column: span 4; background: var(--color-orange); }
 .hub__item--primary .hub__hint { color: var(--color-brown); }
@@ -56,29 +69,55 @@
 /* =========================== */
 .order-layout {
   display: grid;
-  grid-template-columns: 1fr 25rem;
+  grid-template-columns: 1fr 28rem;
   gap: var(--space-5);
   align-items: start;
   padding: var(--space-5);
 }
 .catalog { gap: var(--space-6); }
-.order-pane { position: sticky; top: var(--space-5); min-height: 28rem; }
+.order-pane { min-height: 28rem; }
+
+/* Desktop shell: the top bar, category buttons and order pane never move.
+   Only the product list scrolls, and each category fills the visible list,
+   so choosing "Té" shows only Té. */
+@media (min-width: 901px) {
+  .page-order { height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+  .order-layout { flex: 1; min-height: 0; grid-template-rows: minmax(0, 1fr); align-items: stretch; }
+  .catalog { min-height: 0; padding-bottom: 0; gap: var(--space-4); }
+  .category-nav { position: static; padding-bottom: 0; }
+  .catalog__scroll {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    container-type: size;                 /* lets sections use cqh units */
+    scroll-snap-type: y proximity;
+    padding-right: var(--space-2);
+  }
+  .product-section { min-height: 100cqh; }
+  .order-pane { overflow-y: auto; }
+}
 
 /* =========================== */
 /* RESPONSIVENESS */
 /* =========================== */
 @media (max-width: 1100px) {
-  .order-layout { grid-template-columns: 1fr 21rem; }
+  .order-layout { grid-template-columns: 1fr 23rem; }
 }
 
 @media (max-width: 900px) {
+  .page-home .hub { grid-template-rows: none; }
   .hub { grid-template-columns: repeat(2, 1fr); gap: var(--space-4); padding: var(--space-5) var(--space-4); }
   .hub__item--primary { grid-column: 1 / -1; }
   .hub__item--small, .hub__item--wide { grid-column: span 1; }
   .hub__item { min-height: 11rem; }
 
   .order-layout { grid-template-columns: 1fr; padding: var(--space-4); }
-  .order-pane { position: static; min-height: 0; }
+  .order-pane { min-height: 0; }
+  /* On small screens the page scrolls; bars stay stuck to the top */
+  .product-section {
+    min-height: calc(100svh - var(--app-bar-height) - 6rem);
+    scroll-margin-top: calc(var(--app-bar-height) + 5.5rem);
+  }
   .category-nav__link--order { display: inline-flex; margin-left: auto; background: var(--color-orange); border-color: var(--color-brown); }
 }
 
@@ -86,7 +125,7 @@
   .app-bar { padding: var(--space-3) var(--space-4); gap: var(--space-3); }
   .hub { grid-template-columns: 1fr; }
   .hub__item { min-height: 9rem; }
+  .hub__title { font-size: var(--fs-lg); }
   .login__card { padding: var(--space-6) var(--space-4); }
-  .order-pane__actions { grid-template-columns: 1fr; }
   .product-grid { grid-template-columns: repeat(2, 1fr); }
 }
