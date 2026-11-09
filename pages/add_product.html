@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Personalizar · Attenbee</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Playpen+Sans:wght@100..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+
+  <!-- Style Sheets -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/add_product.css">
+</head>
+
+<!-- ONE page for every drink (Café and Té). Panadería never comes here.
+     JS (later) reads ?product=<id>, fills every [data-field] and shows the
+     options marked data-only-for that match the product. -->
+<body class="page-order page-add">
+  <!-- Icons -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+
+  <!-- Hot -->
+  <symbol id="icon-hot" viewBox="0 0 24 24">
+    <path d="M0 0h24v24H0z" fill="none" stroke="none"/>
+    <path d="M12 10.941c2.333 -3.308 .167 -7.823 -1 -8.941c0 3.395 -2.235 5.299 -3.667 6.706c-1.43 1.408 -2.333 3.294 -2.333 5.588c0 3.704 3.134 6.706 7 6.706c3.866 0 7 -3.002 7 -6.706c0 -1.712 -1.232 -4.403 -2.333 -5.588c-2.084 3.353 -3.257 3.353 -4.667 2.235"/>
+  </symbol>
+
+  <!-- Cold -->
+  <symbol id="icon-cold" viewBox="0 0 24 24">
+  <path d="m10 20-1.25-2.5L6 18"/>
+  <path d="M10 4 8.75 6.5 6 6"/>
+  <path d="m14 20 1.25-2.5L18 18"/>
+  <path d="m14 4 1.25 2.5L18 6"/>
+  <path d="m17 21-3-6h-4"/>
+  <path d="m17 3-3 6 1.5 3"/>
+  <path d="M2 12h6.5L10 9"/>
+  <path d="m20 10-1.5 2 1.5 2"/>
+  <path d="M22 12h-6.5L14 15"/>
+  <path d="m4 10 1.5 2L4 14"/>
+  <path d="m7 21 3-6-1.5-3"/>
+  <path d="m7 3 3 6h4"/>
+  </symbol>
+
+  <!-- Arrows -->
+  <symbol id="icon-back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></symbol>
+
+  </defs></svg>
+  <a class="skip-link" href="#content">Saltar al contenido</a>
+
+  <!-- Top Bar -->
+  <header class="app-bar">
+    <a class="btn" href="new_order.html"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-back"></use></svg><span>Pedido</span></a>
+    <h1 class="app-bar__title">Personalizar</h1>
+  </header>
+
+  <!-- Content -->
+  <main class="order-layout" id="content">
+
+    <!-- Options form. Without JS it submits to new_order.html with the choices in the address. -->
+    <form class="add-form card" action="new_order.html" method="get" data-add-form>
+      <input type="hidden" name="product" value="latte" data-field="product-id">
+
+      <!-- Product header: sample values (Latte) until JS fills them -->
+      <div class="add-form__product">
+        <div class="placeholder add-form__image" aria-hidden="true"></div>
+        <div>
+          <h2 class="add-form__name" data-field="product-name">Latte</h2>
+          <p class="add-form__base" data-field="base-price">desde $60.00</p>
+        </div>
+      </div>
+
+      <!-- The only scrolling area on desktop -->
+      <div class="add-form__options">
+
+        <fieldset class="option-group">
+          <legend class="option-group__title">Endulzante</legend>
+          <div class="option-group__chips">
+            <label class="chip"><input type="radio" name="endulzante" value="ninguno" data-price-delta-cents="0" required checked><span>Sin endulzante</span></label>
+            <label class="chip"><input type="radio" name="endulzante" value="miel" data-price-delta-cents="0"><span>Miel</span></label>
+            <label class="chip"><input type="radio" name="endulzante" value="splenda" data-price-delta-cents="0"><span>Splenda</span></label>
+            <label class="chip"><input type="radio" name="endulzante" value="mascabado" data-price-delta-cents="0"><span>Mascabado</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="option-group">
+          <legend class="option-group__title">Consumo</legend>
+          <div class="option-group__chips">
+            <label class="chip"><input type="radio" name="consumo" value="aqui" data-price-delta-cents="-50" required><span>Aquí</span><span class="chip__price">−$5.00</span></label>
+            <label class="chip"><input type="radio" name="consumo" value="termo" data-price-delta-cents="-50"><span>Termo propio</span><span class="chip__price">−$5.00</span></label>
+            <label class="chip"><input type="radio" name="consumo" value="llevar" data-price-delta-cents="0" checked><span>Para llevar</span></label>
+          </div>
+        </fieldset>
+
+        <fieldset class="option-group">
+          <legend class="option-group__title">Adicional</legend>
+          <div class="option-group__chips">
+            <label class="chip"><input type="radio" name="adicional" value="ninguno" data-price-delta-cents="0" required checked><span>Ninguno</span></label>
+            <label class="chip"><input type="radio" name="adicional" value="cajeta" data-price-delta-cents="40"><span>Cajeta extra</span><span class="chip__price">+$5.00</span></label>
+            <label class="chip"><input type="radio" name="adicional" value="caramelo" data-price-delta-cents="40"><span>Caramelo extra</span><span class="chip__price">+$5.00</span></label>
+            <!-- Smoothies only: hidden until JS sees a smoothie -->
+            <label class="chip" data-only-for="smoothie" hidden><input type="radio" name="adicional" value="leche" data-price-delta-cents="50"><span>Con leche</span><span class="chip__price">+$0.50</span></label>
+          </div>
+        </fieldset>
+
+      </div>
+
+      <!-- Footer: quantity + actions, always visible -->
+      <div class="add-form__footer">
+        <div class="stepper">
+          <label class="stepper__label" for="qty">Cantidad</label>
+          <div class="stepper__controls">
+            <button class="btn stepper__btn" type="button" data-action="qty-decrease" aria-label="Quitar uno">−</button>
+            <input class="stepper__input" id="qty" type="number" name="cantidad" value="1" min="1" max="20" inputmode="numeric" data-field="qty">
+            <button class="btn stepper__btn" type="button" data-action="qty-increase" aria-label="Agregar uno">+</button>
+          </div>
+        </div>
+        <div class="add-form__actions">
+          <a class="btn" href="new_order.html" data-action="cancel">Cancelar</a>
+          <button class="btn btn--confirm" type="submit" data-action="add-to-order"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg><span>Agregar al pedido · <span data-add-total>$60.00</span></span></button>
+        </div>
+      </div>
+    </form>
+
+    <!-- Order pane: same markup as new_order.html. If you change one, change both. -->
+    <aside class="order-pane card" id="order" aria-labelledby="order-title" data-order-id="1">
+      <div class="order-pane__header">
+        <h2 id="order-title">Pedido #1</h2>
+      </div>
+      <div class="order-pane__lines">
+        <p class="order-pane__empty">Aún sin productos</p>
+        <ul class="order-pane__list" data-order-lines>
+
+          <!-- DEMO lines for styling: delete them, or JS removes every [data-demo] -->
+          <li class="order-line" data-demo data-line-id="demo-1" data-product-id="latte">
+            <div class="order-line__main">
+              <span><span data-field="qty">1</span> × <span data-field="name">Latte</span></span>
+              <span data-field="price">$60.00</span>
+            </div>
+            <div class="order-line__detail">
+              <span data-field="temp"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg><span class="visually-hidden">Caliente</span></span>
+              <span data-field="details">Para llevar · Miel</span>
+            </div>
+            <div class="order-line__actions">
+              <a class="btn" href="add_product.html" data-action="edit-line">Editar<span class="visually-hidden" data-field="name"> Latte</span></a>
+              <button class="btn" type="button" data-action="remove-line">Quitar<span class="visually-hidden" data-field="name"> Latte</span></button>
+            </div>
+          </li>
+
+          <li class="order-line" data-demo data-line-id="demo-2" data-product-id="croissant">
+            <div class="order-line__main">
+              <span><span data-field="qty">1</span> × <span data-field="name">Croissant</span></span>
+              <span data-field="price">$35.00</span>
+            </div>
+            <div class="order-line__actions">
+              <button class="btn" type="button" data-action="remove-line">Quitar<span class="visually-hidden" data-field="name"> Croissant</span></button>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+      <p class="order-pane__total"><span>Total</span><span class="order-pane__total-value" data-order-total>$0.00</span></p>
+      <div class="order-pane__actions">
+        <a class="btn" href="main.html" data-action="save-and-exit">Guardar y salir</a>
+        <button class="btn btn--confirm" type="button" data-action="checkout" disabled><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg><span>Cobrar <span data-order-total>$0.00</span></span></button>
+      </div>
+      <p class="order-pane__hint" data-checkout-hint>Agrega un producto para cobrar.</p>
+    </aside>
+  </main>
+</body>
+</html>

@@ -1,27 +1,6 @@
-/* ==========================================================================
-   ATTENBEE – pages.css
-   Page layouts: login, main (hub), new order. Responsive rules at the end.
-   ========================================================================== */
 
-/* =========================== */
-/* LOGIN */
-/* =========================== */
-.login {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 100vh;
-  padding: var(--space-5);
-}
-.login__card { width: min(28rem, 100%); padding: var(--space-7) var(--space-6); gap: var(--space-5); text-align: center; }
-.login__brand { color: var(--color-brown); }
-.login__welcome { font-family: var(--font-ui); font-size: var(--fs-lg); color: var(--color-charcoal); }
-
-/* =========================== */
-/* MAIN (home hub) */
-/* =========================== */
-/* The page is exactly one screen tall, so the buttons can use all the space
-   under the top bar. The same padding above and below keeps them centred. */
+/* Buttons can use all space available under the top bar. 
+   The padding keeps everything centered */
 .page-home {
   display: flex;
   flex-direction: column;
@@ -55,7 +34,6 @@
   color: var(--color-brown);
 }
 .hub__item:hover { background: var(--color-yellow); }
-/* Typeface comes from the .source-serif-4-hub-title class (see base.css) */
 .hub__title { font-family: var(--font-ui); font-weight: var(--fw-bold); font-size: var(--fs-xl); line-height: 1.2; }
 .hub__hint { font-size: var(--fs-sm); color: var(--color-muted); }
 .hub__item--primary { grid-column: span 4; background: var(--color-orange); }
@@ -63,39 +41,6 @@
 .hub__item--primary:hover { background: var(--color-yellow); }
 .hub__item--small { grid-column: span 2; }
 .hub__item--wide { grid-column: span 3; }
-
-/* =========================== */
-/* NEW ORDER */
-/* =========================== */
-.order-layout {
-  display: grid;
-  grid-template-columns: 1fr 28rem;
-  gap: var(--space-5);
-  align-items: start;
-  padding: var(--space-5);
-}
-.catalog { gap: var(--space-6); }
-.order-pane { min-height: 28rem; }
-
-/* Desktop shell: the top bar, category buttons and order pane never move.
-   Only the product list scrolls, and each category fills the visible list,
-   so choosing "Té" shows only Té. */
-@media (min-width: 901px) {
-  .page-order { height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
-  .order-layout { flex: 1; min-height: 0; grid-template-rows: minmax(0, 1fr); align-items: stretch; }
-  .catalog { min-height: 0; padding-bottom: 0; gap: var(--space-4); }
-  .category-nav { position: static; padding-bottom: 0; }
-  .catalog__scroll {
-    flex: 1;
-    min-height: 0;
-    overflow-y: auto;
-    container-type: size;                 /* lets sections use cqh units */
-    scroll-snap-type: y proximity;
-    padding-right: var(--space-2);
-  }
-  .product-section { min-height: 100cqh; }
-  .order-pane { overflow-y: auto; }
-}
 
 /* =========================== */
 /* RESPONSIVENESS */
@@ -128,4 +73,5 @@
   .hub__title { font-size: var(--fs-lg); }
   .login__card { padding: var(--space-6) var(--space-4); }
   .product-grid { grid-template-columns: repeat(2, 1fr); }
+  .add-form__actions { display: grid; grid-template-columns: 1fr; width: 100%; }
 }

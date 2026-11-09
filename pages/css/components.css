@@ -202,3 +202,59 @@
 /* Hide "Aún sin productos" as soon as the list has a line (CSS only, no JS) */
 .order-pane__lines:has(.order-line) .order-pane__empty { display: none; }
 .order-line__actions { display: flex; flex-wrap: wrap; gap: var(--space-2); margin-top: var(--space-2); }
+
+/* OPTION GROUPS AND CHIPS (add_product.html) ------------------------------ */
+.option-group { margin: 0; padding: 0; border: 0; min-width: 0; }
+.option-group__title {
+  padding: 0;
+  margin-bottom: var(--space-2);
+  font-family: var(--font-ui);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  color: var(--color-brown);
+}
+.option-group__chips { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+.chip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--touch-size);
+  padding: var(--space-2) var(--space-5);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--color-brown);
+  font-family: var(--font-ui);
+  font-weight: var(--fw-bold);
+  cursor: pointer;
+}
+.chip:hover { background: var(--color-yellow); }
+/* The real radio button stays on the page (keyboard, screen readers) but is invisible */
+.chip input { position: absolute; inset: 0; margin: 0; opacity: 0; cursor: pointer; }
+.chip__price { font-weight: var(--fw-regular); color: var(--color-muted); }
+/* Selected: dark fill AND a tick, so it never relies on colour alone */
+.chip:has(input:checked) { background: var(--color-brown); color: var(--color-on-dark); }
+.chip:has(input:checked) .chip__price { color: var(--color-on-dark); }
+.chip:has(input:checked)::before { content: "✓"; }
+.chip:has(input:focus-visible) { outline: 3px solid var(--color-brown); outline-offset: 3px; }
+
+/* QUANTITY STEPPER -------------------------------------------------------- */
+.stepper { display: flex; align-items: center; gap: var(--space-3); }
+.stepper__label { font-family: var(--font-ui); font-weight: var(--fw-bold); color: var(--color-brown); }
+.stepper__controls { display: flex; align-items: center; gap: var(--space-2); }
+.stepper__btn { width: var(--touch-size); padding: 0; font-size: var(--fs-md); }
+.stepper__input {
+  width: 4rem;
+  min-height: var(--touch-size);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius);
+  background: #fff;
+  text-align: center;
+  font-family: var(--font-ui);
+  font-weight: var(--fw-bold);
+  appearance: textfield;          /* hides the tiny browser arrows; − and + do that job */
+}
+.stepper__input::-webkit-inner-spin-button,
+.stepper__input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
