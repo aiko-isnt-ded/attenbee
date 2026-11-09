@@ -15,7 +15,7 @@
   stroke-linejoin: round;
 }
 .icon--lg { width: 4rem; height: 4rem; }
-.icon--sm { width: 1.75em; height: 1.75em; vertical-align: -0.35em; }
+.icon--sm { width: 1em; height: 1em; vertical-align: -0.125em; }
 
 /* BUTTONS ---------------------------------------------------------------- */
 .btn {
@@ -237,7 +237,6 @@
 /* Selected: dark fill AND a tick, so it never relies on colour alone */
 .chip:has(input:checked) { background: var(--color-brown); color: var(--color-on-dark); }
 .chip:has(input:checked) .chip__price { color: var(--color-on-dark); }
-.chip:has(input:checked)::before { content: "✓"; }
 .chip:has(input:focus-visible) { outline: 3px solid var(--color-brown); outline-offset: 3px; }
 
 /* QUANTITY STEPPER -------------------------------------------------------- */
