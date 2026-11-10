@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pedidos · Attenbee</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Playpen+Sans:wght@100..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+
+  <!-- Style Sheets -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/orders.css">
+</head>
+
+<body class="page-orders">
+  <!-- Icons -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+
+  <!-- Hot -->
+  <symbol id="icon-hot" viewBox="0 0 24 24">
+    <path d="M0 0h24v24H0z" fill="none" stroke="none"/>
+    <path d="M12 10.941c2.333 -3.308 .167 -7.823 -1 -8.941c0 3.395 -2.235 5.299 -3.667 6.706c-1.43 1.408 -2.333 3.294 -2.333 5.588c0 3.704 3.134 6.706 7 6.706c3.866 0 7 -3.002 7 -6.706c0 -1.712 -1.232 -4.403 -2.333 -5.588c-2.084 3.353 -3.257 3.353 -4.667 2.235"/>
+  </symbol>
+
+  <!-- Cold -->
+  <symbol id="icon-cold" viewBox="0 0 24 24">
+  <path d="m10 20-1.25-2.5L6 18"/>
+  <path d="M10 4 8.75 6.5 6 6"/>
+  <path d="m14 20 1.25-2.5L18 18"/>
+  <path d="m14 4 1.25 2.5L18 6"/>
+  <path d="m17 21-3-6h-4"/>
+  <path d="m17 3-3 6 1.5 3"/>
+  <path d="M2 12h6.5L10 9"/>
+  <path d="m20 10-1.5 2 1.5 2"/>
+  <path d="M22 12h-6.5L14 15"/>
+  <path d="m4 10 1.5 2L4 14"/>
+  <path d="m7 21 3-6-1.5-3"/>
+  <path d="m7 3 3 6h4"/>
+  </symbol>
+
+  <!-- Arrows -->
+  <symbol id="icon-back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+
+  </defs></svg>
+  <a class="skip-link" href="#content">Saltar al contenido</a>
+
+  <!-- Top Bar -->
+  <header class="app-bar">
+    <a class="btn" href="main.html"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-back"></use></svg><span>Inicio</span></a>
+    <h1 class="app-bar__title">Pedidos</h1>
+  </header>
+
+  <!-- Content -->
+  <main class="orders" id="content">
+    <h2 class="visually-hidden">Pedidos sin cobrar</h2>
+
+    <!-- Shown only when the list has no tickets (CSS :has, no JS) -->
+    <div class="orders__empty card">
+      <p>No hay pedidos sin cobrar.</p>
+      <a class="btn btn--primary" href="new_order.html">Nuevo pedido</a>
+    </div>
+
+    <!-- Open tickets, oldest first -->
+    <ul class="ticket-list" data-orders>
+
+      <!-- DEMO tickets for styling: delete them, or JS removes every [data-demo].
+           Line prices include the option prices from add_beverage.html. -->
+      <li class="ticket card" data-demo data-order-id="12">
+        <div class="ticket__header">
+          <h3 class="ticket__title">Pedido #<span data-field="order-id">12</span></h3>
+          <time class="ticket__time" data-field="time" datetime="10:35">10:35</time>
+        </div>
+        <ul class="ticket__lines">
+          <li class="order-line" data-product-id="latte-frio">
+            <div class="order-line__main">
+              <span><span data-field="qty">2</span> × <span data-field="name">Latte</span></span>
+              <span data-field="price">$130.00</span>
+            </div>
+            <ul class="order-line__options" data-field="options">
+              <li class="order-line__option" data-field="temp"><svg class="icon icon--sm order-line__marker" aria-hidden="true" focusable="false"><use href="#icon-cold"></use></svg><span>Frío</span></li>
+              <li class="order-line__option"><span class="order-line__marker" aria-hidden="true">•</span><span>Para llevar</span></li>
+              <li class="order-line__option"><span class="order-line__marker" aria-hidden="true">•</span><span>Mascabado</span></li>
+              <li class="order-line__option"><span class="order-line__marker" aria-hidden="true">•</span><span>Caramelo extra</span><span class="order-line__delta">+$5.00</span></li>
+            </ul>
+          </li>
+          <li class="order-line" data-product-id="brownie">
+            <div class="order-line__main">
+              <span><span data-field="qty">1</span> × <span data-field="name">Brownie</span></span>
+              <span data-field="price">$40.00</span>
+            </div>
+          </li>
+        </ul>
+        <p class="ticket__total"><span>Total</span><span class="ticket__total-value" data-order-total>$170.00</span></p>
+        <a class="btn btn--confirm ticket__checkout" href="payment.html?order=12" data-action="checkout"><svg class="icon" aria-hidden="true" focusable="false"></svg><span>Cobrar <span data-order-total>$170.00</span><span class="visually-hidden"> del pedido 12</span></span></a>
+      </li>
+
+      <li class="ticket card" data-demo data-order-id="13">
+        <div class="ticket__header">
+          <h3 class="ticket__title">Pedido #<span data-field="order-id">13</span></h3>
+          <time class="ticket__time" data-field="time" datetime="10:42">10:42</time>
+        </div>
+        <ul class="ticket__lines">
+          <li class="order-line" data-product-id="latte-caliente">
+            <div class="order-line__main">
+              <span><span data-field="qty">1</span> × <span data-field="name">Latte</span></span>
+              <span data-field="price">$55.00</span>
+            </div>
+            <ul class="order-line__options" data-field="options">
+              <li class="order-line__option" data-field="temp"><svg class="icon icon--sm order-line__marker" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg><span>Caliente</span></li>
+              <li class="order-line__option"><span class="order-line__marker" aria-hidden="true">•</span><span>Termo propio</span><span class="order-line__delta">−$5.00</span></li>
+              <li class="order-line__option"><span class="order-line__marker" aria-hidden="true">•</span><span>Miel</span></li>
+            </ul>
+          </li>
+          <li class="order-line" data-product-id="cold-brew">
+            <div class="order-line__main">
+              <span><span data-field="qty">1</span> × <span data-field="name">Cold Brew</span></span>
+              <span data-field="price">$40.00</span>
+            </div>
+            <ul class="order-line__options" data-field="options">
+              <li class="order-line__option"><span class="order-line__marker" aria-hidden="true">•</span><span>Aquí</span><span class="order-line__delta">−$5.00</span></li>
+              <li class="order-line__option"><span class="order-line__marker" aria-hidden="true">•</span><span>Cajeta extra</span><span class="order-line__delta">+$5.00</span></li>
+            </ul>
+          </li>
+          <li class="order-line" data-product-id="croissant">
+            <div class="order-line__main">
+              <span><span data-field="qty">1</span> × <span data-field="name">Croissant</span></span>
+              <span data-field="price">$35.00</span>
+            </div>
+          </li>
+          <li class="order-line" data-product-id="chai">
+            <div class="order-line__main">
+              <span><span data-field="qty">1</span> × <span data-field="name">Chai</span></span>
+              <span data-field="price">$35.00</span>
+            </div>
+            <ul class="order-line__options" data-field="options">
+              <li class="order-line__option"><span class="order-line__marker" aria-hidden="true">•</span><span>Aquí</span><span class="order-line__delta">−$5.00</span></li>
+              <li class="order-line__option"><span class="order-line__marker" aria-hidden="true">•</span><span>Splenda</span></li>
+            </ul>
+          </li>
+        </ul>
+        <p class="ticket__total"><span>Total</span><span class="ticket__total-value" data-order-total>$165.00</span></p>
+        <a class="btn btn--confirm ticket__checkout" href="payment.html?order=13" data-action="checkout"><svg class="icon" aria-hidden="true" focusable="false"></svg><span>Cobrar <span data-order-total>$165.00</span><span class="visually-hidden"> del pedido 13</span></span></a>
+      </li>
+
+      <li class="ticket card" data-demo data-order-id="14">
+        <div class="ticket__header">
+          <h3 class="ticket__title">Pedido #<span data-field="order-id">14</span></h3>
+          <time class="ticket__time" data-field="time" datetime="10:50">10:50</time>
+        </div>
+        <ul class="ticket__lines">
+          <li class="order-line" data-product-id="latte-caliente">
+            <div class="order-line__main">
+              <span><span data-field="qty">1</span> × <span data-field="name">Latte</span></span>
+              <span data-field="price">$55.00</span>
+            </div>
+            <ul class="order-line__options" data-field="options">
+              <li class="order-line__option" data-field="temp"><svg class="icon icon--sm order-line__marker" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg><span>Caliente</span></li>
+              <li class="order-line__option"><span class="order-line__marker" aria-hidden="true">•</span><span>Aquí</span><span class="order-line__delta">−$5.00</span></li>
+              <li class="order-line__option"><span class="order-line__marker" aria-hidden="true">•</span><span>Miel</span></li>
+            </ul>
+          </li>
+        </ul>
+        <p class="ticket__total"><span>Total</span><span class="ticket__total-value" data-order-total>$55.00</span></p>
+        <a class="btn btn--confirm ticket__checkout" href="payment.html?order=14" data-action="checkout"><svg class="icon" aria-hidden="true" focusable="false"></svg><span>Cobrar <span data-order-total>$55.00</span><span class="visually-hidden"> del pedido 14</span></span></a>
+      </li>
+
+    </ul>
+  </main>
+</body>
+</html>

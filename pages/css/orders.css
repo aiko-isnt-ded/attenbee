@@ -1,0 +1,96 @@
+/* ORDERS STYLES (orders.html: open tickets waiting to be paid) */
+
+.orders { padding: var(--space-7) var(--space-5); }
+
+/* Tickets side by side: at most 3 per row, each at least 22rem wide.
+   Wide screens get 3 wide tickets instead of many narrow empty columns. */
+.ticket-list {
+  --ticket-min: max(22rem, (100% - 2 * var(--space-5)) / 3);
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--ticket-min)), 1fr));
+  gap: var(--space-5);
+  align-items: stretch;
+}
+
+/* One ticket. Lines grow so totals and buttons line up across a row */
+.ticket { gap: 0; padding: 0}
+.ticket__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+  border-bottom: var(--border-width) dotted var(--color-line-soft);
+}
+.ticket__title { font-size: var(--fs-md); }
+.ticket__time { font-size: var(--fs-sm); color: var(--color-muted); }
+
+.ticket__lines {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--space-5);
+}
+/* Last line needs no divider: the footer has its own */
+.ticket__lines .order-line:last-child { border-bottom: 0; padding-bottom: 0; }
+
+/* Product options: one per line, like bullet points.
+   Columns: bullet (or hot/cold icon) | option | price change */
+.order-line__options { display: flex; flex-direction: column;}
+.order-line__option {
+  display: grid;
+  grid-template-columns: 1.25em 1fr auto;
+  align-items: center;
+  column-gap: var(--space-2);
+  font-size: var(--fs-sm);
+  color: var(--color-muted);
+}
+.order-line__marker { justify-self: center; color: var(--color-line-soft); }
+.order-line__option .icon--sm.order-line__marker { color: var(--color-brown); vertical-align: 0; }
+.order-line__delta { font-family: var(--font-ui); font-weight: var(--fw-bold); color: var(--color-charcoal); }
+
+.ticket__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: var(--space-4) var(--space-5) var(--space-3);
+  border-top: var(--border-width) dotted var(--color-line-soft);
+}
+.ticket__total-value { font-family: var(--font-ui); font-size: var(--fs-xl); font-weight: var(--fw-bold); color: var(--color-brown); }
+
+/* Cobrar: full width at the bottom of the ticket */
+.ticket__checkout { margin: 0 var(--space-5) var(--space-5);}
+
+/* Empty state: hidden while there is at least one ticket */
+.orders__empty { align-items: flex-start; max-width: 32rem; }
+.orders:has(.ticket) .orders__empty { display: none; }
+
+/* =========================== */
+/* RESPONSIVENESS */
+/* =========================== */
+@media (max-width: 560px) {
+  /* Same app-bar rule as new_order.css (it belongs in components.css later) */
+  .app-bar { padding: var(--space-3) var(--space-4); gap: var(--space-3); }
+  .orders { padding: var(--space-4); }
+  .ticket__header, .ticket__lines, .ticket__total { padding-inline: var(--space-4); }
+  .ticket__checkout { margin-inline: var(--space-4); }
+}
+
+/* Big screens, same idea as Nuevo pedido: the page never moves.
+   Each ticket fills the visible height; only its product list scrolls.
+   More than 3 tickets: the next row is one scroll down. */
+@media (min-width: 901px) {
+  .page-orders { height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+  .orders {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    container-type: size;                 /* lets rows use cqh units */
+    scroll-snap-type: y proximity;
+    scroll-padding-top: var(--space-7);
+  }
+  .ticket-list { grid-auto-rows: 100cqh; }
+  .ticket { min-height: 0; scroll-snap-align: start; }
+  .ticket__lines { min-height: 0; overflow-y: auto; }
+}
