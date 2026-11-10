@@ -259,3 +259,51 @@
 .stepper__input::-webkit-outer-spin-button { -webkit-appearance: none; margin: 0; }
 /* Number between − and + when it isn't an input (pastry cards) */
 .stepper__value { min-width: 2ch; text-align: center; font-family: var(--font-ui); font-size: var(--fs-md); font-weight: var(--fw-bold); color: var(--color-brown); }
+
+
+/* MODAL (a popover or a <dialog>) ------------------------------------------ */
+/* Centred box over a dimmed page. Esc closes it. */
+.modal {
+  width: min(32rem, calc(100vw - 2 * var(--space-4)));
+  max-height: calc(100dvh - 2 * var(--space-4));
+  margin: auto;
+  padding: var(--space-6);
+  border: var(--border-width) solid var(--color-line);
+  border-radius: var(--radius);
+  background: var(--color-surface);
+  color: var(--color-charcoal);
+  overflow-y: auto;
+}
+.modal--wide { width: min(44rem, calc(100vw - 2 * var(--space-4))); }
+.modal:popover-open,
+.modal[open] { display: flex; flex-direction: column; gap: var(--space-4); }
+.modal::backdrop { background: rgb(69 33 11 / 0.6); backdrop-filter: blur(2px); }   /* --color-brown, see-through: for warnings (Eliminar). Same light blur for every modal */
+.modal--calm::backdrop { background: rgb(104 124 92 / 0.45); }   /* salvia (sage green): nothing dangerous */
+.modal__form { display: flex; flex-direction: column; gap: var(--space-5); }
+.modal__title { font-size: var(--fs-lg); }
+.modal__subtitle { padding: 0; margin-bottom: var(--space-2); font-family: var(--font-ui); font-weight: var(--fw-bold); color: var(--color-muted); }
+.modal legend.field__label { padding: 0; margin-bottom: var(--space-2); }
+.modal__group { display: flex; flex-direction: column; gap: var(--space-4); }
+/* Options chips (several can be on): light honey when on, dotted when off,
+   so the state never relies on colour alone */
+.modal__group .chip { border-style: dotted; color: var(--color-muted); }
+.modal__group .chip:has(input:checked) {
+  background: color-mix(in srgb, var(--color-yellow) 40%, var(--color-surface));
+  border-style: solid;
+  color: var(--color-brown);
+}
+.modal__group .chip:hover { background: var(--color-yellow); color: var(--color-brown); }
+.modal__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: var(--border-width) dotted var(--color-line-soft);
+}
+.field__input--short { max-width: 10rem; }
+
+@media (max-width: 560px) {
+  .modal { padding: var(--space-5) var(--space-4); }
+  .modal__actions { display: grid; grid-template-columns: 1fr; }
+}

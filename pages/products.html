@@ -77,7 +77,7 @@
             <label class="chip"><input type="radio" name="filtro" value="panaderia" id="filter-panaderia"><span>Panadería</span></label>
           </div>
         </fieldset>
-        <a class="btn btn--accent products__new" href="products.html?product=nuevo#product-form" data-action="new-product"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-plus"></use></svg><span>Nuevo producto</span></a>
+        <button class="btn btn--accent products__new" type="button" data-action="new-product"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-plus"></use></svg><span>Nuevo producto</span></button>
       </div>
 
       <!-- The only scrolling area on desktop -->
@@ -103,7 +103,7 @@
             <td class="product-table__actions">
               <div class="product-table__buttons">
                 <a class="btn" href="products.html?product=cafe-colmena#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Café Colmena</span></a>
-                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Café Colmena</span></button>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Café Colmena</span></button>
               </div>
             </td>
           </tr>
@@ -116,7 +116,7 @@
             <td class="product-table__actions">
               <div class="product-table__buttons">
                 <a class="btn" href="products.html?product=americano#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Americano</span></a>
-                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Americano</span></button>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Americano</span></button>
               </div>
             </td>
           </tr>
@@ -129,7 +129,7 @@
             <td class="product-table__actions">
               <div class="product-table__buttons">
                 <a class="btn" href="products.html?product=espresso#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Espresso</span></a>
-                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Espresso</span></button>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Espresso</span></button>
               </div>
             </td>
           </tr>
@@ -142,7 +142,7 @@
             <td class="product-table__actions">
               <div class="product-table__buttons">
                 <a class="btn" href="products.html?product=capuchino-caliente#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Capuchino Caliente</span></a>
-                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Capuchino Caliente</span></button>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Capuchino Caliente</span></button>
               </div>
             </td>
           </tr>
@@ -155,7 +155,7 @@
             <td class="product-table__actions">
               <div class="product-table__buttons">
                 <a class="btn" href="products.html?product=capuchino-frio#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Capuchino Frío</span></a>
-                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Capuchino Frío</span></button>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Capuchino Frío</span></button>
               </div>
             </td>
           </tr>
@@ -168,7 +168,7 @@
             <td class="product-table__actions">
               <div class="product-table__buttons">
                 <a class="btn" href="products.html?product=latte-caliente#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Latte Caliente</span></a>
-                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Latte Caliente</span></button>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Latte Caliente</span></button>
               </div>
             </td>
           </tr>
@@ -181,7 +181,7 @@
             <td class="product-table__actions">
               <div class="product-table__buttons">
                 <a class="btn" href="products.html?product=latte-frio#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Latte Frío</span></a>
-                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Latte Frío</span></button>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Latte Frío</span></button>
               </div>
             </td>
           </tr>
@@ -194,7 +194,7 @@
             <td class="product-table__actions">
               <div class="product-table__buttons">
                 <a class="btn" href="products.html?product=macchiato#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Macchiato</span></a>
-                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Macchiato</span></button>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Macchiato</span></button>
               </div>
             </td>
           </tr>
@@ -207,7 +207,7 @@
             <td class="product-table__actions">
               <div class="product-table__buttons">
                 <a class="btn" href="products.html?product=flat-white#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Flat White</span></a>
-                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Flat White</span></button>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Flat White</span></button>
               </div>
             </td>
           </tr>
@@ -220,7 +220,7 @@
             <td class="product-table__actions">
               <div class="product-table__buttons">
                 <a class="btn" href="products.html?product=cold-brew#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Cold Brew</span></a>
-                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Cold Brew</span></button>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Cold Brew</span></button>
               </div>
             </td>
           </tr>
@@ -233,7 +233,7 @@
             <td class="product-table__actions">
               <div class="product-table__buttons">
                 <a class="btn" href="products.html?product=cold-brew-tonic#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Cold Brew Tonic</span></a>
-                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Cold Brew Tonic</span></button>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Cold Brew Tonic</span></button>
               </div>
             </td>
           </tr>
@@ -246,7 +246,7 @@
             <td class="product-table__actions">
               <div class="product-table__buttons">
                 <a class="btn" href="products.html?product=affogato#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Affogato</span></a>
-                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Affogato</span></button>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Affogato</span></button>
               </div>
             </td>
           </tr>
@@ -259,7 +259,7 @@
             <td class="product-table__actions">
               <div class="product-table__buttons">
                 <a class="btn" href="products.html?product=menta#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Menta</span></a>
-                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Menta</span></button>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Menta</span></button>
               </div>
             </td>
           </tr>
@@ -272,7 +272,7 @@
             <td class="product-table__actions">
               <div class="product-table__buttons">
                 <a class="btn" href="products.html?product=chai#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Chai</span></a>
-                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Chai</span></button>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Chai</span></button>
               </div>
             </td>
           </tr>
@@ -285,7 +285,7 @@
             <td class="product-table__actions">
               <div class="product-table__buttons">
                 <a class="btn" href="products.html?product=verde#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Verde</span></a>
-                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Verde</span></button>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Verde</span></button>
               </div>
             </td>
           </tr>
@@ -298,7 +298,7 @@
             <td class="product-table__actions">
               <div class="product-table__buttons">
                 <a class="btn" href="products.html?product=chocolate-frio#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Chocolate Frío</span></a>
-                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Chocolate Frío</span></button>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Chocolate Frío</span></button>
               </div>
             </td>
           </tr>
@@ -311,7 +311,7 @@
             <td class="product-table__actions">
               <div class="product-table__buttons">
                 <a class="btn" href="products.html?product=smoothie#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Smoothie</span></a>
-                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Smoothie</span></button>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Smoothie</span></button>
               </div>
             </td>
           </tr>
@@ -324,7 +324,7 @@
             <td class="product-table__actions">
               <div class="product-table__buttons">
                 <a class="btn" href="products.html?product=pan-de-muerto#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Pan de Muerto</span></a>
-                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Pan de Muerto</span></button>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Pan de Muerto</span></button>
               </div>
             </td>
           </tr>
@@ -337,7 +337,7 @@
             <td class="product-table__actions">
               <div class="product-table__buttons">
                 <a class="btn" href="products.html?product=brownie#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Brownie</span></a>
-                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Brownie</span></button>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Brownie</span></button>
               </div>
             </td>
           </tr>
@@ -350,7 +350,7 @@
             <td class="product-table__actions">
               <div class="product-table__buttons">
                 <a class="btn" href="products.html?product=croissant#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Croissant</span></a>
-                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Croissant</span></button>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Croissant</span></button>
               </div>
             </td>
           </tr>
@@ -414,11 +414,125 @@
 
       <!-- Footer: always visible once a product is chosen -->
       <div class="product-form__footer" data-when-filled hidden>
-        <button class="btn btn--danger" type="button" data-action="delete-product">Eliminar<span class="visually-hidden" data-field="product-name"></span></button>
+        <button class="btn btn--danger" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden" data-field="product-name"></span></button>
         <button class="btn btn--confirm" type="submit" data-action="save-product"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg><span>Guardar</span></button>
       </div>
     </form>
 
   </main>
+
+  <!-- ===================== MODALS ===================== -->
+  <!-- DELETE: plain HTML modal <dialog>. Every "Eliminar" opens it with
+       commandfor="delete-modal" command="show-modal" (no JS). While it is open the page
+       behind can't be clicked. Esc or either button closes it; nothing is deleted yet. -->
+  <dialog class="modal" id="delete-modal" role="alertdialog" aria-labelledby="delete-modal-title" aria-describedby="delete-modal-text">
+    <h2 class="modal__title" id="delete-modal-title">¿Eliminar <span data-field="product-name">este producto</span>?</h2>
+    <p id="delete-modal-text">Ya no aparecerá en el catálogo ni en Nuevo pedido. Esta acción no se puede deshacer.</p>
+    <div class="modal__actions">
+      <button class="btn" type="button" commandfor="delete-modal" command="close" autofocus>Cancelar</button>
+      <button class="btn btn--danger" type="button" commandfor="delete-modal" command="close" data-action="confirm-delete">Sí, eliminar</button>
+    </div>
+  </dialog>
+
+  <!-- NEW PRODUCT: <dialog> opened by js/products.js. Fields follow the database plan:
+       image, product_name, price (>= 0), drink (from Categoría), total_units (Panadería only),
+       details (option codes, drinks only). -->
+  <dialog class="modal modal--wide modal--calm" id="new-product-modal" aria-labelledby="new-product-title" data-new-product-modal>
+    <form class="modal__form" method="dialog" data-new-product-form>
+      <h2 class="modal__title" id="new-product-title">Nuevo producto</h2>
+
+      <div class="field">
+        <label class="field__label" for="new-name">Nombre</label>
+        <input class="field__input" id="new-name" type="text" name="product_name" required maxlength="40" autocomplete="off">
+      </div>
+
+      <fieldset class="option-group">
+        <legend class="field__label">Categoría</legend>
+        <div class="option-group__chips">
+          <label class="chip"><input type="radio" name="category" value="cafe" required checked><span>Café</span></label>
+          <label class="chip"><input type="radio" name="category" value="te"><span>Té</span></label>
+          <label class="chip"><input type="radio" name="category" value="panaderia"><span>Panadería</span></label>
+        </div>
+      </fieldset>
+
+      <div class="field">
+        <label class="field__label" for="new-price">Precio base</label>
+        <div class="field__money">
+          <span class="field__money-sign" aria-hidden="true">$</span>
+          <input class="field__input" id="new-price" type="number" name="price" required min="0" step="0.50" inputmode="decimal" aria-describedby="new-price-hint">
+        </div>
+        <p class="field__hint" id="new-price-hint">En pesos. No puede ser negativo.</p>
+      </div>
+
+      <!-- total_units: Panadería only (JS shows it and turns it on) -->
+      <div class="field" data-when-bakery hidden>
+        <label class="field__label" for="new-units">Existencias</label>
+        <input class="field__input field__input--short" id="new-units" type="number" name="total_units" required min="0" step="1" value="0" inputmode="numeric" disabled>
+      </div>
+
+      <!-- details: drinks only. Codes match the database ENUM. "N" (Sin endulzante / Ninguno) is always added. -->
+      <div class="modal__group" data-when-drink>
+        <p class="field__label">Opciones de Personalizar</p>
+        <fieldset class="option-group">
+          <legend class="modal__subtitle">Consumo</legend>
+          <div class="option-group__chips">
+            <label class="chip"><input type="checkbox" name="details" value="PA" checked><span>Para aquí</span></label>
+            <label class="chip"><input type="checkbox" name="details" value="PL" checked><span>Para llevar</span></label>
+            <label class="chip"><input type="checkbox" name="details" value="TP" checked><span>Termo propio</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="option-group">
+          <legend class="modal__subtitle">Endulzante</legend>
+          <div class="option-group__chips">
+            <label class="chip"><input type="checkbox" name="details" value="MI" checked><span>Miel</span></label>
+            <label class="chip"><input type="checkbox" name="details" value="SP" checked><span>Splenda</span></label>
+            <label class="chip"><input type="checkbox" name="details" value="AM" checked><span>Mascabado</span></label>
+          </div>
+        </fieldset>
+        <fieldset class="option-group">
+          <legend class="modal__subtitle">Adicional</legend>
+          <div class="option-group__chips">
+            <label class="chip"><input type="checkbox" name="details" value="CJE" checked><span>Cajeta extra</span></label>
+            <label class="chip"><input type="checkbox" name="details" value="CE" checked><span>Caramelo extra</span></label>
+            <label class="chip"><input type="checkbox" name="details" value="CL"><span>Con leche</span></label>
+          </div>
+        </fieldset>
+      </div>
+
+      <div class="field">
+        <span class="field__label">Imagen</span>
+        <div class="product-form__image">
+          <div class="placeholder" aria-hidden="true"></div>
+          <label class="btn product-form__image-btn">
+            <input class="visually-hidden" type="file" name="image" accept="image/*" data-field="image-input">
+            Elegir imagen
+          </label>
+        </div>
+        <p class="field__hint" data-field="image-name">Opcional.</p>
+      </div>
+
+      <div class="modal__actions">
+        <button class="btn" type="button" data-action="cancel-new-product">Cancelar</button>
+        <button class="btn btn--confirm" type="submit" data-action="create-product"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg><span>Crear producto</span></button>
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Product-row template: never shown; JS copies it for each new product -->
+  <template id="tpl-product-row">
+    <tr class="product-row" data-product-id="" data-category="" data-price-cents="">
+      <td class="product-table__image"><div class="placeholder" aria-hidden="true" data-field="image"></div></td>
+      <th scope="row" class="product-table__name" data-field="name"></th>
+      <td class="product-table__category" data-field="category"></td>
+      <td class="product-table__price" data-field="price"></td>
+      <td class="product-table__stock" data-field="stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
+      <td class="product-table__actions">
+        <div class="product-table__buttons">
+          <a class="btn" href="products.html#product-form" data-action="edit-product">Editar<span class="visually-hidden" data-field="label"></span></a>
+          <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden" data-field="label"></span></button>
+        </div>
+      </td>
+    </tr>
+  </template>
 </body>
 </html>
