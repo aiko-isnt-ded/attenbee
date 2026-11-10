@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Productos · Attenbee</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Playpen+Sans:wght@100..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+
+  <!-- Style Sheets -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/products.css">
+
+  <!-- JavaScript -->
+  <script src="js/products.js" defer></script>
+</head>
+
+<body class="page-products">
+  <!-- Icons -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+
+  <!-- Hot -->
+  <symbol id="icon-hot" viewBox="0 0 24 24">
+    <path d="M0 0h24v24H0z" fill="none" stroke="none"/>
+    <path d="M12 10.941c2.333 -3.308 .167 -7.823 -1 -8.941c0 3.395 -2.235 5.299 -3.667 6.706c-1.43 1.408 -2.333 3.294 -2.333 5.588c0 3.704 3.134 6.706 7 6.706c3.866 0 7 -3.002 7 -6.706c0 -1.712 -1.232 -4.403 -2.333 -5.588c-2.084 3.353 -3.257 3.353 -4.667 2.235"/>
+  </symbol>
+
+  <!-- Cold -->
+  <symbol id="icon-cold" viewBox="0 0 24 24">
+  <path d="m10 20-1.25-2.5L6 18"/>
+  <path d="M10 4 8.75 6.5 6 6"/>
+  <path d="m14 20 1.25-2.5L18 18"/>
+  <path d="m14 4 1.25 2.5L18 6"/>
+  <path d="m17 21-3-6h-4"/>
+  <path d="m17 3-3 6 1.5 3"/>
+  <path d="M2 12h6.5L10 9"/>
+  <path d="m20 10-1.5 2 1.5 2"/>
+  <path d="M22 12h-6.5L14 15"/>
+  <path d="m4 10 1.5 2L4 14"/>
+  <path d="m7 21 3-6-1.5-3"/>
+  <path d="m7 3 3 6h4"/>
+  </symbol>
+
+  <!-- Arrows and actions -->
+  <symbol id="icon-back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></symbol>
+  <symbol id="icon-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+
+  </defs></svg>
+  <a class="skip-link" href="#content">Saltar al contenido</a>
+
+  <!-- Top Bar -->
+  <header class="app-bar">
+    <a class="btn" href="main.html"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-back"></use></svg><span>Inicio</span></a>
+    <h1 class="app-bar__title">Productos</h1>
+  </header>
+
+  <!-- Content -->
+  <main class="products-layout" id="content">
+
+    <!-- LEFT: product list -->
+    <section class="products card" aria-labelledby="products-title">
+      <h2 class="visually-hidden" id="products-title">Lista de productos</h2>
+
+      <div class="products__toolbar">
+        <!-- Filters: radio chips. CSS (:has) hides the rows of other categories, no JS -->
+        <fieldset class="option-group products__filters">
+          <legend class="visually-hidden">Mostrar categoría</legend>
+          <div class="option-group__chips">
+            <label class="chip"><input type="radio" name="filtro" value="todos" id="filter-all" checked><span>Todos</span></label>
+            <label class="chip"><input type="radio" name="filtro" value="cafe" id="filter-cafe"><span>Café</span></label>
+            <label class="chip"><input type="radio" name="filtro" value="te" id="filter-te"><span>Té</span></label>
+            <label class="chip"><input type="radio" name="filtro" value="panaderia" id="filter-panaderia"><span>Panadería</span></label>
+          </div>
+        </fieldset>
+        <a class="btn btn--accent products__new" href="products.html?product=nuevo#product-form" data-action="new-product"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-plus"></use></svg><span>Nuevo producto</span></a>
+      </div>
+
+      <!-- The only scrolling area on desktop -->
+      <div class="products__scroll" tabindex="0" role="region" aria-labelledby="products-title">
+        <table class="product-table">
+          <thead>
+            <tr>
+              <th scope="col" class="product-table__image"><span class="visually-hidden">Imagen</span></th>
+              <th scope="col">Nombre</th>
+              <th scope="col" class="product-table__category">Categoría</th>
+              <th scope="col" class="product-table__price">Precio</th>
+              <th scope="col" class="product-table__stock">Existencias</th>
+              <th scope="col" class="product-table__actions"><span class="visually-hidden">Acciones</span></th>
+            </tr>
+          </thead>
+          <tbody data-products>
+          <tr class="product-row" data-product-id="cafe-colmena" data-category="cafe" data-price-cents="2000">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Café Colmena</th>
+            <td class="product-table__category">Café</td>
+            <td class="product-table__price">$20.00</td>
+            <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=cafe-colmena#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Café Colmena</span></a>
+                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Café Colmena</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="americano" data-category="cafe" data-price-cents="4000">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Americano</th>
+            <td class="product-table__category">Café</td>
+            <td class="product-table__price">$40.00</td>
+            <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=americano#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Americano</span></a>
+                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Americano</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="espresso" data-category="cafe" data-price-cents="3500">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Espresso</th>
+            <td class="product-table__category">Café</td>
+            <td class="product-table__price">$35.00</td>
+            <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=espresso#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Espresso</span></a>
+                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Espresso</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="capuchino-caliente" data-category="cafe" data-price-cents="6000">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Capuchino<span class="product-table__temp" data-field="temp"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg>Caliente</span></th>
+            <td class="product-table__category">Café</td>
+            <td class="product-table__price">$60.00</td>
+            <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=capuchino-caliente#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Capuchino Caliente</span></a>
+                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Capuchino Caliente</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="capuchino-frio" data-category="cafe" data-price-cents="6000">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Capuchino<span class="product-table__temp" data-field="temp"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-cold"></use></svg>Frío</span></th>
+            <td class="product-table__category">Café</td>
+            <td class="product-table__price">$60.00</td>
+            <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=capuchino-frio#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Capuchino Frío</span></a>
+                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Capuchino Frío</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="latte-caliente" data-category="cafe" data-price-cents="6000">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Latte<span class="product-table__temp" data-field="temp"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg>Caliente</span></th>
+            <td class="product-table__category">Café</td>
+            <td class="product-table__price">$60.00</td>
+            <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=latte-caliente#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Latte Caliente</span></a>
+                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Latte Caliente</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="latte-frio" data-category="cafe" data-price-cents="6000">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Latte<span class="product-table__temp" data-field="temp"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-cold"></use></svg>Frío</span></th>
+            <td class="product-table__category">Café</td>
+            <td class="product-table__price">$60.00</td>
+            <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=latte-frio#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Latte Frío</span></a>
+                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Latte Frío</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="macchiato" data-category="cafe" data-price-cents="4000">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Macchiato</th>
+            <td class="product-table__category">Café</td>
+            <td class="product-table__price">$40.00</td>
+            <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=macchiato#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Macchiato</span></a>
+                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Macchiato</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="flat-white" data-category="cafe" data-price-cents="6000">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Flat White</th>
+            <td class="product-table__category">Café</td>
+            <td class="product-table__price">$60.00</td>
+            <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=flat-white#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Flat White</span></a>
+                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Flat White</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="cold-brew" data-category="cafe" data-price-cents="4000">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Cold Brew</th>
+            <td class="product-table__category">Café</td>
+            <td class="product-table__price">$40.00</td>
+            <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=cold-brew#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Cold Brew</span></a>
+                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Cold Brew</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="cold-brew-tonic" data-category="cafe" data-price-cents="5000">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Cold Brew Tonic</th>
+            <td class="product-table__category">Café</td>
+            <td class="product-table__price">$50.00</td>
+            <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=cold-brew-tonic#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Cold Brew Tonic</span></a>
+                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Cold Brew Tonic</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="affogato" data-category="cafe" data-price-cents="7500">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Affogato</th>
+            <td class="product-table__category">Café</td>
+            <td class="product-table__price">$75.00</td>
+            <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=affogato#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Affogato</span></a>
+                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Affogato</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="menta" data-category="te" data-price-cents="4000">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Menta</th>
+            <td class="product-table__category">Té</td>
+            <td class="product-table__price">$40.00</td>
+            <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=menta#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Menta</span></a>
+                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Menta</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="chai" data-category="te" data-price-cents="4000">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Chai</th>
+            <td class="product-table__category">Té</td>
+            <td class="product-table__price">$40.00</td>
+            <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=chai#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Chai</span></a>
+                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Chai</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="verde" data-category="te" data-price-cents="4000">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Verde</th>
+            <td class="product-table__category">Té</td>
+            <td class="product-table__price">$40.00</td>
+            <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=verde#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Verde</span></a>
+                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Verde</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="chocolate-frio" data-category="te" data-price-cents="4000">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Chocolate<span class="product-table__temp" data-field="temp"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-cold"></use></svg>Frío</span></th>
+            <td class="product-table__category">Té</td>
+            <td class="product-table__price">$40.00</td>
+            <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=chocolate-frio#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Chocolate Frío</span></a>
+                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Chocolate Frío</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="smoothie" data-category="te" data-price-cents="6000">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Smoothie</th>
+            <td class="product-table__category">Té</td>
+            <td class="product-table__price">$60.00</td>
+            <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=smoothie#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Smoothie</span></a>
+                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Smoothie</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="pan-de-muerto" data-category="panaderia" data-price-cents="4000" data-stock="4">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Pan de Muerto</th>
+            <td class="product-table__category">Panadería</td>
+            <td class="product-table__price">$40.00</td>
+            <td class="product-table__stock">4<span class="product-table__unit"> disponibles</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=pan-de-muerto#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Pan de Muerto</span></a>
+                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Pan de Muerto</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="brownie" data-category="panaderia" data-price-cents="4000" data-stock="8">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Brownie</th>
+            <td class="product-table__category">Panadería</td>
+            <td class="product-table__price">$40.00</td>
+            <td class="product-table__stock">8<span class="product-table__unit"> disponibles</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=brownie#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Brownie</span></a>
+                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Brownie</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="croissant" data-category="panaderia" data-price-cents="3500" data-stock="7">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Croissant</th>
+            <td class="product-table__category">Panadería</td>
+            <td class="product-table__price">$35.00</td>
+            <td class="product-table__stock">7<span class="product-table__unit"> disponibles</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=croissant#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Croissant</span></a>
+                <button class="btn" type="button" data-action="delete-product">Eliminar<span class="visually-hidden"> Croissant</span></button>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- RIGHT: edit panel. Empty on load; js/products.js fills it when you tap "Editar" -->
+    <form class="product-form card" id="product-form" action="products.html" method="get" aria-labelledby="product-form-title" data-product-form>
+      <input type="hidden" name="product" value="" data-field="product-id">
+      <h2 id="product-form-title" data-field="title">Editar producto</h2>
+
+      <!-- Shown while no product is chosen -->
+      <p class="product-form__empty" data-when-empty>Toca <strong>Editar</strong> en un producto.</p>
+
+      <!-- Hidden until a product is chosen. Scrolls on desktop if the window is short -->
+      <div class="product-form__fields" data-when-filled hidden>
+        <div class="product-form__image">
+          <div class="placeholder" aria-hidden="true"></div>
+          <label class="btn product-form__image-btn">
+            <input class="visually-hidden" type="file" name="imagen" accept="image/*">
+            Cambiar imagen
+          </label>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="product-name">Nombre</label>
+          <input class="field__input" id="product-name" type="text" name="nombre" value="" required data-field="name">
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="product-category">Categoría</label>
+          <select class="field__input" id="product-category" name="categoria" data-field="category">
+            <option value="cafe">Café</option>
+            <option value="te">Té</option>
+            <option value="panaderia">Panadería</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="product-price">Precio base</label>
+          <div class="field__money">
+            <span class="field__money-sign" aria-hidden="true">$</span>
+            <input class="field__input" id="product-price" type="number" name="precio" value="" min="0" step="0.50" inputmode="decimal" aria-describedby="product-price-hint" data-field="price">
+          </div>
+        </div>
+
+        <!-- Panadería only: JS hides it for drinks -->
+        <div class="field" data-field="stock-field">
+          <span class="field__label" id="product-stock-label">Existencias</span>
+          <div class="stepper">
+            <div class="stepper__controls">
+              <button class="btn stepper__btn" type="button" data-action="qty-decrease" aria-label="Quitar uno">−</button>
+              <input class="stepper__input" id="product-stock" type="number" name="existencias" value="0" min="0" max="99" inputmode="numeric" aria-labelledby="product-stock-label" data-field="stock">
+              <button class="btn stepper__btn" type="button" data-action="qty-increase" aria-label="Agregar uno">+</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer: always visible once a product is chosen -->
+      <div class="product-form__footer" data-when-filled hidden>
+        <button class="btn btn--danger" type="button" data-action="delete-product">Eliminar<span class="visually-hidden" data-field="product-name"></span></button>
+        <button class="btn btn--confirm" type="submit" data-action="save-product"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg><span>Guardar</span></button>
+      </div>
+    </form>
+
+  </main>
+</body>
+</html>

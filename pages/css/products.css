@@ -1,0 +1,181 @@
+/* PRODUCTS STYLES (catalogue, stock and edit panel) */
+
+/* Same two-column shape as Nuevo pedido: list | 28rem panel */
+.products-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 28rem;
+  gap: var(--space-5);
+  align-items: start;
+  padding: var(--space-5);
+}
+
+/* TOOLBAR: category filters + "Nuevo producto" ------------------------------ */
+.products__toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-3);
+}
+.products__new { margin-left: auto; }
+
+/* Filters: show only the rows of the chosen category (CSS only, no JS) */
+.products:has(#filter-cafe:checked) .product-row:not([data-category="cafe"]),
+.products:has(#filter-te:checked) .product-row:not([data-category="te"]),
+.products:has(#filter-panaderia:checked) .product-row:not([data-category="panaderia"]) {
+  display: none;
+}
+
+/* TABLE --------------------------------------------------------------------- */
+/* Fixed column widths: the columns never jump when you change category.
+   Nombre takes whatever width is left. */
+.product-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.product-table .product-table__category { width: 8.5rem; }
+.product-table .product-table__price    { width: 6.5rem; }
+.product-table .product-table__stock    { width: 8.5rem; }
+.product-table .product-table__actions  { width: 15rem; }
+.product-table th,
+.product-table td {
+  padding: var(--space-3) var(--space-2);
+  text-align: left;
+  vertical-align: middle;
+}
+.product-table thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--color-surface);
+  font-family: var(--font-ui);
+  font-weight: var(--fw-bold);
+  color: var(--color-brown);
+  box-shadow: inset 0 calc(-1 * var(--border-width)) 0 var(--color-line);   /* a border would vanish while scrolling */
+}
+.product-row { border-bottom: var(--border-width) dotted var(--color-line-soft); }
+.product-row:last-child { border-bottom: 0; }
+
+.product-table__image { width: 4rem; padding-left: 0; }
+.product-table__image .placeholder { width: 3.5rem; }
+.product-table__name {
+  font-family: var(--font-ui);
+  font-weight: var(--fw-bold);
+  color: var(--color-brown);
+}
+/* Hot/cold: icon + word, under the name */
+.product-table__temp {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-family: var(--font-body);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-regular);
+  color: var(--color-muted);
+}
+.product-table__price,
+.product-table__stock { white-space: nowrap; }
+.product-table__price { font-family: var(--font-ui); font-weight: var(--fw-bold); }
+/* " disponibles" only shows on phones, where there is no column title */
+.product-table__unit { display: none; }
+/* Sold out: red text AND the word "agotado", never colour alone */
+.product-table__out { font-weight: var(--fw-bold); color: var(--color-danger); }
+
+.product-table__actions { text-align: right; white-space: nowrap; padding-right: 0; }
+.product-table__buttons { display: flex; justify-content: flex-end; gap: var(--space-2); }
+.product-table__buttons .btn { padding-inline: var(--space-4); }
+
+/* Row being edited in the panel */
+.product-row[aria-current="true"] {
+  background: color-mix(in srgb, var(--color-yellow) 25%, var(--color-surface));   /* light honey */
+  box-shadow: inset 4px 0 0 var(--color-orange);
+}
+
+/* EDIT PANEL ---------------------------------------------------------------- */
+.product-form { gap: var(--space-4); }
+.product-form__empty { color: var(--color-muted); }
+.product-form__fields { display: flex; flex-direction: column; gap: var(--space-4); }
+.product-form__image { display: flex; align-items: center; gap: var(--space-4); }
+.product-form__image .placeholder { width: 6rem; flex: none; }
+/* The file input is hidden; show the focus ring on its button */
+.product-form__image-btn:has(input:focus-visible) { outline: 3px solid var(--color-brown); outline-offset: 3px; }
+
+select.field__input { font: inherit; color: var(--color-charcoal); cursor: pointer; }
+.field__hint { font-size: var(--fs-sm); color: var(--color-muted); }
+
+/* Price with a "$" in front of the number */
+.field__money { position: relative; }
+.field__money-sign {
+  position: absolute;
+  left: var(--space-4);
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-ui);
+  font-weight: var(--fw-bold);
+  color: var(--color-brown);
+}
+.field__money .field__input { padding-left: calc(var(--space-4) + 1.5ch); }
+
+.product-form__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-top: var(--space-4);
+  border-top: var(--border-width) dotted var(--color-line-soft);
+}
+
+/* =========================== */
+/* RESPONSIVENESS */
+/* =========================== */
+
+/* Big screens, same idea as Nuevo pedido: top bar, filters and panel never
+   move. Only the table scrolls (and the panel fields, if the window is short). */
+@media (min-width: 901px) {
+  .page-products { height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+  .products-layout { flex: 1; min-height: 0; grid-template-rows: minmax(0, 1fr); align-items: stretch; }
+  .products { min-height: 0; }
+  .products__scroll { flex: 1; min-height: 0; overflow-y: auto; padding-right: var(--space-2); }
+  .product-form { min-height: 0; }
+  .product-form__fields { flex: 1; min-height: 0; overflow-y: auto; padding-right: var(--space-2); }
+}
+
+/* Category column is redundant with the filters; drop it to leave room for names */
+@media (max-width: 1400px) {
+  .product-table__category { display: none; }
+}
+
+@media (max-width: 1100px) {
+  .products-layout { grid-template-columns: minmax(0, 1fr) 23rem; }
+}
+
+@media (max-width: 900px) {
+  /* Panel goes under the list; "Editar" jumps down to it (#product-form) */
+  .products-layout { grid-template-columns: minmax(0, 1fr); padding: var(--space-4); }
+  .product-table thead th { top: var(--app-bar-height); }
+  .product-form { scroll-margin-top: calc(var(--app-bar-height) + var(--space-4)); }
+}
+
+@media (max-width: 560px) {
+  /* Same app-bar rule as new_order.css (it belongs in components.css later) */
+  .app-bar { padding: var(--space-3) var(--space-4); gap: var(--space-3); }
+  .products__new { margin-left: 0; width: 100%; }
+  .product-table__image { display: none; }
+
+  /* Each row becomes a small card: name, price and stock on the left,
+     Editar / Eliminar stacked on the right */
+  .product-table thead {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+  }
+  .product-table, .product-table tbody { display: block; }
+  .product-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: var(--space-3);
+    align-items: center;
+    padding: var(--space-3) var(--space-2);
+  }
+  .product-table .product-row > * { padding: 0; width: auto; }
+  .product-table__name, .product-table__price, .product-table__stock { grid-column: 1; }
+  .product-table__unit { display: inline; }
+  .product-row:not([data-stock]) .product-table__stock { display: none; }
+  .product-table__actions { grid-column: 2; grid-row: 1 / span 3; }
+  .product-table__buttons { flex-direction: column; align-items: stretch; }
+  .product-form__footer .btn { flex: 1; }
+}
