@@ -184,6 +184,15 @@
     #E8DECB;
 }
 
+.big_image
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 0;
+  width: 80%;
+}
+
 /* ORDER PANE ------------------------------------------------------------- */
 .order-pane { gap: var(--space-4); }
 .order-pane__header { display: flex; justify-content: space-between; align-items: baseline; gap: var(--space-3); }

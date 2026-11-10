@@ -5,7 +5,7 @@
   min-height: 100vh;
   padding: var(--space-5);
 }
-.login__card { width: min(28rem, 100%); padding: var(--space-7) var(--space-6); gap: var(--space-5); text-align: center; }
+.login__card { width: min(35rem, 100%); padding: var(--space-7) var(--space-6); gap: var(--space-5); text-align: center; }
 .login__brand { color: var(--color-brown); }
 .login__welcome { font-family: var(--font-ui); font-size: var(--fs-lg); color: var(--color-charcoal); }
 
