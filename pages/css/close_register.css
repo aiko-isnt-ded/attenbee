@@ -1,0 +1,154 @@
+/* CLOSE REGISTER STYLES (Cerrar caja: expected vs counted, totals) */
+
+/* One centred card, like Figma frame 8 */
+.close-layout {
+  display: flex;
+  justify-content: center;
+  padding: var(--space-7) var(--space-5);
+}
+.close-register {
+  width: min(58rem, 100%);
+  gap: var(--space-5);
+  padding: var(--space-6);
+}
+
+/* TABLE --------------------------------------------------------------------- */
+.close-table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-variant-numeric: tabular-nums;
+}
+.close-table .close-table__expected { width: 9.5rem; }
+.close-table .close-table__counted  { width: 12rem; }
+.close-table .close-table__diff     { width: 16rem; }
+.close-table th,
+.close-table td {
+  padding: var(--space-4) var(--space-3);
+  text-align: left;
+  vertical-align: middle;
+}
+.close-table th:first-child,
+.close-table td:first-child { padding-left: 0; }
+.close-table thead th {
+  padding-top: 0;
+  font-family: var(--font-ui);
+  font-weight: var(--fw-bold);
+  color: var(--color-brown);
+  border-bottom: var(--border-width) solid var(--color-line);
+}
+.close-row { border-bottom: var(--border-width) dotted var(--color-line-soft); }
+
+.close-table__method {
+  font-family: var(--font-ui);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  color: var(--color-brown);
+}
+.close-table__expected { font-family: var(--font-ui); font-weight: var(--fw-bold); }
+.close-table__counted .field__input { font-family: var(--font-ui); font-weight: var(--fw-bold); }
+
+/* Cell labels: only visible on phones, where there are no column titles */
+.close-table__label { display: none; }
+
+/* DIFFERENCE: colour + icon + word ------------------------------------------- */
+.diff {
+  display: grid;
+  grid-template-columns: 6.5rem 6.75rem;   /* fits up to −$9,999.99 */
+  align-items: center;
+  column-gap: var(--space-2);
+  font-family: var(--font-ui);
+  font-weight: var(--fw-bold);
+}
+.diff__amount { text-align: right; white-space: nowrap; }
+.diff__tag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  padding: 0 var(--space-2);
+  border: var(--border-width) solid currentColor;
+  border-radius: var(--radius);
+  font-size: var(--fs-sm);
+}
+.diff[data-state="short"] { color: var(--color-danger); }   /* Falta  – red   */
+.diff[data-state="exact"] { color: var(--color-info); }     /* Exacto – blue  */
+.diff[data-state="over"]  { color: var(--color-ok); }       /* Sobra  – green */
+
+/* SUMMARY --------------------------------------------------------------------- */
+.close-summary { display: flex; flex-direction: column; gap: var(--space-3); }
+.close-summary__total {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-3);
+}
+.close-summary__label {
+  font-family: var(--font-ui);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  color: var(--color-brown);
+}
+.close-summary__value {
+  font-family: var(--font-ui);
+  font-size: var(--fs-xl);
+  font-weight: var(--fw-bold);
+  color: var(--color-brown);
+  font-variant-numeric: tabular-nums;
+}
+/* Change vs yesterday: a short sentence with arrow + colour + words */
+.close-summary__compare {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-ui);
+  font-weight: var(--fw-bold);
+}
+.close-summary__compare[data-state="up"]   { color: var(--color-ok); }       /* ▲ más   – green */
+.close-summary__compare[data-state="down"] { color: var(--color-danger); }   /* ▼ menos – red   */
+.close-summary__yesterday { font-size: var(--fs-sm); color: var(--color-muted); }
+
+/* =========================== */
+/* RESPONSIVENESS */
+/* =========================== */
+
+@media (max-width: 900px) {
+  .close-layout { padding: var(--space-5) var(--space-4); }
+}
+
+@media (max-width: 560px) {
+  /* Same app-bar rule as new_order.css and products.css (it belongs in components.css later) */
+  .app-bar { padding: var(--space-3) var(--space-4); gap: var(--space-3); }
+  .close-register { padding: var(--space-5) var(--space-4); }
+
+  /* Each row becomes a small card: name on top, then label | value lines */
+  .close-table thead {
+    position: absolute; width: 1px; height: 1px; overflow: hidden;
+    clip: rect(0 0 0 0); white-space: nowrap;
+  }
+  .close-table, .close-table tbody { display: block; }
+  .close-row {
+    display: grid;
+    gap: var(--space-3);
+    padding: var(--space-4) 0;
+  }
+  .close-row:first-child { padding-top: 0; }
+  .close-table .close-row > * { width: auto; padding: 0; }
+  .close-table__expected,
+  .close-table__counted,
+  .close-table__diff {
+    display: grid;
+    grid-template-columns: 6rem minmax(0, 1fr);
+    align-items: center;
+    gap: var(--space-2);
+  }
+  .diff { grid-template-columns: 6.25rem 6.75rem; }
+  .close-table__label {
+    display: block;
+    font-size: var(--fs-sm);
+    font-family: var(--font-ui);
+    font-weight: var(--fw-bold);
+    color: var(--color-muted);
+  }
+  .close-summary__total { flex-wrap: wrap; }
+}

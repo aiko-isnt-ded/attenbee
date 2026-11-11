@@ -93,6 +93,19 @@
   color: var(--color-charcoal);
 }
 
+/* Price with a "$" in front of the number */
+.field__money { position: relative; }
+.field__money-sign {
+  position: absolute;
+  left: var(--space-4);
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-ui);
+  font-weight: var(--fw-bold);
+  color: var(--color-brown);
+}
+.field__money .field__input { padding-left: calc(var(--space-4) + 1.5ch); }
+
 /* CARD / PANEL ----------------------------------------------------------- */
 .card {
   display: flex;

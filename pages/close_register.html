@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cerrar caja · Attenbee</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Playpen+Sans:wght@100..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+
+  <!-- Style Sheets -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/close_register.css">
+</head>
+
+<body class="page-close">
+  <!-- Icons -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+
+  <!-- Arrows and actions -->
+  <symbol id="icon-back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></symbol>
+
+  <!-- Cash count states: shortfall (warning triangle), surplus (solid up triangle) -->
+  <symbol id="icon-alert" viewBox="0 0 24 24"><path d="M12 3.5 2.5 20h19z"/><path d="M12 10v4.5M12 17.5v.01"/></symbol>
+  <symbol id="icon-up" viewBox="0 0 24 24"><path d="M12 5 21 19H3z" fill="currentColor"/></symbol>
+  <symbol id="icon-down" viewBox="0 0 24 24"><path d="M12 19 3 5h18z" fill="currentColor"/></symbol>
+
+  </defs></svg>
+  <a class="skip-link" href="#content">Saltar al contenido</a>
+
+  <!-- Top Bar. "Inicio" is the only other way out: back to work, register still open -->
+  <header class="app-bar">
+    <a class="btn" href="main.html"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-back"></use></svg><span>Inicio</span></a>
+    <h1 class="app-bar__title">Cerrar caja</h1>
+  </header>
+
+  <!-- Content -->
+  <main class="close-layout" id="content">
+    <section class="close-register card" aria-labelledby="close-title">
+      <h2 class="visually-hidden" id="close-title">Corte de caja de hoy</h2>
+
+      <!-- Expected vs counted. Amounts in cents in data-; the sample values are data-demo.
+           Diferencia state lives in data-state: "short" (Falta), "exact" (Exacto), "over" (Sobra).
+           Each state = colour + icon + word, never colour alone. -->
+      <table class="close-table">
+        <thead>
+          <tr>
+            <th scope="col" class="close-table__method"><span class="visually-hidden">Forma de pago</span></th>
+            <th scope="col" class="close-table__expected">Esperado</th>
+            <th scope="col" class="close-table__counted">Contado</th>
+            <th scope="col" class="close-table__diff">Diferencia</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="close-row" data-method="efectivo" data-expected-cents="21000" data-demo>
+            <th scope="row" class="close-table__method">Efectivo</th>
+            <td class="close-table__expected"><span class="close-table__label" aria-hidden="true">Esperado</span>$210.00</td>
+            <td class="close-table__counted">
+              <label class="close-table__label" for="count-efectivo">Contado<span class="visually-hidden"> en efectivo</span></label>
+              <div class="field__money">
+                <span class="field__money-sign" aria-hidden="true">$</span>
+                <input class="field__input" id="count-efectivo" type="text" name="contado_efectivo" value="208.00" inputmode="decimal" pattern="[0-9]+(\.[0-9]{1,2})?" autocomplete="off" data-field="counted">
+              </div>
+            </td>
+            <td class="close-table__diff">
+              <span class="close-table__label" aria-hidden="true">Diferencia</span>
+              <span class="diff" data-state="short" data-diff-cents="-200" data-field="diff">
+                <span class="diff__amount">−$2.00</span>
+                <span class="diff__tag"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-alert"></use></svg>Falta</span>
+              </span>
+            </td>
+          </tr>
+          <tr class="close-row" data-method="tarjeta" data-expected-cents="34250" data-demo>
+            <th scope="row" class="close-table__method">Tarjeta</th>
+            <td class="close-table__expected"><span class="close-table__label" aria-hidden="true">Esperado</span>$342.50</td>
+            <td class="close-table__counted">
+              <label class="close-table__label" for="count-tarjeta">Contado<span class="visually-hidden"> con tarjeta</span></label>
+              <div class="field__money">
+                <span class="field__money-sign" aria-hidden="true">$</span>
+                <input class="field__input" id="count-tarjeta" type="text" name="contado_tarjeta" value="342.50" inputmode="decimal" pattern="[0-9]+(\.[0-9]{1,2})?" autocomplete="off" data-field="counted">
+              </div>
+            </td>
+            <td class="close-table__diff">
+              <span class="close-table__label" aria-hidden="true">Diferencia</span>
+              <span class="diff" data-state="exact" data-diff-cents="0" data-field="diff">
+                <span class="diff__amount">$0.00</span>
+                <span class="diff__tag"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg>Exacto</span>
+              </span>
+            </td>
+          </tr>
+          <!-- Surplus, for later (JS will set data-state="over"):
+          <span class="diff" data-state="over" data-diff-cents="300" data-field="diff">
+            <span class="diff__amount">+$3.00</span>
+            <span class="diff__tag"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-up"></use></svg>Sobra</span>
+          </span> -->
+        </tbody>
+      </table>
+
+      <!-- Total = sum of Esperado -->
+      <div class="close-summary" data-demo>
+        <p class="close-summary__total">
+          <span class="close-summary__label">Ingresos totales</span>
+          <span class="close-summary__value" data-field="total" data-total-cents="55250">$552.50</span>
+        </p>
+        <!-- Change vs yesterday: data-state "up" (green ▲ más) or "down" (red ▼ menos) -->
+        <p class="close-summary__compare" data-field="compare" data-state="up" data-change-cents="5450">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-up"></use></svg>
+          <span>$54.50 más que ayer</span>
+        </p>
+        <p class="close-summary__yesterday" data-field="yesterday" data-yesterday-cents="49800">Ayer: $498.00</p>
+      </div>
+
+      <!-- The only way to log out: closing the register always comes first -->
+      <a class="btn btn--confirm btn--block" href="login.html" data-action="confirm-close">
+        <span>Confirmar cierre y salir</span>
+      </a>
+    </section>
+  </main>
+</body>
+</html>

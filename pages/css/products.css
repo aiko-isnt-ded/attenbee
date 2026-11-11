@@ -99,19 +99,6 @@
 select.field__input { font: inherit; color: var(--color-charcoal); cursor: pointer; }
 .field__hint { font-size: var(--fs-sm); color: var(--color-muted); }
 
-/* Price with a "$" in front of the number */
-.field__money { position: relative; }
-.field__money-sign {
-  position: absolute;
-  left: var(--space-4);
-  top: 50%;
-  transform: translateY(-50%);
-  font-family: var(--font-ui);
-  font-weight: var(--fw-bold);
-  color: var(--color-brown);
-}
-.field__money .field__input { padding-left: calc(var(--space-4) + 1.5ch); }
-
 .product-form__footer {
   display: flex;
   justify-content: space-between;
