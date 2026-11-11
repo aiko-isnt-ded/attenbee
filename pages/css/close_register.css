@@ -1,9 +1,12 @@
 /* CLOSE REGISTER STYLES (Cerrar caja: expected vs counted, totals) */
 
-/* One centred card, like Figma frame 8 */
+/* Card centred in the space under the app bar */
+.page-close { display: flex; flex-direction: column; }
 .close-layout {
+  flex: 1;
   display: flex;
   justify-content: center;
+  align-items: center;
   padding: var(--space-7) var(--space-5);
 }
 .close-register {
@@ -54,13 +57,15 @@
 /* DIFFERENCE: colour + icon + word ------------------------------------------- */
 .diff {
   display: grid;
-  grid-template-columns: 6.5rem 6.75rem;   /* fits up to −$9,999.99 */
+  grid-template-columns: 5.5rem 6.75rem;   /* fits up to −$999.99 */
   align-items: center;
   column-gap: var(--space-2);
   font-family: var(--font-ui);
   font-weight: var(--fw-bold);
 }
-.diff__amount { text-align: right; white-space: nowrap; }
+.diff__amount { white-space: nowrap; }
+/* Fixed slot for − / + so the "$" lines up in every row, even "$0.00" */
+.diff__sign { display: inline-block; width: 0.65em; }
 .diff__tag {
   display: inline-flex;
   align-items: center;
@@ -142,7 +147,7 @@
     align-items: center;
     gap: var(--space-2);
   }
-  .diff { grid-template-columns: 6.25rem 6.75rem; }
+  .diff { grid-template-columns: 5.5rem 6.75rem; }
   .close-table__label {
     display: block;
     font-size: var(--fs-sm);

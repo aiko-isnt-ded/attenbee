@@ -4,6 +4,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cerrar caja · Attenbee</title>
+  <!-- Logo -->
+  <link rel="icon" href="../assets/colmena_logo.png" type="image/x-icon">
 
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,7 +71,7 @@
             <td class="close-table__diff">
               <span class="close-table__label" aria-hidden="true">Diferencia</span>
               <span class="diff" data-state="short" data-diff-cents="-200" data-field="diff">
-                <span class="diff__amount">−$2.00</span>
+                <span class="diff__amount"><span class="diff__sign">−</span>$2.00</span>
                 <span class="diff__tag"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-alert"></use></svg>Falta</span>
               </span>
             </td>
@@ -87,14 +89,14 @@
             <td class="close-table__diff">
               <span class="close-table__label" aria-hidden="true">Diferencia</span>
               <span class="diff" data-state="exact" data-diff-cents="0" data-field="diff">
-                <span class="diff__amount">$0.00</span>
+                <span class="diff__amount"><span class="diff__sign"></span>$0.00</span>
                 <span class="diff__tag"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg>Exacto</span>
               </span>
             </td>
           </tr>
           <!-- Surplus, for later (JS will set data-state="over"):
           <span class="diff" data-state="over" data-diff-cents="300" data-field="diff">
-            <span class="diff__amount">+$3.00</span>
+            <span class="diff__amount"><span class="diff__sign">+</span>$3.00</span>
             <span class="diff__tag"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-up"></use></svg>Sobra</span>
           </span> -->
         </tbody>
