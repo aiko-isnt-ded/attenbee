@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cobro · Attenbee</title>
+  <!-- Logo -->
+  <link rel="icon" href="../assets/colmena_logo.png" type="image/x-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Playpen+Sans:wght@100..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+
+  <!-- Style Sheets -->
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/payment.css">
+
+  <!-- JavaScript -->
+  <script src="js/payment.js" defer></script>
+</head>
+
+<body class="page-payment">
+  <!-- Icons -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs>
+
+  <!-- Hot / Cold (same as the other pages) -->
+  <symbol id="icon-hot" viewBox="0 0 24 24">
+    <path d="M0 0h24v24H0z" fill="none" stroke="none"/>
+    <path d="M12 10.941c2.333 -3.308 .167 -7.823 -1 -8.941c0 3.395 -2.235 5.299 -3.667 6.706c-1.43 1.408 -2.333 3.294 -2.333 5.588c0 3.704 3.134 6.706 7 6.706c3.866 0 7 -3.002 7 -6.706c0 -1.712 -1.232 -4.403 -2.333 -5.588c-2.084 3.353 -3.257 3.353 -4.667 2.235"/>
+  </symbol>
+  <symbol id="icon-cold" viewBox="0 0 24 24">
+    <path d="m10 20-1.25-2.5L6 18"/><path d="M10 4 8.75 6.5 6 6"/><path d="m14 20 1.25-2.5L18 18"/><path d="m14 4 1.25 2.5L18 6"/>
+    <path d="m17 21-3-6h-4"/><path d="m17 3-3 6 1.5 3"/><path d="M2 12h6.5L10 9"/><path d="m20 10-1.5 2 1.5 2"/>
+    <path d="M22 12h-6.5L14 15"/><path d="m4 10 1.5 2L4 14"/><path d="m7 21 3-6-1.5-3"/><path d="m7 3 3 6h4"/>
+  </symbol>
+
+  <!-- Arrows and actions -->
+  <symbol id="icon-back" viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></symbol>
+  <symbol id="icon-check" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></symbol>
+
+  <!-- Payment methods -->
+  <symbol id="icon-cash" viewBox="0 0 24 24"><rect x="2.5" y="6" width="19" height="12" rx="1.5"/><circle cx="12" cy="12" r="2.75"/><path d="M6 9.5v5M18 9.5v5"/></symbol>
+  <symbol id="icon-card" viewBox="0 0 24 24"><rect x="2.5" y="5" width="19" height="14" rx="1.5"/><path d="M2.5 10h19M6 15h4"/></symbol>
+
+  </defs></svg>
+  <a class="skip-link" href="#content">Saltar al contenido</a>
+
+  <!-- Top Bar -->
+  <header class="app-bar">
+    <a class="btn" href="main.html"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-back"></use></svg><span>Inicio</span></a>
+    <h1 class="app-bar__title">Cobro</h1>
+  </header>
+
+  <!-- Content -->
+  <main class="payment-layout" id="content">
+
+    <!-- LEFT: payment. Amounts in cents in data-. The order total comes from the order (pre_total).
+         Each payment saved = { method: "efectivo" | "tarjeta", amount, tip }.
+         total_income = sum of amounts + sum of tips. -->
+    <section class="payment card" aria-label="Cobro del pedido #12" data-payment data-total-cents="23000" data-state="open" data-demo>
+
+      <!-- Mode: radio chips. CSS (:has) shows the matching panel, no JS.
+           JS locks "Pago completo" once a split payment is registered. -->
+      <fieldset class="option-group payment__mode">
+        <legend class="visually-hidden">Forma de cobro</legend>
+        <div class="option-group__chips">
+          <label class="chip"><input type="radio" name="modo" value="completo" id="mode-full" checked data-field="mode-full"><span>Pago completo</span></label>
+          <label class="chip"><input type="radio" name="modo" value="dividido" id="mode-split"><span>Dividir cuenta</span></label>
+        </div>
+      </fieldset>
+
+      <!-- ============ PAGO COMPLETO ============ -->
+      <div class="payment__panel" data-panel="full">
+        <!-- Not editable: sunk beige box, no border -->
+        <div class="payment__total">
+          <span class="payment__total-label">Total a cobrar</span>
+          <span class="payment__total-value">$230.00</span>
+        </div>
+
+        <!-- Tip: quick 10% / 15% of the total, or another amount -->
+        <fieldset class="option-group payment__tip" data-tip-group="full">
+          <legend class="field__label">Propina <span class="payment__optional">(opcional)</span></legend>
+          <div class="option-group__chips">
+            <label class="chip"><input type="radio" name="full-tip" value="0" data-tip="0" checked><span>Sin propina</span></label>
+            <label class="chip"><input type="radio" name="full-tip" value="10" data-tip="10"><span>10% · <span data-field="tip-10">$23.00</span></span></label>
+            <label class="chip"><input type="radio" name="full-tip" value="15" data-tip="15"><span>15% · <span data-field="tip-15">$34.50</span></span></label>
+            <label class="chip"><input type="radio" name="full-tip" value="otra" data-tip="other"><span>Otra</span></label>
+            <!-- Only visible with "Otra" (CSS :has) -->
+            <div class="field__money payment__tip-other">
+              <span class="field__money-sign" aria-hidden="true">$</span>
+              <input class="field__input" type="text" inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Propina, otra cantidad" data-field="tip-other">
+            </div>
+          </div>
+        </fieldset>
+
+        <dl class="payment__calc">
+          <div class="payment__calc-row"><dt>Pedido</dt><dd>$230.00</dd></div>
+          <div class="payment__calc-row"><dt>Propina</dt><dd data-field="full-tip-shown">$0.00</dd></div>
+          <div class="payment__calc-row payment__calc-row--total"><dt>Cobrar</dt><dd data-field="full-charge">$230.00</dd></div>
+        </dl>
+
+        <!-- One tap registers the whole payment and closes the order -->
+        <div class="payment__methods">
+          <button class="btn btn--cash" type="button" data-action="pay-full" data-method="efectivo"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-cash"></use></svg><span>Efectivo · <span data-field="full-amount">$230.00</span></span></button>
+          <button class="btn btn--card" type="button" data-action="pay-full" data-method="tarjeta"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-card"></use></svg><span>Tarjeta · <span data-field="full-amount">$230.00</span></span></button>
+        </div>
+      </div>
+
+      <!-- ============ DIVIDIR CUENTA (Libreta) ============ -->
+      <div class="payment__panel" data-panel="split">
+
+        <!-- What's left: same place and look as "Total a cobrar" in Pago completo.
+             Turns green once the order is covered. -->
+        <div class="payment__total" data-when="open">
+          <span class="payment__total-label">Faltante por pagar</span>
+          <span class="payment__total-value" data-field="left">$230.00</span>
+        </div>
+        <div class="payment__total payment__total--covered" data-when="covered">
+          <span class="payment__total-label"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg>Pedido cubierto</span>
+          <span class="payment__total-value">$0.00</span>
+        </div>
+
+        <!-- Payments received. Only this list scrolls on big screens -->
+        <div class="payments__scroll" tabindex="0" role="region" aria-label="Pagos recibidos">
+          <table class="payments">
+            <colgroup><col class="payments__col-num"><col><col class="payments__col-tip"><col class="payments__col-amount"></colgroup>
+            <thead>
+              <tr><th scope="col">Pago</th><th scope="col"><span class="visually-hidden">Método</span></th><th scope="col" class="payments__tip">Propina</th><th scope="col" class="payments__amount">Monto</th></tr>
+            </thead>
+            <tbody data-field="payments">
+              <tr class="payments__empty"><td colspan="4">Aún no hay pagos.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- The sum of what came in (the order total is in the pane on the right) -->
+        <table class="payments payments--summary">
+          <colgroup><col class="payments__col-num"><col><col class="payments__col-tip"><col class="payments__col-amount"></colgroup>
+          <tbody>
+            <tr class="payments__received"><td></td><th scope="row" colspan="2">Recibido</th><td class="payments__amount" data-field="received">$0.00</td></tr>
+          </tbody>
+        </table>
+
+        <!-- Shown after a cash payment that was more than what was left -->
+        <p class="payment__change" data-field="change-note" hidden></p>
+
+        <!-- Next payment -->
+        <div class="payment__entry" data-when="open">
+          <div class="field payment__amount-field">
+            <label class="field__label" for="split-amount">Paga esta persona</label>
+            <div class="field__money">
+              <span class="field__money-sign" aria-hidden="true">$</span>
+              <input class="field__input" id="split-amount" type="text" inputmode="decimal" autocomplete="off" value="230.00" data-field="split-amount">
+            </div>
+          </div>
+          <!-- Tip: 10% / 15% of what this person pays, or another amount -->
+          <fieldset class="option-group payment__tip" data-tip-group="split">
+            <legend class="field__label">Propina <span class="payment__optional">(opcional)</span></legend>
+            <div class="option-group__chips">
+              <label class="chip"><input type="radio" name="split-tip" value="0" data-tip="0" checked><span>Sin propina</span></label>
+              <label class="chip"><input type="radio" name="split-tip" value="10" data-tip="10"><span>10% · <span data-field="tip-10">$23.00</span></span></label>
+              <label class="chip"><input type="radio" name="split-tip" value="15" data-tip="15"><span>15% · <span data-field="tip-15">$34.50</span></span></label>
+              <label class="chip"><input type="radio" name="split-tip" value="otra" data-tip="other"><span>Otra</span></label>
+              <!-- Only visible with "Otra" (CSS :has) -->
+              <div class="field__money payment__tip-other">
+                <span class="field__money-sign" aria-hidden="true">$</span>
+                <input class="field__input" type="text" inputmode="decimal" autocomplete="off" placeholder="0.00" aria-label="Propina, otra cantidad" data-field="tip-other">
+              </div>
+            </div>
+          </fieldset>
+          <p class="payment__overpay" data-field="overpay" hidden></p>
+          <div class="payment__methods">
+            <button class="btn btn--cash" type="button" data-action="pay-split" data-method="efectivo"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-cash"></use></svg><span>Efectivo · <span data-field="split-btn-amount">$230.00</span></span></button>
+            <button class="btn btn--card" type="button" data-action="pay-split" data-method="tarjeta"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-card"></use></svg><span>Tarjeta · <span data-field="split-btn-amount">$230.00</span></span></button>
+          </div>
+        </div>
+
+        <!-- Covered: replaces the entry -->
+        <div class="payment__covered" data-when="covered">
+          <div class="payment__calc-row"><span>Propinas</span><span data-field="tips">$0.00</span></div>
+          <button class="btn btn--confirm btn--block" type="button" data-action="close-order"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg><span>Cerrar pedido</span></button>
+        </div>
+      </div>
+
+      <!-- Read aloud after each payment (screen readers) -->
+      <p class="visually-hidden" aria-live="polite" data-field="announce"></p>
+    </section>
+
+    <!-- RIGHT: the order (sample) -->
+    <aside class="order-pane card" aria-labelledby="order-title" data-demo>
+      <div class="order-pane__header">
+        <h2 id="order-title">Pedido #12</h2>
+        <span class="order-pane__hint">10:42</span>
+      </div>
+      <div class="order-pane__lines">
+        <div class="order-line">
+          <div class="order-line__main"><span>Latte</span><span>$55.00</span></div>
+          <ul class="order-line__options">
+            <li class="order-line__option"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg>Caliente</li>
+            <li class="order-line__option order-line__option--dot">Para aquí<span class="order-line__delta">−$5.00</span></li>
+          </ul>
+        </div>
+        <div class="order-line">
+          <div class="order-line__main"><span>Capuchino</span><span>$65.00</span></div>
+          <ul class="order-line__options">
+            <li class="order-line__option"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-cold"></use></svg>Frío</li>
+            <li class="order-line__option order-line__option--dot">Para llevar</li>
+            <li class="order-line__option order-line__option--dot">Cajeta extra<span class="order-line__delta">+$5.00</span></li>
+          </ul>
+        </div>
+        <div class="order-line"><div class="order-line__main"><span>Affogato</span><span>$75.00</span></div></div>
+        <div class="order-line"><div class="order-line__main"><span>Croissant</span><span>$35.00</span></div></div>
+      </div>
+      <div class="order-pane__total">
+        <span class="field__label">Total</span>
+        <span class="order-pane__total-value">$230.00</span>
+      </div>
+    </aside>
+  </main>
+
+  <!-- PAID: small pop-up after the order is closed. Nothing dangerous: calm (sage) backdrop.
+       "Volver a Pedidos" or Esc both go back to Pedidos. -->
+  <dialog class="modal modal--calm paid-modal" id="paid-modal" aria-labelledby="paid-title" data-paid-modal>
+    <h2 class="modal__title paid-modal__title" id="paid-title"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg>Pedido #12 pagado</h2>
+    <dl class="payment__calc">
+      <div class="payment__calc-row"><dt>Pedido</dt><dd>$230.00</dd></div>
+      <div class="payment__calc-row"><dt>Propinas</dt><dd data-field="paid-tips">$0.00</dd></div>
+      <div class="payment__calc-row payment__calc-row--total"><dt>Total recibido</dt><dd data-field="paid-total">$230.00</dd></div>
+    </dl>
+    <div class="modal__actions">
+      <a class="btn btn--primary" href="orders.html" autofocus>Volver a Pedidos</a>
+    </div>
+  </dialog>
+
+  <!-- Payment row: never shown; JS copies it for each payment.
+       CSS shows the tag that matches data-method. -->
+  <template id="tpl-payment-row">
+    <tr class="payment-row" data-method="" data-amount-cents="" data-tip-cents="">
+      <td class="payments__num" data-field="num"></td>
+      <td>
+        <span class="mtag mtag--cash"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-cash"></use></svg>Efectivo</span>
+        <span class="mtag mtag--card"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-card"></use></svg>Tarjeta</span>
+      </td>
+      <td class="payments__tip" data-field="tip"></td>
+      <td class="payments__amount" data-field="amount"></td>
+    </tr>
+  </template>
+</body>
+</html>

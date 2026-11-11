@@ -1,0 +1,246 @@
+/* PAYMENT STYLES (Cobro: Pago completo / Dividir cuenta) */
+
+/* Payment-method colours. Move to base.css if other pages use them (e.g. Cierre de caja) */
+:root {
+  --color-cash: #F4B315;        /* honey yellow – Efectivo (brown text, 7.7:1) */
+  --color-cash-hover: #DCA00F;  /* a bit darker, so it doesn't look like the hover of every .btn */
+  --color-cash-edge: #8A5A00;   /* dark mustard edge, 5.2:1 against the card */
+  --color-card: #24497A;        /* deep blue – Tarjeta (light text, 8.4:1) */
+  --color-card-hover: #1B3860;
+}
+
+/* Same two-column shape as Nuevo pedido: payment | 28rem order pane */
+.payment-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 28rem;
+  gap: var(--space-5);
+  align-items: start;
+  padding: var(--space-5);
+}
+.payment { gap: var(--space-3); }
+@media (min-width: 901px) { .payment { overflow-y: auto; } }   /* safety net: never clip, scroll the card instead */
+
+/* MODE: Pago completo / Dividir cuenta --------------------------------------- */
+.payment__mode .option-group__chips { flex-wrap: nowrap; }
+.payment__mode .chip { flex: 1; justify-content: center; font-size: var(--fs-md); }
+/* Locked once a split payment exists: dotted + muted, never colour alone */
+.payment__mode .chip:has(input:disabled) {
+  background: transparent;
+  border-style: dotted;
+  border-color: var(--color-muted);
+  color: var(--color-muted);
+  cursor: not-allowed;
+}
+.payment__mode .chip:has(input:disabled) input { cursor: not-allowed; }
+
+/* Show only the panel of the chosen mode (CSS only) */
+.payment:has(#mode-full:checked)  [data-panel="split"],
+.payment:has(#mode-split:checked) [data-panel="full"] { display: none; }
+.payment__panel { display: flex; flex-direction: column; gap: var(--space-3); }
+
+/* Open vs covered (data-state is set by js/payment.js) */
+.payment[data-state="open"]    [data-when="covered"],
+.payment[data-state="covered"] [data-when="open"] { display: none; }
+
+/* PAGO COMPLETO ----------------------------------------------------------------- */
+/* Not editable: sunk beige box with no border (editable fields are white with a border) */
+.payment__total {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  padding: var(--space-5);
+  border-radius: var(--radius);
+  background: var(--color-bg);
+}
+.payment__total-label { display: inline-flex; align-items: center; gap: var(--space-1); font-size: var(--fs-sm); color: var(--color-muted); }
+/* Covered: same box, green, with a tick and words (never colour alone) */
+.payment__total--covered {
+  outline: var(--border-width) solid var(--color-ok);
+  outline-offset: calc(-1 * var(--border-width));
+  background: color-mix(in srgb, var(--color-ok) 12%, var(--color-surface));
+}
+.payment__total--covered .payment__total-label { font-family: var(--font-ui); font-size: var(--fs-base); font-weight: var(--fw-bold); }
+.payment__total--covered .payment__total-label,
+.payment__total--covered .payment__total-value { color: var(--color-ok); }
+.payment__total-value {
+  font-family: var(--font-ui);
+  font-size: 3.25rem;
+  font-weight: var(--fw-bold);
+  line-height: 1.1;
+  color: var(--color-brown);
+  font-variant-numeric: tabular-nums;
+}
+/* Tip: radio chips (Sin propina, 10%, 15%, Otra). The amount box only shows with "Otra" */
+.payment__tip legend.field__label { padding: 0; margin-bottom: var(--space-2); }
+.payment__tip-other { display: none; width: 9rem; }
+.payment__tip:has([data-tip="other"]:checked) .payment__tip-other { display: block; }
+.payment__optional { font-size: var(--fs-sm); font-weight: var(--fw-regular); color: var(--color-muted); }
+.payment .field__input { font-family: var(--font-ui); font-weight: var(--fw-bold); }
+
+.payment__calc { margin: 0; display: flex; flex-direction: column; gap: var(--space-1); }
+.payment__calc-row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-family: var(--font-ui);
+  font-variant-numeric: tabular-nums;
+}
+.payment__calc-row dt, .payment__calc-row dd { margin: 0; }
+.payment__calc-row--total {
+  padding-top: var(--space-2);
+  border-top: var(--border-width) solid var(--color-line);
+  font-size: var(--fs-md);
+  font-weight: var(--fw-bold);
+  color: var(--color-brown);
+}
+
+/* METHOD BUTTONS AND TAGS: colour + icon + word ----------------------------------- */
+.payment__methods { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-3); }
+/* Pago completo: a bit more room between "Cobrar" and the buttons */
+[data-panel="full"] .payment__methods { margin-top: var(--space-4); }
+.payment__methods .btn { min-height: 4rem; font-size: var(--fs-md); }
+.btn--cash { background: var(--color-cash); border-color: var(--color-cash-edge); color: var(--color-brown); }
+.btn--cash:not(:disabled):hover { background: var(--color-cash-hover); }
+.btn--card { background: var(--color-card); border-color: var(--color-card); color: var(--color-on-dark); }
+.btn--card:not(:disabled):hover { background: var(--color-card-hover); }
+
+.mtag {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 8.5rem;                     /* both tags the same size */
+  padding: var(--space-1) var(--space-3);
+  border: var(--border-width) solid;
+  border-radius: var(--radius);
+  font-family: var(--font-ui);
+  font-weight: var(--fw-bold);
+}
+.mtag--cash { border-color: var(--color-cash-edge); color: var(--color-brown); background: color-mix(in srgb, var(--color-cash) 35%, var(--color-surface)); }
+.mtag--card { border-color: var(--color-card); color: var(--color-card); background: color-mix(in srgb, var(--color-card) 15%, var(--color-surface)); }
+/* Each row shows only the tag of its method */
+.payment-row[data-method="efectivo"] .mtag--card,
+.payment-row[data-method="tarjeta"] .mtag--cash { display: none; }
+
+/* DIVIDIR CUENTA: the "libreta" ------------------------------------------------- */
+.payments {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+  font-variant-numeric: tabular-nums;
+}
+.payments__col-num    { width: 4.5rem; }
+.payments__col-tip    { width: 8rem; }
+.payments__col-amount { width: 9rem; }
+.payments th,
+.payments td { padding: var(--space-2); text-align: left; vertical-align: middle; }
+.payments th:first-child,
+.payments td:first-child { padding-left: 0; }
+.payments th:last-child,
+.payments td:last-child { padding-right: 0; }
+.payments thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  padding-block: 0 var(--space-1);
+  background: var(--color-surface);
+  font-family: var(--font-ui);
+  font-size: var(--fs-sm);
+  font-weight: var(--fw-bold);
+  color: var(--color-muted);
+}
+.payments .payments__tip,
+.payments .payments__amount { text-align: right; }
+.payments__num { font-family: var(--font-ui); font-weight: var(--fw-bold); }
+.payments__tip { color: var(--color-muted); }
+.payments__amount { font-family: var(--font-ui); font-weight: var(--fw-bold); }
+.payment-row { border-bottom: var(--border-width) dotted var(--color-line-soft); }
+.payment-row td { padding-block: var(--space-1); }
+.payment-row:last-child { border-bottom: 0; }
+.payments__empty td { color: var(--color-muted); }
+.payments tbody:has(.payment-row) .payments__empty { display: none; }
+
+/* The sum: solid line under the payments */
+.payments--summary th { font-weight: var(--fw-regular); }
+.payments--summary th,
+.payments--summary td { padding-block: var(--space-1); }
+.payments__received { border-top: var(--border-width) solid var(--color-line); }
+.payments__received th, .payments__received td { padding-top: var(--space-2); }
+.payments__received th { font-family: var(--font-ui); font-weight: var(--fw-bold); }
+
+/* Next payment */
+.payment__amount-field { max-width: 24rem; }
+.payment__amount-field .field__input { font-size: var(--fs-md); padding-block: var(--space-2); }
+.payment__entry {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: var(--border-width) dotted var(--color-line-soft);
+}
+/* Only appears when someone pays more than what's left */
+.payment__overpay { font-family: var(--font-ui); font-size: var(--fs-sm); font-weight: var(--fw-bold); line-height: 1.3; color: var(--color-brown); }
+
+/* Change to hand back (cash paid over what was left) */
+.payment__change {
+  padding: var(--space-2) var(--space-4);
+  border: var(--border-width) solid var(--color-cash-edge);
+  border-radius: var(--radius);
+  background: color-mix(in srgb, var(--color-cash) 35%, var(--color-surface));
+  font-family: var(--font-ui);
+  font-weight: var(--fw-bold);
+  line-height: 1.3;
+  color: var(--color-brown);
+}
+
+/* Covered */
+.payment__covered { display: flex; flex-direction: column; gap: var(--space-3); padding-top: var(--space-3); border-top: var(--border-width) dotted var(--color-line-soft); }
+
+/* PAID POP-UP */
+.paid-modal { width: min(26rem, calc(100vw - 2 * var(--space-4))); }
+.paid-modal__title { display: flex; align-items: center; gap: var(--space-2); color: var(--color-ok); }
+
+/* ORDER PANE: options listed vertically, like in Pedidos.
+   Temporary copy: delete once .order-line__options moves to components.css (§5) */
+.order-line__options { display: flex; flex-direction: column; gap: 2px; font-size: var(--fs-sm); color: var(--color-muted); }
+.order-line__option { display: flex; align-items: center; gap: var(--space-2); }
+.order-line__option--dot::before { content: ""; flex: none; width: 0.4em; height: 0.4em; border-radius: 50%; background: currentColor; }
+.order-line__delta { margin-left: auto; font-family: var(--font-ui); font-weight: var(--fw-bold); }
+
+/* =========================== */
+/* RESPONSIVENESS */
+/* =========================== */
+
+/* Big screens: top bar and panes never move. Only the list of payments
+   (and the order lines) scroll if they get long. */
+@media (min-width: 901px) {
+  .page-payment { height: 100vh; display: flex; flex-direction: column; overflow: hidden; }
+  .payment-layout { flex: 1; min-height: 0; grid-template-rows: minmax(0, 1fr); align-items: stretch; }
+  .payment, .order-pane { min-height: 0; }
+  .payment__panel[data-panel="split"] { flex: 1; min-height: 0; }
+  .payments__scroll { flex: 0 1 auto; min-height: 8.75rem; overflow-y: auto; }   /* always room for the titles + 2 payments */
+  .order-pane__lines { min-height: 0; overflow-y: auto; }
+}
+
+@media (max-width: 1100px) {
+  .payment-layout { grid-template-columns: minmax(0, 1fr) 23rem; }
+}
+
+@media (max-width: 900px) {
+  .payment-layout { grid-template-columns: minmax(0, 1fr); padding: var(--space-4); }
+}
+
+@media (max-width: 560px) {
+  /* Same app-bar rule as the other pages (it belongs in components.css later) */
+  .app-bar { padding: var(--space-3) var(--space-4); gap: var(--space-3); }
+  .payment__mode .chip { font-size: var(--fs-sm); padding-inline: var(--space-2); }
+  .payment__total-value { font-size: var(--fs-xl); }
+  .payment__amount-field { max-width: none; }
+  .payment__methods { grid-template-columns: 1fr; }
+  .payments__col-num    { width: 2.5rem; }
+  .payments__col-tip    { width: 5.5rem; }
+  .payments__col-amount { width: 6.5rem; }
+  .mtag { width: auto; padding-inline: var(--space-2); }
+  .mtag .icon { display: none; }       /* colour + word still tell them apart */
+}

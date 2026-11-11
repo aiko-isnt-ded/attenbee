@@ -33,6 +33,10 @@
 }
 .close-table th:first-child,
 .close-table td:first-child { padding-left: 0; }
+/* Esperado, Contado, Diferencia: header and content share the same centre */
+.close-table .close-table__expected,
+.close-table .close-table__counted,
+.close-table .close-table__diff { text-align: center; }
 .close-table thead th {
   padding-top: 0;
   font-family: var(--font-ui);
@@ -56,14 +60,14 @@
 
 /* DIFFERENCE: colour + icon + word ------------------------------------------- */
 .diff {
-  display: grid;
+  display: inline-grid;   /* inline, so the cell can centre it */
   grid-template-columns: 5.5rem 6.75rem;   /* fits up to −$999.99 */
   align-items: center;
   column-gap: var(--space-2);
   font-family: var(--font-ui);
   font-weight: var(--fw-bold);
 }
-.diff__amount { white-space: nowrap; }
+.diff__amount { text-align: left; white-space: nowrap; }
 /* Fixed slot for − / + so the "$" lines up in every row, even "$0.00" */
 .diff__sign { display: inline-block; width: 0.65em; }
 .diff__tag {
@@ -148,6 +152,9 @@
     gap: var(--space-2);
   }
   .diff { grid-template-columns: 5.5rem 6.75rem; }
+  .close-table .close-table__expected,
+  .close-table .close-table__counted,
+  .close-table .close-table__diff { text-align: left; }
   .close-table__label {
     display: block;
     font-size: var(--fs-sm);
