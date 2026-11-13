@@ -5,9 +5,10 @@
   min-height: 100vh;
   padding: var(--space-5);
 }
-.login__card { width: min(35rem, 100%); padding: var(--space-7) var(--space-6); gap: var(--space-5); text-align: center; }
+.login__card { width: min(40rem, 100%); padding: var(--space-7) var(--space-6); gap: var(--space-5); text-align: center; }
 .login__brand { color: var(--color-brown); }
 .login__welcome { font-family: var(--font-ui); font-size: var(--fs-lg); color: var(--color-charcoal); }
+.login__card .big_image { width: min(80%, 24.6rem); }  
 
 /* =========================== */
 /* SETTINGS: gear, bottom right */
@@ -17,7 +18,7 @@
   right: var(--space-5);
   bottom: var(--space-5);
   z-index: 10;
-  width: var(--touch-size);      /* square, same size as every other touch target */
+  width: var(--touch-size);      
   padding: 0;
 }
 .login-settings .icon { width: 1.75rem; height: 1.75rem; }
