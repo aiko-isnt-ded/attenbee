@@ -43,7 +43,10 @@
       <a class="hub__item hub__item--small" href="orders.html">
         <svg class="icon icon--lg" aria-hidden="true" focusable="false"><use href="#icon-orders"></use></svg>
         <span class="hub__title">Pedidos</span>
-        <span class="hub__hint">3 sin cobrar</span>
+        <!-- For DOM Modification, all modifiable fields are labeled as data-field 
+             In this case, the only DOM modification is the # of open orders 
+        -->
+        <span class="hub__hint"><span data-field="active_orders">3</span> sin cobrar</span>
       </a>
       
       <!-- Products -->
