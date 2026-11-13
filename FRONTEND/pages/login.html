@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es">
+<head>
+     <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+     <title>Iniciar sesión · Attenbee</title>
+     <!-- Logo -->
+     <link rel="icon" href="../../assets/colmena_logo.png" type="image/x-icon">
+
+     <!-- Google Fonts -->
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Playpen+Sans:wght@100..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap" rel="stylesheet">
+     <!-- Style Sheets -->
+     <link rel="stylesheet" href="../css/base.css">
+     <link rel="stylesheet" href="../css/components.css">
+     <link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body>
+     <a class="skip-link" href="#password">Ir al formulario</a>
+     <main class="login">
+          <!-- Prototype: submitting only navigates to main.html (no validation yet) -->
+          <form class="login__card card" action="main.html" method="get">
+               <div>
+                    <img src="../../assets/colmena_logo.png" alt="El logo de la cafetería Colmena Café, con un grano de café" class="big_image">
+               </div>
+               <p class="login__welcome">¡Bienvenide!</p>
+               <div class="field">
+                    <label class="field__label" for="password">Contraseña</label>
+                    <input class="field__input" id="password" name="password" type="password" autocomplete="current-password">
+               </div>
+          <button class="btn btn--primary btn--block" type="submit">Iniciar sesión</button>
+          </form>
+     </main>
+
+     <!-- Settings: gear in the bottom right corner. Opens the password window (no JS) -->
+     <button class="btn login-settings" type="button" commandfor="settings-modal" command="show-modal" aria-label="Cambiar contraseña" title="Cambiar contraseña">
+     <svg class="icon" aria-hidden="true" focusable="false" viewBox="0 0 24 24"><path d="M10.3 4.3c.4-1.8 3-1.8 3.4 0a1.7 1.7 0 0 0 2.6 1.1c1.5-.9 3.3.8 2.4 2.4a1.7 1.7 0 0 0 1 2.5c1.8.5 1.8 3 0 3.5a1.7 1.7 0 0 0-1 2.5c.9 1.6-.9 3.3-2.4 2.4a1.7 1.7 0 0 0-2.6 1.1c-.4 1.8-3 1.8-3.4 0a1.7 1.7 0 0 0-2.6-1.1c-1.5.9-3.3-.8-2.4-2.4a1.7 1.7 0 0 0-1-2.5c-1.8-.5-1.8-3 0-3.5a1.7 1.7 0 0 0 1-2.5c-.9-1.6.9-3.3 2.4-2.4a1.7 1.7 0 0 0 2.6-1.1z"/><circle cx="12" cy="12" r="3"/></svg>
+     </button>
+     <!-- CHANGE PASSWORD: plain HTML <dialog>, calm (sage) backdrop. Esc or "Cancelar" closes it.
+          Prototype: "Guardar" only closes the window. The backend will check the current
+          password and that both new ones match. -->
+     <dialog class="modal modal--calm" id="settings-modal" aria-labelledby="settings-title">
+          <form class="modal__form" method="dialog">
+               <h2 class="modal__title" id="settings-title">Cambiar contraseña</h2>
+               <div class="field">
+                    <label class="field__label" for="current-password">Contraseña actual</label>
+                    <input class="field__input" id="current-password" name="current_password" type="password" autocomplete="current-password" required>
+               </div>
+               <div class="field">
+                    <label class="field__label" for="new-password">Nueva contraseña</label>
+                    <input class="field__input" id="new-password" name="new_password" type="password" autocomplete="new-password" required minlength="4" aria-describedby="new-password-hint">
+                    <p class="field__hint" id="new-password-hint">Mínimo 4 caracteres.</p>
+               </div>
+               <div class="field">
+                    <label class="field__label" for="confirm-password">Confirmar nueva contraseña</label>
+                    <input class="field__input" id="confirm-password" name="confirm_password" type="password" autocomplete="new-password" required minlength="4">
+               </div>
+               <div class="modal__actions">
+                    <button class="btn" type="button" commandfor="settings-modal" command="close">Cancelar</button>
+                    <button class="btn btn--confirm" type="submit">Guardar contraseña</button>
+               </div>
+          </form>
+     </dialog>
+</body>
+</html>

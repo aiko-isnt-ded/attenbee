@@ -23,7 +23,7 @@ if (productId) {
 
   document.querySelector('[data-field="product-id"]').value = productId;
 
-  // Name + temperature: "Capuchino Caliente 🔥", "Capuchino Frío ❄", or just "Chai"
+  // Name + temperature: "Capuchino Caliente", "Capuchino Frío", or just "Chai"
   const tempWord = { hot: 'Caliente', cold: 'Frío' }[temp];
   fill('product-name', tempWord ? `${name} ${tempWord}` : name);
 
