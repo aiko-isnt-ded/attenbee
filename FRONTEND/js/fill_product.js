@@ -38,9 +38,10 @@ if (productId) {
 
   // Back and Cancelar return to the product's category
   const category = params.get('category');
+  const order = params.get('order');
   if (category) {
     document.querySelectorAll('[data-action="back"], [data-action="cancel"]').forEach((link) => {
-      link.href = 'new_order.html#' + encodeURIComponent(category);
+      link.href = 'new_order.html' + (order ? '?order=' + encodeURIComponent(order) : '') + '#' + encodeURIComponent(category);
     });
   }
 

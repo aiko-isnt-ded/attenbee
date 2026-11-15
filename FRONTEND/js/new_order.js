@@ -8,6 +8,13 @@
    these details come from the HTML. Eventually, they should come from the DB
    ========================================================================== */
 
+// Allow to return back to orders.html if you accessed add_beverage.html from there
+const order = new URLSearchParams(window.location.search).get('order');
+if (order) {
+  document.querySelector('[data-action="back"]').href = 'orders.html';
+  document.querySelector('[data-field="back-label"]').textContent = 'Pedidos';
+}
+
 document.querySelectorAll('[data-action="add-product"]').forEach((card) => {
   const data = card.dataset;
 
@@ -22,6 +29,7 @@ document.querySelectorAll('[data-action="add-product"]').forEach((card) => {
     category: data.category,
   });
   if (data.temp) params.set('temp', data.temp);    // drinks with a fixed temperature
+  if (order) params.set('order', order);
 
   card.href = 'add_beverage.html?' + params.toString();
 });

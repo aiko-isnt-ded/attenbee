@@ -23,7 +23,8 @@
   border-bottom: var(--border-width) dotted var(--color-line-soft);
 }
 .ticket__title { font-size: var(--fs-md); }
-.ticket__time { font-size: var(--fs-sm); color: var(--color-muted); }
+.ticket__time { font-size: var(--fs-base); color: var(--color-muted); }
+.ticket .order-line__main { font-size: 1.4375rem; }
 
 .ticket__lines {
   flex: 1;
@@ -43,11 +44,11 @@
   grid-template-columns: 1.25em 1fr auto;
   align-items: center;
   column-gap: var(--space-2);
-  font-size: var(--fs-sm);
+  font-size: var(--fs-base);
   color: var(--color-muted);
 }
 .order-line__marker { justify-self: center; color: var(--color-line-soft); }
-.order-line__option .icon--sm.order-line__marker { color: var(--color-brown); vertical-align: 0; }
+.order-line__option .icon--sm.order-line__marker { vertical-align: 0; }
 .order-line__delta { font-family: var(--font-ui); font-weight: var(--fw-bold); color: var(--color-charcoal); }
 
 .ticket__total {
@@ -59,8 +60,14 @@
 }
 .ticket__total-value { font-family: var(--font-ui); font-size: var(--fs-xl); font-weight: var(--fw-bold); color: var(--color-brown); }
 
-/* Cobrar: full width at the bottom of the ticket */
-.ticket__checkout { margin: 0 var(--space-5) var(--space-5);}
+/* Cobrar and Editar buttons */
+.ticket__actions {
+  display: grid;
+  grid-template-columns: 1fr 3fr;         
+  gap: var(--space-3);
+  margin: 0 var(--space-5) var(--space-5);
+}
+.ticket__actions .btn { padding-inline: var(--space-4); white-space: nowrap; }
 
 /* Empty state: hidden while there is at least one ticket */
 .orders__empty { align-items: flex-start; max-width: 32rem; }
@@ -74,7 +81,7 @@
   .app-bar { padding: var(--space-3) var(--space-4); gap: var(--space-3); }
   .orders { padding: var(--space-4); }
   .ticket__header, .ticket__lines, .ticket__total { padding-inline: var(--space-4); }
-  .ticket__checkout { margin-inline: var(--space-4); }
+  .ticket__actions { margin-inline: var(--space-4); }
 }
 
 /* Big screens, same idea as Nuevo pedido: the page never moves.
