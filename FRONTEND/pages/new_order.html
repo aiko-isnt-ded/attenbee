@@ -109,7 +109,7 @@
                  data-action="add-product" data-product-id="capuchino-caliente"
                  data-category="cafe" data-price-cents="6000" data-customizable="true" data-temp="hot">
             <div class="placeholder" aria-hidden="true"></div>
-            <h3 class="product-card__name">Capuchino<svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg><span class="visually-hidden">Caliente</span></h3>
+            <h3 class="product-card__name">Capuchino<span>Caliente</span><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg></h3>
             <p class="product-card__meta">$60.00</p>
           </a></li>
 
@@ -117,7 +117,7 @@
                  data-action="add-product" data-product-id="capuchino-frio"
                  data-category="cafe" data-price-cents="6000" data-customizable="true" data-temp="cold">
             <div class="placeholder" aria-hidden="true"></div>
-            <h3 class="product-card__name">Capuchino<svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-cold"></use></svg><span class="visually-hidden">Frío</span></h3>
+            <h3 class="product-card__name">Capuchino<span>Frío</span><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-cold"></use></svg></h3>
             <p class="product-card__meta">$60.00</p>
           </a></li>
 
@@ -125,7 +125,7 @@
                  data-action="add-product" data-product-id="latte-caliente"
                  data-category="cafe" data-price-cents="6000" data-customizable="true" data-temp="hot">
             <div class="placeholder" aria-hidden="true"></div>
-            <h3 class="product-card__name">Latte<svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg><span class="visually-hidden">Caliente</span></h3>
+            <h3 class="product-card__name">Latte<span>Caliente</span><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg></h3>
             <p class="product-card__meta">$60.00</p>
           </a></li>
 
@@ -133,7 +133,7 @@
                  data-action="add-product" data-product-id="latte-frio"
                  data-category="cafe" data-price-cents="6000" data-customizable="true" data-temp="cold">
             <div class="placeholder" aria-hidden="true"></div>
-            <h3 class="product-card__name">Latte<svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-cold"></use></svg><span class="visually-hidden">Frío</span></h3>
+            <h3 class="product-card__name">Latte<span>Frío</span><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-cold"></use></svg></h3>
             <p class="product-card__meta">$60.00</p>
           </a></li>
 
@@ -209,10 +209,18 @@
           </a></li>
 
           <li><a class="product-card" href="add_beverage.html"
+                 data-action="add-product" data-product-id="chocolate-caliente"
+                 data-category="te" data-price-cents="4000" data-customizable="true" data-temp="hot">
+            <div class="placeholder" aria-hidden="true"></div>
+            <h3 class="product-card__name">Chocolate<span>Caliente</span><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg></h3>
+            <p class="product-card__meta">$40.00</p>
+          </a></li>
+
+          <li><a class="product-card" href="add_beverage.html"
                  data-action="add-product" data-product-id="chocolate-frio"
                  data-category="te" data-price-cents="4000" data-customizable="true" data-temp="cold">
             <div class="placeholder" aria-hidden="true"></div>
-            <h3 class="product-card__name">Chocolate<svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-cold"></use></svg><span class="visually-hidden">Frío</span></h3>
+            <h3 class="product-card__name">Chocolate<span>Frío</span><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-cold"></use></svg></h3>
             <p class="product-card__meta">$40.00</p>
           </a></li>
 
@@ -270,7 +278,6 @@
       </section>
 
       <!-- PRODUCTOS | OTROS -->
-       <!-- ATTENTIONNNNNNN OTROS TITLE IS NOT DEFINED IN CSS -->
       <section class="product-section" id="otros" aria-labelledby="otros-title">
         <h2 class="product-section__title" id="otros-title">Otros</h2>
         <ul class="product-grid">
@@ -344,7 +351,7 @@
               <span data-field="price">$60.00</span>
             </div>
             <div class="order-line__detail">
-              <span data-field="temp"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg><span class="visually-hidden">Caliente</span></span>
+              <span data-field="temp"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg></span>
               <span data-field="details">Para llevar · Miel</span>
             </div>
             <div class="order-line__actions">
@@ -383,7 +390,7 @@
         <span data-field="price"></span>
       </div>
       <div class="order-line__detail">
-        <span data-field="temp"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg><span class="visually-hidden">Caliente</span></span>
+        <span data-field="temp"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg></span>
         <span data-field="details"></span>
       </div>
       <div class="order-line__actions">

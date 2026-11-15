@@ -1,11 +1,11 @@
 /* ==========================================================================
-   ATTENBEE – new_order.js
-   Sends each drink card (Café and Té) to add_beverage.html, carrying the
-   product's details in the address:
+   Fills add_beverage.html template with data from each drink card (Café & Té)
+   
+   Product details can be seen in the URL:
      add_beverage.html?product=smoothie&name=Smoothie&price=6000
-   The details come from the card's data- labels, so adding a drink to the
-   HTML is all it takes. No product list to keep in sync.
-   Panadería cards are not links: they have their own − and + buttons.
+
+   Product details come from each card's 'data-labels'. As of right now,
+   these details come from the HTML. Eventually, they should come from the DB
    ========================================================================== */
 
 document.querySelectorAll('[data-action="add-product"]').forEach((card) => {
@@ -19,6 +19,7 @@ document.querySelectorAll('[data-action="add-product"]').forEach((card) => {
     product: data.productId,
     name: name,
     price: data.priceCents,
+    category: data.category,
   });
   if (data.temp) params.set('temp', data.temp);    // drinks with a fixed temperature
 

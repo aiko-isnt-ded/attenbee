@@ -145,7 +145,8 @@
 .catalog:not(:has(:target)) .category-nav__link[href="#cafe"],
 .catalog:has(#cafe:target) .category-nav__link[href="#cafe"],
 .catalog:has(#te:target) .category-nav__link[href="#te"],
-.catalog:has(#panaderia:target) .category-nav__link[href="#panaderia"] {
+.catalog:has(#panaderia:target) .category-nav__link[href="#panaderia"],
+.catalog:has(#otros:target) .category-nav__link[href="#otros"] {
   background: var(--color-brown);
   border-color: var(--color-brown);
   color: var(--color-on-dark);
@@ -184,7 +185,10 @@
   border-radius: var(--radius);
 }
 .product-card:hover { border-style: solid; border-color: var(--color-orange); }
-.product-card__name { display: flex; align-items: center; gap: var(--space-2); }
+.product-card__name { display: flex; flex-wrap: wrap; align-items: center; column-gap: var(--space-2); }
+/* Color-coding hot and cold items */
+.icon:has(use[href="#icon-hot"])  { color: var(--color-danger); fill: currentColor; }
+.icon:has(use[href="#icon-cold"]) { color: var(--color-info); }
 .product-card__meta { font-size: var(--fs-sm); color: var(--color-muted); }
 
 /* Image placeholder: grey-brown square with a cross (swap for real photos) */

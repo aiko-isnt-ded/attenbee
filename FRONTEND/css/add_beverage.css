@@ -50,6 +50,14 @@
   .add-form__options { flex: 1; min-height: 0; overflow-y: auto; padding-right: var(--space-2); }
 }
 
+/* Big screens: bigger buttons and text on Personalizar */
+@media (min-width: 1401px) {
+  .add-form .chip { min-height: 4rem; font-size: 1.4375rem; }
+  .add-form__footer .btn { min-height: 4rem; font-size: 1.4375rem; }
+  .add-form .stepper__btn { width: 4rem; padding: 0; }
+  .add-form .stepper__input { width: 5rem; min-height: 4rem; font-size: 1.4375rem; }
+}
+
 /* =========================== */
 /* RESPONSIVENESS */
 /* =========================== */

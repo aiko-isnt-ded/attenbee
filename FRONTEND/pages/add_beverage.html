@@ -59,7 +59,7 @@
 
   <!-- Top Bar -->
   <header class="app-bar">
-    <a class="btn" href="new_order.html"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-back"></use></svg><span>Pedido</span></a>
+    <a class="btn" href="new_order.html" data-action="back"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-back"></use></svg><span>Pedido</span></a>
     <h1 class="app-bar__title">Personalizar</h1>
   </header>
 
@@ -75,7 +75,7 @@
         <div class="placeholder add-form__image" aria-hidden="true"></div>
         <div>
           <h2 class="add-form__name"><span data-field="product-name">Latte Caliente</span> <svg class="icon icon--sm" aria-hidden="true" focusable="false" data-field="temp-icon"><use href="#icon-hot"></use></svg></h2>
-          <p class="add-form__base" data-field="base-price">desde $60.00</p>
+          <p class="add-form__base" data-field="base-price">$60.00</p>
         </div>
       </div>
 
@@ -107,8 +107,13 @@
             <label class="chip"><input type="radio" name="adicional" value="ninguno" data-price-delta-cents="0" required checked><span>Ninguno</span></label>
             <label class="chip"><input type="radio" name="adicional" value="cajeta" data-price-delta-cents="500"><span>Cajeta extra</span><span class="chip__price">+$5.00</span></label>
             <label class="chip"><input type="radio" name="adicional" value="caramelo" data-price-delta-cents="500"><span>Caramelo extra</span><span class="chip__price">+$5.00</span></label>
-            <!-- Smoothies only: hidden until JS sees a smoothie -->
-            <label class="chip" data-only-for="smoothie" hidden><input type="radio" name="adicional" value="leche" data-price-delta-cents="50"><span>Con leche</span><span class="chip__price">+$0.50</span></label>
+          </div>
+        </fieldset>
+        <!-- Extra Milk has its separate rules -->
+        <fieldset class="option-group">
+          <legend class="option-group__title">Leche</legend>
+          <div class="option-group__chips">
+            <label class="chip"><input type="checkbox" name="leche_extra" value="si" data-price-delta-cents="500"><span>Con leche</span><span class="chip__price">+$5.00</span></label>
           </div>
         </fieldset>
 
