@@ -1,7 +1,6 @@
 /* ==========================================================================
-   ATTENBEE – products.js
-   Fills the edit panel with a product's data when you tap its "Editar".
-   Reads only data- attributes. Nothing is saved yet.
+   Fill the edit panel with a product data when clicking "Editar".
+   Only reads and loads data
    ========================================================================== */
 
 const form = document.querySelector('[data-product-form]');
@@ -17,7 +16,6 @@ function fillPanel(row) {
   field('title').textContent = 'Editar: ' + fullName;
   field('product-id').value = data.productId;
   field('name').value = name;
-  field('category').value = data.category;
   field('price').value = (Number(data.priceCents) / 100).toFixed(2);
   field('product-name').textContent = ' ' + fullName;
 

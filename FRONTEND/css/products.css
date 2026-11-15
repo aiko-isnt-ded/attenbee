@@ -21,7 +21,8 @@
 /* Filters: show only the rows of the chosen category (CSS only, no JS) */
 .products:has(#filter-cafe:checked) .product-row:not([data-category="cafe"]),
 .products:has(#filter-te:checked) .product-row:not([data-category="te"]),
-.products:has(#filter-panaderia:checked) .product-row:not([data-category="panaderia"]) {
+.products:has(#filter-panaderia:checked) .product-row:not([data-category="panaderia"]),
+.products:has(#filter-otros:checked) .product-row:not([data-category="otros"]) {
   display: none;
 }
 
@@ -61,13 +62,10 @@
 }
 /* Hot/cold: icon + word, under the name */
 .product-table__temp {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: var(--space-1);
-  font-family: var(--font-body);
-  font-size: var(--fs-sm);
-  font-weight: var(--fw-regular);
-  color: var(--color-muted);
+  white-space: nowrap;
 }
 .product-table__price,
 .product-table__stock { white-space: nowrap; }
@@ -142,6 +140,11 @@ select.field__input { font: inherit; color: var(--color-charcoal); cursor: point
   /* Same app-bar rule as new_order.css (it belongs in components.css later) */
   .app-bar { padding: var(--space-3) var(--space-4); gap: var(--space-3); }
   .products__new { margin-left: 0; width: 100%; }
+  .product-form__footer .btn { flex: 1; }
+  }
+  /* Narrow list (any screen): each row becomes a small card */
+  .products__scroll { container: product-list / inline-size; }
+  @container product-list (max-width: 44rem) {
   .product-table__image { display: none; }
 
   /* Each row becomes a small card: name, price and stock on the left,
@@ -164,7 +167,6 @@ select.field__input { font: inherit; color: var(--color-charcoal); cursor: point
   .product-row:not([data-stock]) .product-table__stock { display: none; }
   .product-table__actions { grid-column: 2; grid-row: 1 / span 3; }
   .product-table__buttons { flex-direction: column; align-items: stretch; }
-  .product-form__footer .btn { flex: 1; }
 }
 
 /* Photo chosen in "Nuevo producto" (same size as the placeholder) */

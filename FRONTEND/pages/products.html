@@ -77,6 +77,7 @@
             <label class="chip"><input type="radio" name="filtro" value="cafe" id="filter-cafe"><span>Café</span></label>
             <label class="chip"><input type="radio" name="filtro" value="te" id="filter-te"><span>Té</span></label>
             <label class="chip"><input type="radio" name="filtro" value="panaderia" id="filter-panaderia"><span>Panadería</span></label>
+            <label class="chip"><input type="radio" name="filtro" value="otros" id="filter-otros"><span>Otros</span></label>
           </div>
         </fieldset>
         <button class="btn btn--accent products__new" type="button" data-action="new-product"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-plus"></use></svg><span>Nuevo producto</span></button>
@@ -137,7 +138,7 @@
           </tr>
           <tr class="product-row" data-product-id="capuchino-caliente" data-category="cafe" data-price-cents="6000">
             <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
-            <th scope="row" class="product-table__name" data-field="name">Capuchino<span class="product-table__temp" data-field="temp"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg>Caliente</span></th>
+            <th scope="row" class="product-table__name" data-field="name">Capuchino <span class="product-table__temp" data-field="temp">Caliente <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg></span></th>
             <td class="product-table__category">Café</td>
             <td class="product-table__price">$60.00</td>
             <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
@@ -150,7 +151,7 @@
           </tr>
           <tr class="product-row" data-product-id="capuchino-frio" data-category="cafe" data-price-cents="6000">
             <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
-            <th scope="row" class="product-table__name" data-field="name">Capuchino<span class="product-table__temp" data-field="temp"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-cold"></use></svg>Frío</span></th>
+            <th scope="row" class="product-table__name" data-field="name">Capuchino <span class="product-table__temp" data-field="temp">Frío <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-cold"></use></svg></span></th>
             <td class="product-table__category">Café</td>
             <td class="product-table__price">$60.00</td>
             <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
@@ -163,7 +164,7 @@
           </tr>
           <tr class="product-row" data-product-id="latte-caliente" data-category="cafe" data-price-cents="6000">
             <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
-            <th scope="row" class="product-table__name" data-field="name">Latte<span class="product-table__temp" data-field="temp"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg>Caliente</span></th>
+            <th scope="row" class="product-table__name" data-field="name">Latte <span class="product-table__temp" data-field="temp">Caliente <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-hot"></use></svg></span></th>
             <td class="product-table__category">Café</td>
             <td class="product-table__price">$60.00</td>
             <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
@@ -176,7 +177,7 @@
           </tr>
           <tr class="product-row" data-product-id="latte-frio" data-category="cafe" data-price-cents="6000">
             <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
-            <th scope="row" class="product-table__name" data-field="name">Latte<span class="product-table__temp" data-field="temp"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-cold"></use></svg>Frío</span></th>
+            <th scope="row" class="product-table__name" data-field="name">Latte <span class="product-table__temp" data-field="temp">Frío <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-cold"></use></svg></span></th>
             <td class="product-table__category">Café</td>
             <td class="product-table__price">$60.00</td>
             <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
@@ -293,7 +294,7 @@
           </tr>
           <tr class="product-row" data-product-id="chocolate-frio" data-category="te" data-price-cents="4000">
             <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
-            <th scope="row" class="product-table__name" data-field="name">Chocolate<span class="product-table__temp" data-field="temp"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-cold"></use></svg>Frío</span></th>
+            <th scope="row" class="product-table__name" data-field="name">Chocolate <span class="product-table__temp" data-field="temp">Frío <svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-cold"></use></svg></span></th>
             <td class="product-table__category">Té</td>
             <td class="product-table__price">$40.00</td>
             <td class="product-table__stock"><span aria-hidden="true">—</span><span class="visually-hidden">No aplica</span></td>
@@ -356,6 +357,58 @@
               </div>
             </td>
           </tr>
+          <tr class="product-row" data-product-id="cafe-majomut" data-category="otros" data-price-cents="27000" data-stock="5">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Café Majomut</th>
+            <td class="product-table__category">Otros</td>
+            <td class="product-table__price">$270.00</td>
+            <td class="product-table__stock">5<span class="product-table__unit"> disponibles</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=cafe-majomut#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Café Majomut</span></a>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Café Majomut</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="fem-cafe" data-category="otros" data-price-cents="20000" data-stock="3">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Fem Café</th>
+            <td class="product-table__category">Otros</td>
+            <td class="product-table__price">$200.00</td>
+            <td class="product-table__stock">3<span class="product-table__unit"> disponibles</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=fem-cafe#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Fem Café</span></a>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Fem Café</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="kombucha" data-category="otros" data-price-cents="7000" data-stock="7">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Kombucha</th>
+            <td class="product-table__category">Otros</td>
+            <td class="product-table__price">$70.00</td>
+            <td class="product-table__stock">7<span class="product-table__unit"> disponibles</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=kombucha#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Kombucha</span></a>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Kombucha</span></button>
+              </div>
+            </td>
+          </tr>
+          <tr class="product-row" data-product-id="miel" data-category="otros" data-price-cents="9000" data-stock="10">
+            <td class="product-table__image"><div class="placeholder" aria-hidden="true"></div></td>
+            <th scope="row" class="product-table__name" data-field="name">Miel</th>
+            <td class="product-table__category">Otros</td>
+            <td class="product-table__price">$90.00</td>
+            <td class="product-table__stock">10<span class="product-table__unit"> disponibles</span></td>
+            <td class="product-table__actions">
+              <div class="product-table__buttons">
+                <a class="btn" href="products.html?product=miel#product-form" data-action="edit-product">Editar<span class="visually-hidden"> Miel</span></a>
+                <button class="btn" type="button" data-action="delete-product" commandfor="delete-modal" command="show-modal">Eliminar<span class="visually-hidden"> Miel</span></button>
+              </div>
+            </td>
+          </tr>
           </tbody>
         </table>
       </div>
@@ -382,15 +435,6 @@
         <div class="field">
           <label class="field__label" for="product-name">Nombre</label>
           <input class="field__input" id="product-name" type="text" name="nombre" value="" required data-field="name">
-        </div>
-
-        <div class="field">
-          <label class="field__label" for="product-category">Categoría</label>
-          <select class="field__input" id="product-category" name="categoria" data-field="category">
-            <option value="cafe">Café</option>
-            <option value="te">Té</option>
-            <option value="panaderia">Panadería</option>
-          </select>
         </div>
 
         <div class="field">
@@ -483,6 +527,14 @@
             <label class="chip"><input type="checkbox" name="details" value="TP" checked><span>Termo propio</span></label>
           </div>
         </fieldset>
+        <div class="field">
+          <label class="field__label" for="new-discount">Descuento para aquí o con termo</label>
+          <div class="field__money">
+            <span class="field__money-sign" aria-hidden="true">$</span>
+            <input class="field__input field__input--short" id="new-discount" type="number" name="discount" required min="0" step="0.50" value="5.00" inputmode="decimal" aria-describedby="new-discount-hint">
+          </div>
+          <p class="field__hint" id="new-discount-hint">Se resta del precio si el cliente toma aquí o trae su termo.</p>
+        </div>
         <fieldset class="option-group">
           <legend class="modal__subtitle">Endulzante</legend>
           <div class="option-group__chips">
