@@ -16,22 +16,22 @@
      <link rel="stylesheet" href="../css/components.css">
      <link rel="stylesheet" href="../css/login.css">
 
-     <!--Scripts-->
-     <script src="../js/login_scripts.js"></script>
+     <!-- Scripts -->
+     <script src="../js/login_scripts.js" defer></script>
 </head>
 
 <body>
      <a class="skip-link" href="#password">Ir al formulario</a>
      <main class="login">
           <!-- Prototype: submitting only navigates to main.html (no validation yet) -->
-          <form class="login__card card" action="main.html" method="get">
+          <form class="login__card card" action="main.html" method="get" id="login-form">
                <div>
                     <img src="../../assets/colmena_logo.png" alt="El logo de la cafetería Colmena Café, con un grano de café" class="big_image">
                </div>
                <p class="login__welcome">¡Bienvenide!</p>
                <div class="field">
                     <label class="field__label" for="password">Contraseña</label>
-                    <input class="field__input" id="password" name="password" type="password" autocomplete="current-password">
+                    <input class="field__input" id="password-field" name="password" type="password" autocomplete="current-password">
                </div>
           <button class="btn btn--primary btn--block" type="submit">Iniciar sesión</button>
           </form>

@@ -3,9 +3,9 @@
     "_id": "prod_obj_id_1",
     "product_id": "cafe-colmena",
     "category": "cafe",
-    "image": "../../assets/colmena_logo.png",
-    "product_name": "Café Colmena",
-    "price": 2000,
+    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
+    "product_name": "Cafesito Colmena",
+    "price": 3000,
     "total_units": null
   },
   {
@@ -15,6 +15,15 @@
     "image": "../../assets/colmena_logo.png",
     "product_name": "Americano",
     "price": 4000,
+    "total_units": null
+  },
+  {
+    "_id": "prod_obj_id_2",
+    "product_id": "te-prueba",
+    "category": "te",
+    "image": "../../assets/colmena_logo.png",
+    "product_name": "Te Prueba",
+    "price": 3500,
     "total_units": null
   },
   {
@@ -43,5 +52,50 @@
     "product_name": "Café Majomut",
     "price": 27000,
     "total_units": 5
+  },
+  {
+    "_id": "prod_obj_id_5",
+    "product_id": "cafe-fresa",
+    "category": "otros",
+    "image": "../../assets/colmena_logo.png",
+    "product_name": "Café Fresa",
+    "price": 29000,
+    "total_units": 150
+  },
+  {
+    "_id": "prod_1794936177182",
+    "product_id": "cafe-chofas",
+    "category": "cafe",
+    "image": "../../assets/colmena_logo.png",
+    "product_name": "Café Chofas",
+    "price": 2100,
+    "total_units": null
+  },
+  {
+    "_id": "prod_1794936199688",
+    "product_id": "pan-de-muerte",
+    "category": "panaderia",
+    "image": "../../assets/colmena_logo.png",
+    "product_name": "Pan de Muerte",
+    "price": 6700,
+    "total_units": 5
+  },
+  {
+    "_id": "prod_1794936219498",
+    "product_id": "was",
+    "category": "cafe",
+    "image": "../../assets/colmena_logo.png",
+    "product_name": "Was",
+    "price": 12300,
+    "total_units": null
+  },
+  {
+    "_id": "prod_1794936283496",
+    "product_id": "was-2",
+    "category": "panaderia",
+    "image": "../../assets/colmena_logo.png",
+    "product_name": "Was",
+    "price": 12300,
+    "total_units": 12
   }
 ]

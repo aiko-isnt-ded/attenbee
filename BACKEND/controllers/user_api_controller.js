@@ -56,6 +56,31 @@ exports.changeUserPassword = async (req, res) =>
         });
     } catch (err)
     {
-        return res.status(400).json({success: false, message:err.message});
+        return res.status(500).json({success: false, message:err.message});
+    }
+}
+
+exports.loginUser = async (req, res) =>
+{
+    try
+    {
+        let {password} = req.body;
+        let users = await readUsers();
+        let user = users[0];
+
+        if (!user)
+        {
+            return res.status(404).json({success: false, message: "Usuario no encontrado"});
+        }
+
+        if (user.password !== password)
+        {
+            return res.status(401).json({success: false, message: "Contraseña incorrecta!"});
+        }
+
+        return res.status(200).json({success: true, message: "Sesión iniciada exitosamente"});
+    } catch (err)
+    {
+        return res.status(500).json({success: false, message: err.message});
     }
 }

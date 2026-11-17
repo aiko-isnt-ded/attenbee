@@ -1,8 +1,75 @@
+const CATEGORY_NAMES = {cafe: "Café", te: "Té", panaderia: "Panadería", otros: "Otros"};
+
+async function loadProduct()
+{
+  try
+  {
+    const response = await fetch('http://localhost:3000/products/');
+    const result = await response.json();
+
+    if (result.success)
+    {
+      const tbody = document.querySelector('[data-products]');
+      tbody.innerHTML = '';
+
+      result.data.forEach(product =>
+      {
+        addProductRow(product);
+      })
+    }
+  } catch (err)
+  {
+    console.error("Error cargando productos", err.message);
+  }
+}
+
+function addProductRow(product)
+{
+  const template = document.getElementById('tpl-product-row');
+  const row = template.content.firstElementChild.cloneNode(true);
+  const slot = (fieldName) => row.querySelector('[data-field="' + fieldName + '"]');
+
+  row.dataset.productId = product.product_id;
+  row.dataset.category = product.category;
+  row.dataset.priceCents = String(product.price);
+
+  if (product.total_units !== null && product.total_units !== undefined)
+  {
+    row.dataset.stock = product.total_units;
+    slot('stock').textContent = product.total_units;
+    const unit = document.createElement('span');
+    unit.className = 'product-table__unit';
+    unit.textContent = 'disponibles';
+    slot('stock').append(unit);
+  }
+
+  slot('name').textContent = product.product_name;
+  slot('category').textContent = CATEGORY_NAMES[product.category] || product.category;
+  slot('price').textContent = '$' + (product.price / 100).toFixed(2);
+
+  row.querySelectorAll('[data-field="label"]').forEach((elem) =>
+  {
+    elem.textContent = ' ' + product.product_name;
+  });
+
+  if (product.image)
+  {
+    const img = document.createElement('img');
+    img.className = 'product-table__photo';
+    img.alt = '';
+    img.src = product.image;
+    slot('image').replaceWith(img);
+  }
+
+  document.querySelector('[data-products]').append(row);
+}
+
+document.addEventListener('DOMContentLoaded', loadProduct);
+
 /* ==========================================================================
    Fill the edit panel with a product data when clicking "Editar".
    Only reads and loads data
    ========================================================================== */
-
 const form = document.querySelector('[data-product-form]');
 const field = (name) => form.querySelector('[data-field="' + name + '"]');
 
@@ -46,114 +113,250 @@ document.addEventListener('click', (event) => {
   fillPanel(button.closest('[data-product-id]'));
 });
 
+const editForm = document.querySelector('[data-product-form]');
 
-/* NEW PRODUCT MODAL ---------------------------------------------------------
-   Opens the dialog, shows Existencias only for Panadería and the options only
-   for drinks, and on "Crear producto" adds a row to the table.
-   Nothing is saved: the row disappears when the page reloads. */
+editForm.addEventListener('submit', async (e) =>
+{
+  e.preventDefault();
+
+  const product_id = field('product-id').value;
+  const name = field('name').value.trim();
+  const price_cents = Math.round(Number(field('price').value) * 100);
+  const stock_field = field('stock');
+  const total_units = stock_field && !stock_field.closest('.field').hidden ? Number(stock_field.value) : null;
+
+  if (!name)
+  {
+    alert("El nombre no puede ser vacío");
+    return;
+  }
+
+  if (isNaN(price_cents) || price_cents < 0)
+  {
+    alert("El precio no puede ser negativo!");
+    return;
+  }
+
+  if (total_units !== null && total_units < 0)
+  {
+    alert("las existencias no pueden ser menores a cero");
+    return;
+  }
+
+  try
+  {
+    const response = await fetch(`http://localhost:3000/products/${product_id}`,
+    {
+      method: "PUT",
+      headers: {'Content-Type': "application/json"},
+      body: JSON.stringify({product_name: name, price: price_cents, total_units: total_units})
+    });
+
+    const result = await response.json();
+
+    if (result.success)
+    {
+      const row = document.querySelector(`[data-product-id="${product_id}"]`);
+      if (row)
+      {
+        row.dataset.price_cents = String(price_cents);
+
+        const name_cell = row.querySelector('[data-field="name"]');
+        const temp_cell = name_cell.querySelector('[data-field="temp"]');
+
+        if (temp_cell)
+        {
+          name_cell.firstChild.textContent = name + ' ';
+        } else
+        {
+          name_cell.textContent = name;
+        }
+
+        row.querySelector('[data-field="price"]').textContent = "$" + (price_cents / 100).toFixed(2);
+
+        if (total_units !== null)
+        {
+          row.dataset.stock = total_units;
+          const stock_cell = row.querySelector('[data-field="stock"]');
+          if (stock_cell)
+          {
+            stock_cell.firstChild.textContent = total_units;
+          }
+        }
+      }
+
+      alert("Producto actualizado exitosamente");
+    } else
+    {
+      alert(result.message || "Error al actualizar producto");
+    }
+  } catch (err)
+  {
+    alert("Error de conexión con el servidor");
+  }
+})
 
 const modal = document.querySelector('[data-new-product-modal]');
-const newForm = modal.querySelector('[data-new-product-form]');
-const CATEGORY_NAMES = { cafe: 'Café', te: 'Té', panaderia: 'Panadería' };
+const new_form = document.querySelector('[data-new-product-form]');
 
-function updateNewFormFields() {
-  const isBakery = newForm.elements.category.value === 'panaderia';
-  // Hidden fields are also disabled, so the browser doesn't ask for them
-  newForm.querySelectorAll('[data-when-bakery]').forEach((el) => {
-    el.hidden = !isBakery;
-    el.querySelectorAll('input').forEach((input) => { input.disabled = !isBakery; });
-  });
-  newForm.querySelectorAll('[data-when-drink]').forEach((el) => {
-    el.hidden = isBakery;
-    el.querySelectorAll('input').forEach((input) => { input.disabled = isBakery; });
+function updateNewFormFields()
+{
+  let category = new_form.elements.category.value;
+  let needs_stock = category === 'panaderia' || category === "otros";
+
+  new_form.querySelectorAll('[data-when-stock]').forEach((elem) =>
+  {
+    elem.hidden = !needs_stock;
+    elem.querySelectorAll('input').forEach((input) =>
+    {
+      input.disabled = !needs_stock;
+    });
   });
 }
 
-// Clear the form every time the modal closes (Cancelar, Esc or after creating)
-modal.addEventListener('close', () => {
-  newForm.reset();
-  newForm.querySelector('[data-field="image-name"]').textContent = 'Opcional.';
+modal.addEventListener('close', () =>
+{
+  new_form.reset();
+  new_form.querySelector('[data-field="image-name"]').textContent = "Opcional";
   updateNewFormFields();
 });
 
-// A unique id from the name, e.g. "Pan de Elote" -> "pan-de-elote" (the database will use ObjectId)
-function makeProductId(name) {
-  const base = name.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-    .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '') || 'producto';
-  let id = base;
-  let n = 2;
-  while (document.querySelector('[data-product-id="' + id + '"]')) { id = base + '-' + n; n += 1; }
-  return id;
-}
-
-function addProductRow(form) {
-  const values = new FormData(form);
-  const name = values.get('product_name').trim();
-  const category = values.get('category');
-  const priceCents = Math.round(Number(values.get('price')) * 100);
-  const isDrink = category !== 'panaderia';
-
-  const row = document.getElementById('tpl-product-row').content.firstElementChild.cloneNode(true);
-  const slot = (fieldName) => row.querySelector('[data-field="' + fieldName + '"]');
-
-  row.dataset.productId = makeProductId(name);
-  row.dataset.category = category;
-  row.dataset.priceCents = String(priceCents);
-  row.dataset.drink = String(isDrink);
-  if (isDrink) {
-    row.dataset.details = ['N'].concat(values.getAll('details')).join(' ');   // e.g. "N PA PL MI"
-  } else {
-    const units = values.get('total_units');
-    row.dataset.stock = units;
-    slot('stock').textContent = units;
-    const unit = document.createElement('span');
-    unit.className = 'product-table__unit';
-    unit.textContent = ' disponibles';
-    slot('stock').append(unit);
-  }
-
-  slot('name').textContent = name;
-  slot('category').textContent = CATEGORY_NAMES[category];
-  slot('price').textContent = '$' + (priceCents / 100).toFixed(2);
-  row.querySelectorAll('[data-field="label"]').forEach((el) => { el.textContent = ' ' + name; });
-
-  // Show the chosen photo instead of the grey placeholder
-  const file = values.get('image');
-  if (file && file.size) {
-    const img = document.createElement('img');
-    img.className = 'product-table__photo';
-    img.alt = '';
-    img.src = URL.createObjectURL(file);
-    slot('image').replaceWith(img);
-  }
-
-  document.querySelector('[data-products]').append(row);
-  return row;
-}
-
-document.querySelector('[data-action="new-product"]').addEventListener('click', () => {
+document.querySelector('[data-action="new-product"]').addEventListener('click', () =>
+{
   updateNewFormFields();
   modal.showModal();
 });
+
 modal.querySelector('[data-action="cancel-new-product"]').addEventListener('click', () => modal.close());
-newForm.elements.category.forEach((radio) => radio.addEventListener('change', updateNewFormFields));
-modal.querySelector('[data-field="image-input"]').addEventListener('change', (event) => {
-  const file = event.target.files[0];
-  newForm.querySelector('[data-field="image-name"]').textContent = file ? file.name : 'Opcional.';
+
+new_form.elements.category.forEach((radio) => radio.addEventListener('change', updateNewFormFields));
+
+modal.querySelector('[data-field="image-input"]').addEventListener('change', (e) =>
+{
+  let file = e.target.files[0];
+  new_form.querySelector('[data-field="image-name"]').textContent = file ? file.name : 'Opcional.';
 });
 
-newForm.addEventListener('submit', (event) => {
-  event.preventDefault();             // the browser already checked required / min
-  const row = addProductRow(newForm);
-  modal.close();
+new_form.addEventListener('submit', async (e) =>
+{
+  e.preventDefault();
 
-  // Show the new product: "Todos" filter, scroll to it, open it in the panel
-  document.getElementById('filter-all').checked = true;
-  fillPanel(row);
-  // Big screens: scroll only the table (the page itself never moves)
-  const list = row.closest('[role="region"]');
-  if (window.matchMedia('(min-width: 901px)').matches) {
-    const offset = row.getBoundingClientRect().top - list.getBoundingClientRect().top;
-    list.scrollBy({ top: offset - list.clientHeight / 2, behavior: 'smooth' });
+  const form_data = new FormData(new_form);
+  const name = form_data.get('product_name').trim();
+  const category = form_data.get('category');
+  const price_cents = Math.round(Number(form_data.get('price')) * 100);
+  const total_units = (category === 'panaderia' || category === "otros") ? Number(form_data.get('total_units')) : null;
+
+  if (!name)
+  {
+    alert("El nombre es obligatorio");
+    return;
+  }
+
+  if (isNaN(price_cents) || price_cents < 0)
+  {
+    alert("El precio no puede ser negativo");
+    return;
+  }
+
+  try
+  {
+    const response = await fetch('http://localhost:3000/products', 
+    {
+      method: "POST",
+      headers: {"Content-Type": 'application/json'},
+      body: JSON.stringify
+      ({
+        product_name: name,
+        category: category,
+        price: price_cents,
+        total_units: total_units,
+        image: '../../assets/colmena_logo.png'
+      })
+    });
+
+    const result = await response.json();
+
+    if (result.success)
+    {
+      addProductRow(result.data);
+      modal.close();
+
+      document.getElementById('filter-all').checked = true;
+      const row = document.querySelector(`[data-product-id="${result.data.product_id}"]`);
+      if (row) fillPanel(row);
+
+      alert("Producto creado exitosamente");
+    } else
+    {
+      alert(result.message || "Error al crear producto");
+    }
+  } catch (err)
+  {
+    alert("Error de conexión en el servidor", err.message);
+    console.error(err.message);
+  }
+})
+
+let id_to_delete = null;
+
+document.addEventListener('click', (e) =>
+{
+  const delete_button = e.target.closest('[data-action="delete-product"]');
+
+  if (!delete_button) return;
+
+  const row = delete_button.closest('[data-product-id]');
+  if (row)
+  {
+    id_to_delete = row.dataset.productId;
+
+    const product_name = row.querySelector('[data-field="name"]').textContent.trim();
+    const modal_title_span = document.querySelector('#delete-modal [data-field="product-name"]');
+
+    if (modal_title_span)
+    {
+      modal_title_span.textContent = product_name;
+    }
   }
 });
+
+const confirm_delete_button = document.querySelector('[data-action="confirm-delete"]');
+if (confirm_delete_button)
+{
+  confirm_delete_button.addEventListener('click', async () =>
+  {
+    if (!id_to_delete) return;
+
+    try
+    {
+      const response = await fetch(`http://localhost:3000/products/${id_to_delete}`, {method: "DELETE"});
+
+      const result = await response.json();
+
+      if (result.success)
+      {
+        const row = document.querySelector(`[data-product-id="${id_to_delete}"]`);
+        if (row)
+        {
+          row.remove();
+        }
+
+        const active_form_id = field('product-id').value;
+        if (active_form_id === id_to_delete)
+        {
+          form.reset();
+          form.querySelectorAll('[data-when-filled]').forEach((elem) => {el.hidden = true; });
+          form.querySelectorAll('[data-when-empty]').forEach((elem) => {el.hidden = false; });
+        }
+
+        id_to_delete = null;
+        alert("Producto eliminado exitosamente!");
+      }
+    } catch (err)
+    {
+      console.error(err.message);
+      alert("Error de conexión con el servidor", err.message);
+    }
+  })
+}

@@ -4,4 +4,6 @@ const routerUsers = express.Router();
 
 routerUsers.put('/change-password', userController.changeUserPassword);
 
+routerUsers.post('/login', userController.loginUser);
+
 module.exports = routerUsers;

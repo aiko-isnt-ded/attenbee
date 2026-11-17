@@ -19,6 +19,7 @@
 
   <!-- JavaScript -->
   <script src="../js/products.js" defer></script>
+  <script src="../js/auth.js" defer></script>
 </head>
 
 <body class="page-products">
@@ -498,6 +499,7 @@
           <label class="chip"><input type="radio" name="category" value="cafe" required checked><span>Café</span></label>
           <label class="chip"><input type="radio" name="category" value="te"><span>Té</span></label>
           <label class="chip"><input type="radio" name="category" value="panaderia"><span>Panadería</span></label>
+          <label class="chip"><input type="radio" name="category" value="otros"><span>Otros</span></label>
         </div>
       </fieldset>
 
@@ -511,46 +513,9 @@
       </div>
 
       <!-- total_units: Panadería only (JS shows it and turns it on) -->
-      <div class="field" data-when-bakery hidden>
+      <div class="field" data-when-stock hidden>
         <label class="field__label" for="new-units">Existencias</label>
         <input class="field__input field__input--short" id="new-units" type="number" name="total_units" required min="0" step="1" value="0" inputmode="numeric" disabled>
-      </div>
-
-      <!-- details: drinks only. Codes match the database ENUM. "N" (Sin endulzante / Ninguno) is always added. -->
-      <div class="modal__group" data-when-drink>
-        <p class="field__label">Opciones de Personalizar</p>
-        <fieldset class="option-group">
-          <legend class="modal__subtitle">Consumo</legend>
-          <div class="option-group__chips">
-            <label class="chip"><input type="checkbox" name="details" value="PA" checked><span>Para aquí</span></label>
-            <label class="chip"><input type="checkbox" name="details" value="PL" checked><span>Para llevar</span></label>
-            <label class="chip"><input type="checkbox" name="details" value="TP" checked><span>Termo propio</span></label>
-          </div>
-        </fieldset>
-        <div class="field">
-          <label class="field__label" for="new-discount">Descuento para aquí o con termo</label>
-          <div class="field__money">
-            <span class="field__money-sign" aria-hidden="true">$</span>
-            <input class="field__input field__input--short" id="new-discount" type="number" name="discount" required min="0" step="0.50" value="5.00" inputmode="decimal" aria-describedby="new-discount-hint">
-          </div>
-          <p class="field__hint" id="new-discount-hint">Se resta del precio si el cliente toma aquí o trae su termo.</p>
-        </div>
-        <fieldset class="option-group">
-          <legend class="modal__subtitle">Endulzante</legend>
-          <div class="option-group__chips">
-            <label class="chip"><input type="checkbox" name="details" value="MI" checked><span>Miel</span></label>
-            <label class="chip"><input type="checkbox" name="details" value="SP" checked><span>Splenda</span></label>
-            <label class="chip"><input type="checkbox" name="details" value="AM" checked><span>Mascabado</span></label>
-          </div>
-        </fieldset>
-        <fieldset class="option-group">
-          <legend class="modal__subtitle">Adicional</legend>
-          <div class="option-group__chips">
-            <label class="chip"><input type="checkbox" name="details" value="CJE" checked><span>Cajeta extra</span></label>
-            <label class="chip"><input type="checkbox" name="details" value="CE" checked><span>Caramelo extra</span></label>
-            <label class="chip"><input type="checkbox" name="details" value="CL"><span>Con leche</span></label>
-          </div>
-        </fieldset>
       </div>
 
       <div class="field">
