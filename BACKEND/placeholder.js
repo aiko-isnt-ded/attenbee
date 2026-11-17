@@ -67,7 +67,9 @@ let orders = [
     status: true, // true = open
     pre_total: 17000,
     total_pay_cash: 0,
-    total_pay_card: 0
+    total_tip_cash: 0,
+    total_pay_card: 0,
+    total_tip_card: 0
   },
   {
     _id: 'order_obj_id_13',
@@ -77,7 +79,9 @@ let orders = [
     status: true,
     pre_total: 23000,
     total_pay_cash: 0,
-    total_pay_card: 0
+    total_tip_cash: 0,
+    total_pay_card: 0,
+    total_tip_card: 0
   }
 ];
 

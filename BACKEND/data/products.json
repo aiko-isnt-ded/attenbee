@@ -1,0 +1,47 @@
+[
+  {
+    "_id": "prod_obj_id_1",
+    "product_id": "cafe-colmena",
+    "category": "cafe",
+    "image": "../../assets/colmena_logo.png",
+    "product_name": "Café Colmena",
+    "price": 2000,
+    "total_units": null
+  },
+  {
+    "_id": "prod_obj_id_2",
+    "product_id": "americano",
+    "category": "cafe",
+    "image": "../../assets/colmena_logo.png",
+    "product_name": "Americano",
+    "price": 4000,
+    "total_units": null
+  },
+  {
+    "_id": "prod_obj_id_3",
+    "product_id": "pan-de-muerto",
+    "category": "panaderia",
+    "image": "../../assets/colmena_logo.png",
+    "product_name": "Pan de Muerto",
+    "price": 4000,
+    "total_units": 4
+  },
+  {
+    "_id": "prod_obj_id_4",
+    "product_id": "croissant",
+    "category": "panaderia",
+    "image": "../../assets/colmena_logo.png",
+    "product_name": "Croissant",
+    "price": 3500,
+    "total_units": 7
+  },
+  {
+    "_id": "prod_obj_id_5",
+    "product_id": "cafe-majomut",
+    "category": "otros",
+    "image": "../../assets/colmena_logo.png",
+    "product_name": "Café Majomut",
+    "price": 27000,
+    "total_units": 5
+  }
+]

@@ -1,0 +1,9 @@
+[
+  {
+    "_id": "user_obj_id_1",
+    "name": "Barista Principal",
+    "password": "hola3",
+    "createdAt": "2026-11-17T01:00:00.000Z",
+    "updatedAt": "2026-11-17T02:22:58.462Z"
+  }
+]

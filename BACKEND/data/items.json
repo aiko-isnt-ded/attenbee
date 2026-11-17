@@ -1,0 +1,29 @@
+[
+  {
+    "_id": "item_obj_id_1",
+    "item_id": "item-uuid-101",
+    "order_id": 12,
+    "product_id": "latte-frio",
+    "qty": 2,
+    "total_price": 13000,
+    "details": ["PL", "AM"]
+  },
+  {
+    "_id": "item_obj_id_2",
+    "item_id": "item-uuid-102",
+    "order_id": 12,
+    "product_id": "brownie",
+    "qty": 1,
+    "total_price": 4000,
+    "details": ["N"]
+  },
+  {
+    "_id": "item_obj_id_3",
+    "item_id": "item-uuid-103",
+    "order_id": 13,
+    "product_id": "latte-caliente",
+    "qty": 1,
+    "total_price": 23000,
+    "details": ["TP", "MI"]
+  }
+]

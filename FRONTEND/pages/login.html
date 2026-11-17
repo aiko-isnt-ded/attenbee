@@ -15,6 +15,9 @@
      <link rel="stylesheet" href="../css/base.css">
      <link rel="stylesheet" href="../css/components.css">
      <link rel="stylesheet" href="../css/login.css">
+
+     <!--Scripts-->
+     <script src="../js/login_scripts.js"></script>
 </head>
 
 <body>
@@ -42,7 +45,7 @@
           Prototype: "Guardar" only closes the window. The backend will check the current
           password and that both new ones match. -->
      <dialog class="modal modal--calm" id="settings-modal" aria-labelledby="settings-title">
-          <form class="modal__form" method="dialog">
+          <form class="modal__form" method="dialog" id="change-password-form">
                <h2 class="modal__title" id="settings-title">Cambiar contraseña</h2>
                <div class="field">
                     <label class="field__label" for="current-password">Contraseña actual</label>
@@ -57,6 +60,9 @@
                     <label class="field__label" for="confirm-password">Confirmar nueva contraseña</label>
                     <input class="field__input" id="confirm-password" name="confirm_password" type="password" autocomplete="new-password" required minlength="4">
                </div>
+
+               <p id="password-feedback" style="font-size: 0.9rem; margin-top: 0.5rem;"></p>
+
                <div class="modal__actions">
                     <button class="btn" type="button" commandfor="settings-modal" command="close">Cancelar</button>
                     <button class="btn btn--confirm" type="submit">Guardar contraseña</button>

@@ -1,0 +1,26 @@
+[
+  {
+    "_id": "order_obj_id_12",
+    "order_id": 12,
+    "open_time": "2026-06-06T10:35:00.000Z",
+    "close_time": null,
+    "status": true,
+    "pre_total": 17000,
+    "total_pay_cash": 0,
+    "total_tip_cash": 0,
+    "total_pay_card": 0,
+    "total_tip_card": 0
+  },
+  {
+    "_id": "order_obj_id_13",
+    "order_id": 13,
+    "open_time": "2026-06-06T10:42:00.000Z",
+    "close_time": null,
+    "status": true,
+    "pre_total": 23000,
+    "total_pay_cash": 0,
+    "total_tip_cash": 0,
+    "total_pay_card": 0,
+    "total_tip_card": 0
+  }
+]
