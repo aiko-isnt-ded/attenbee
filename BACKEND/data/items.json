@@ -6,7 +6,10 @@
     "product_id": "latte-frio",
     "qty": 2,
     "total_price": 13000,
-    "details": ["PL", "AM"]
+    "details": [
+      "PL",
+      "AM"
+    ]
   },
   {
     "_id": "item_obj_id_2",
@@ -15,7 +18,9 @@
     "product_id": "brownie",
     "qty": 1,
     "total_price": 4000,
-    "details": ["N"]
+    "details": [
+      "N"
+    ]
   },
   {
     "_id": "item_obj_id_3",
@@ -24,6 +29,57 @@
     "product_id": "latte-caliente",
     "qty": 1,
     "total_price": 23000,
-    "details": ["TP", "MI"]
+    "details": [
+      "TP",
+      "MI"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1794966567720",
+    "item_id": "item-id-1794966567720",
+    "order_id": 15,
+    "product_id": "americano",
+    "qty": 1,
+    "total_price": 4500,
+    "details": [
+      "N",
+      "PL",
+      "CJE"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1794966577152",
+    "item_id": "item-id-1794966577152",
+    "order_id": 15,
+    "product_id": "croissant",
+    "qty": 4,
+    "total_price": 14000,
+    "details": [
+      "N"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1794966590047",
+    "item_id": "item-id-1794966590047",
+    "order_id": 16,
+    "product_id": "cafe-colmena",
+    "qty": 1,
+    "total_price": 3000,
+    "details": [
+      "N",
+      "TP",
+      "CJE"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1794966612273",
+    "item_id": "item-id-1794966612273",
+    "order_id": 16,
+    "product_id": "cafe-fresa",
+    "qty": 4,
+    "total_price": 116000,
+    "details": [
+      "N"
+    ]
   }
 ]

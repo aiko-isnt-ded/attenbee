@@ -3,11 +3,13 @@ const path = require('path');
 
 const userRoutes = require('./users');
 const productRoutes = require('./products');
+const orderRoutes = require('./orders');
 
 const routerApi = express.Router();
 
 routerApi.use('/users', userRoutes);
 routerApi.use('/products', productRoutes);
+routerApi.use('/orders', orderRoutes);
 
 // Mounting views
 
@@ -41,6 +43,14 @@ routerApi.get("/login.html", (req, res) => {
 
 routerApi.get("/products.html", (req, res) => {
     res.sendFile(path.resolve(__dirname + "../../../FRONTEND/pages/products.html"));
+});
+
+routerApi.get("/new_order.html", (req, res) => {
+    res.sendFile(path.resolve(__dirname + "../../../FRONTEND/pages/new_order.html"));
+});
+
+routerApi.get("/add_beverage.html", (req, res) => {
+    res.sendFile(path.resolve(__dirname + "../../../FRONTEND/pages/add_beverage.html"));
 });
 
 module.exports = routerApi;
