@@ -81,5 +81,69 @@
     "details": [
       "N"
     ]
+  },
+  {
+    "_id": "item-obj-id-1795108423857",
+    "item_id": "item-id-1795108423857",
+    "order_id": 17,
+    "product_id": "was",
+    "qty": 1,
+    "total_price": 13800,
+    "details": [
+      "N",
+      "PL",
+      "CE",
+      "CL"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795108520991",
+    "item_id": "item-id-1795108520991",
+    "order_id": 19,
+    "product_id": "croissant",
+    "qty": 4,
+    "total_price": 14000,
+    "details": [
+      "N"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795108659707",
+    "item_id": "item-id-1795108659707",
+    "order_id": 20,
+    "product_id": "cafe-colmena",
+    "qty": 1,
+    "total_price": 4000,
+    "details": [
+      "N",
+      "PL",
+      "CE",
+      "CL"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795108665055",
+    "item_id": "item-id-1795108665055",
+    "order_id": 20,
+    "product_id": "was-2",
+    "qty": 5,
+    "total_price": 61500,
+    "details": [
+      "N"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795108681158",
+    "item_id": "item-id-1795108681158",
+    "order_id": 18,
+    "product_id": "cafe-chofas",
+    "qty": 1,
+    "total_price": 3100,
+    "details": [
+      "N",
+      "PL",
+      "CE",
+      "CL"
+    ]
   }
 ]

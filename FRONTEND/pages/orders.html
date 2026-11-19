@@ -16,6 +16,10 @@
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/components.css">
   <link rel="stylesheet" href="../css/orders.css">
+
+  <!--JavaScript-->
+  <script src="../js/auth.js" defer></script>
+  <script src="../js/order_fill.js" defer></script>
 </head>
 
 <body class="page-orders">
@@ -70,110 +74,6 @@
 
       <!-- DEMO tickets for styling: delete them, or JS removes every [data-demo].
            Line prices include the option prices from add_beverage.html. -->
-      <li class="ticket card" data-demo data-order-id="12">
-        <div class="ticket__header">
-          <h3 class="ticket__title">Pedido #<span data-field="order-id">12</span></h3>
-          <time class="ticket__time" data-field="time" datetime="10:35">10:35</time>
-        </div>
-        <ul class="ticket__lines">
-          <li class="order-line" data-product-id="latte-frio">
-            <div class="order-line__main">
-              <span><span data-field="qty">2</span> × <span data-field="name">Latte</span> <span class="order-line__temp" data-field="temp">Frío <svg class="icon icon--sm" focusable="false"><use href="#icon-cold"></use></svg></span></span>
-              <span data-field="price">$130.00</span>
-            </div>
-            <ul class="order-line__options" data-field="options">
-              <li class="order-line__option"><span class="order-line__marker">•</span><span>Para llevar</span></li>
-              <li class="order-line__option"><span class="order-line__marker">•</span><span>Mascabado</span></li>
-              <li class="order-line__option"><span class="order-line__marker">•</span><span>Caramelo extra</span><span class="order-line__delta">+$5.00</span></li>
-            </ul>
-          </li>
-          <li class="order-line" data-product-id="brownie">
-            <div class="order-line__main">
-              <span><span data-field="qty">1</span> × <span data-field="name">Brownie</span></span>
-              <span data-field="price">$40.00</span>
-            </div>
-          </li>
-        </ul>
-        <p class="ticket__total"><span>Total</span><span class="ticket__total-value" data-order-total>$170.00</span></p>
-        <div class="ticket__actions">
-          <a class="btn" href="new_order.html?order=12" data-action="edit-order">Editar</a>
-          <a class="btn btn--confirm" href="payment.html?order=12" data-action="checkout"><span>Cobrar <span data-order-total>$170.00</span></span></a>
-        </div>
-      </li>
-
-      <li class="ticket card" data-demo data-order-id="13">
-        <div class="ticket__header">
-          <h3 class="ticket__title">Pedido #<span data-field="order-id">13</span></h3>
-          <time class="ticket__time" data-field="time" datetime="10:42">10:42</time>
-        </div>
-        <ul class="ticket__lines">
-          <li class="order-line" data-product-id="latte-caliente">
-            <div class="order-line__main">
-              <span><span data-field="qty">1</span> × <span data-field="name">Latte</span> <span class="order-line__temp" data-field="temp">Caliente <svg class="icon icon--sm" focusable="false"><use href="#icon-hot"></use></svg></span></span>
-              <span data-field="price">$55.00</span>
-            </div>
-            <ul class="order-line__options" data-field="options">
-              <li class="order-line__option"><span class="order-line__marker">•</span><span>Termo propio</span><span class="order-line__delta">−$5.00</span></li>
-              <li class="order-line__option"><span class="order-line__marker">•</span><span>Miel</span></li>
-            </ul>
-          </li>
-          <li class="order-line" data-product-id="cold-brew">
-            <div class="order-line__main">
-              <span><span data-field="qty">1</span> × <span data-field="name">Cold Brew</span></span>
-              <span data-field="price">$40.00</span>
-            </div>
-            <ul class="order-line__options" data-field="options">
-              <li class="order-line__option"><span class="order-line__marker">•</span><span>Aquí</span><span class="order-line__delta">−$5.00</span></li>
-              <li class="order-line__option"><span class="order-line__marker">•</span><span>Cajeta extra</span><span class="order-line__delta">+$5.00</span></li>
-            </ul>
-          </li>
-          <li class="order-line" data-product-id="croissant">
-            <div class="order-line__main">
-              <span><span data-field="qty">1</span> × <span data-field="name">Croissant</span></span>
-              <span data-field="price">$35.00</span>
-            </div>
-          </li>
-          <li class="order-line" data-product-id="chai">
-            <div class="order-line__main">
-              <span><span data-field="qty">1</span> × <span data-field="name">Chai</span></span>
-              <span data-field="price">$35.00</span>
-            </div>
-            <ul class="order-line__options" data-field="options">
-              <li class="order-line__option"><span class="order-line__marker">•</span><span>Aquí</span><span class="order-line__delta">−$5.00</span></li>
-              <li class="order-line__option"><span class="order-line__marker">•</span><span>Splenda</span></li>
-            </ul>
-          </li>
-        </ul>
-        <p class="ticket__total"><span>Total</span><span class="ticket__total-value" data-order-total>$165.00</span></p>
-        <div class="ticket__actions">
-          <a class="btn" href="new_order.html?order=13" data-action="edit-order">Editar</a>
-          <a class="btn btn--confirm" href="payment.html?order=13" data-action="checkout"><span>Cobrar <span data-order-total>$165.00</span></span></a>
-        </div>
-      </li>
-
-      <li class="ticket card" data-demo data-order-id="14">
-        <div class="ticket__header">
-          <h3 class="ticket__title">Pedido #<span data-field="order-id">14</span></h3>
-          <time class="ticket__time" data-field="time" datetime="10:50">10:50</time>
-        </div>
-        <ul class="ticket__lines">
-          <li class="order-line" data-product-id="latte-caliente">
-            <div class="order-line__main">
-              <span><span data-field="qty">1</span> × <span data-field="name">Latte</span> <span class="order-line__temp" data-field="temp">Caliente <svg class="icon icon--sm" focusable="false"><use href="#icon-hot"></use></svg></span></span>
-              <span data-field="price">$55.00</span>
-            </div>
-            <ul class="order-line__options" data-field="options">
-              <li class="order-line__option"><span class="order-line__marker">•</span><span>Aquí</span><span class="order-line__delta">−$5.00</span></li>
-              <li class="order-line__option"><span class="order-line__marker">•</span><span>Miel</span></li>
-            </ul>
-          </li>
-        </ul>
-        <p class="ticket__total"><span>Total</span><span class="ticket__total-value" data-order-total>$55.00</span></p>
-        <div class="ticket__actions">
-          <a class="btn" href="new_order.html?order=14" data-action="edit-order">Editar</a>
-          <a class="btn btn--confirm" href="payment.html?order=14" data-action="checkout"><span>Cobrar <span data-order-total>$55.00</span></span></a>
-        </div>
-      </li>
 
     </ul>
   </main>

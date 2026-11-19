@@ -58,5 +58,65 @@
     "total_tip_cash": 0,
     "total_pay_card": 0,
     "total_tip_card": 0
+  },
+  {
+    "_id": "order_obj_id_1795108417703",
+    "order_id": 17,
+    "open_time": "2026-11-19T17:13:37.703Z",
+    "close_time": "2026-11-19T18:11:31.805Z",
+    "status": false,
+    "pre_total": 13800,
+    "total_pay_cash": 0,
+    "total_tip_cash": 0,
+    "total_pay_card": 13800,
+    "total_tip_card": 2070
+  },
+  {
+    "_id": "order_obj_id_1795108438475",
+    "order_id": 18,
+    "open_time": "2026-11-19T17:13:58.475Z",
+    "close_time": "2026-11-19T18:40:45.342Z",
+    "status": false,
+    "pre_total": 3100,
+    "total_pay_cash": 0,
+    "total_tip_cash": 0,
+    "total_pay_card": 3100,
+    "total_tip_card": 0
+  },
+  {
+    "_id": "order_obj_id_1795108517234",
+    "order_id": 19,
+    "open_time": "2026-11-19T17:15:17.234Z",
+    "close_time": "2026-11-19T18:40:47.690Z",
+    "status": false,
+    "pre_total": 14000,
+    "total_pay_cash": 0,
+    "total_tip_cash": 0,
+    "total_pay_card": 14000,
+    "total_tip_card": 0
+  },
+  {
+    "_id": "order_obj_id_1795108656384",
+    "order_id": 20,
+    "open_time": "2026-11-19T17:17:36.384Z",
+    "close_time": "2026-11-19T18:11:52.626Z",
+    "status": false,
+    "pre_total": 65500,
+    "total_pay_cash": 30000,
+    "total_tip_cash": 4500,
+    "total_pay_card": 35500,
+    "total_tip_card": 5325
+  },
+  {
+    "_id": "order_obj_id_1795108813806",
+    "order_id": 21,
+    "open_time": "2026-11-19T17:20:13.806Z",
+    "close_time": null,
+    "status": true,
+    "pre_total": 0,
+    "total_pay_cash": 0,
+    "total_tip_cash": 0,
+    "total_pay_card": 0,
+    "total_tip_card": 0
   }
 ]

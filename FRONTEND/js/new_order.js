@@ -24,7 +24,10 @@ async function resolveActiveOrder() {
     if (isValidId(candidate)) {
         try {
             const res = await fetch(`${API}/orders/${candidate}`);
-            if (res.ok) activeOrderId = candidate;
+            if (res.ok) {
+                const data = await res.json();
+                if (data.order && data.order.status) activeOrderId = candidate;
+            }
         } catch (err) { console.error(err); }
     }
     if (!activeOrderId) await initializeNewOrder();

@@ -19,6 +19,7 @@
 
   <!-- JavaScript -->
   <script src="../js/payment.js" defer></script>
+  <script src="../js/auth.js" defer></script>
 </head>
 
 <body class="page-payment">
@@ -76,7 +77,7 @@
         <!-- Not editable: sunk beige box, no border -->
         <div class="payment__total">
           <span class="payment__total-label">Total a cobrar</span>
-          <span class="payment__total-value">$230.00</span>
+          <span class="payment__total-value" data-field="order-total">$230.00</span>
         </div>
 
         <!-- Tip: quick 10% / 15% of the total, or another amount -->
@@ -96,7 +97,7 @@
         </fieldset>
 
         <dl class="payment__calc">
-          <div class="payment__calc-row"><dt>Pedido</dt><dd>$230.00</dd></div>
+          <div class="payment__calc-row"><dt>Pedido</dt><dd data-field="order-total">$230.00</dd></div>
           <div class="payment__calc-row"><dt>Propina</dt><dd data-field="full-tip-shown">$0.00</dd></div>
           <div class="payment__calc-row payment__calc-row--total"><dt>Cobrar</dt><dd data-field="full-charge">$230.00</dd></div>
         </dl>
@@ -223,9 +224,9 @@
   <!-- PAID: small pop-up after the order is closed. Nothing dangerous: calm (sage) backdrop.
        "Volver a Pedidos" or Esc both go back to Pedidos. -->
   <dialog class="modal modal--calm paid-modal" id="paid-modal" aria-labelledby="paid-title" data-paid-modal>
-    <h2 class="modal__title paid-modal__title" id="paid-title"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg>Pedido #12 pagado</h2>
+    <h2 class="modal__title paid-modal__title" id="paid-title"><svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg><span data-field="paid-title">Pedido pagado</span></h2>
     <dl class="payment__calc">
-      <div class="payment__calc-row"><dt>Pedido</dt><dd>$230.00</dd></div>
+      <div class="payment__calc-row"><dt>Pedido</dt><dd data-field="order-total">$230.00</dd></div>
       <div class="payment__calc-row"><dt>Propinas</dt><dd data-field="paid-tips">$0.00</dd></div>
       <div class="payment__calc-row payment__calc-row--total"><dt>Total recibido</dt><dd data-field="paid-total">$230.00</dd></div>
     </dl>

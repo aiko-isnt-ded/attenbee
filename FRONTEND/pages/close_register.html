@@ -16,6 +16,10 @@
   <link rel="stylesheet" href="../css/base.css">
   <link rel="stylesheet" href="../css/components.css">
   <link rel="stylesheet" href="../css/close_register.css">
+
+  <!--JavaScript-->
+  <script src="../js/auth.js"></script>
+  <script src="../js/close_handler.js"></script>
 </head>
 
 <body class="page-close">
@@ -58,62 +62,56 @@
           </tr>
         </thead>
         <tbody>
-          <tr class="close-row" data-method="efectivo" data-expected-cents="21000" data-demo>
+          <tr class="close-row" data-method="efectivo">
             <th scope="row" class="close-table__method">Efectivo</th>
-            <td class="close-table__expected"><span class="close-table__label" aria-hidden="true">Esperado</span>$210.00</td>
+            <td class="close-table__expected"><span class="close-table__label" aria-hidden="true">Esperado</span><span data-field="expected">—</span></td>
             <td class="close-table__counted">
               <label class="close-table__label" for="count-efectivo">Contado<span class="visually-hidden"> en efectivo</span></label>
               <div class="field__money">
                 <span class="field__money-sign" aria-hidden="true">$</span>
-                <input class="field__input" id="count-efectivo" type="text" name="contado_efectivo" value="208.00" inputmode="decimal" pattern="[0-9]+(\.[0-9]{1,2})?" autocomplete="off" data-field="counted">
+                <input class="field__input" id="count-efectivo" type="text" name="contado_efectivo" placeholder="0.00" inputmode="decimal" autocomplete="off" data-field="counted">
               </div>
             </td>
             <td class="close-table__diff">
               <span class="close-table__label" aria-hidden="true">Diferencia</span>
-              <span class="diff" data-state="short" data-diff-cents="-200" data-field="diff">
-                <span class="diff__amount"><span class="diff__sign">−</span>$2.00</span>
-                <span class="diff__tag"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-alert"></use></svg>Falta</span>
+              <span class="diff" data-state="pending" data-field="diff">
+                <span class="diff__amount" data-field="diff-amount">—</span>
+                <span class="diff__tag" data-field="diff-tag" hidden></span>
               </span>
             </td>
           </tr>
-          <tr class="close-row" data-method="tarjeta" data-expected-cents="34250" data-demo>
+          <tr class="close-row" data-method="tarjeta">
             <th scope="row" class="close-table__method">Tarjeta</th>
-            <td class="close-table__expected"><span class="close-table__label" aria-hidden="true">Esperado</span>$342.50</td>
+            <td class="close-table__expected"><span class="close-table__label" aria-hidden="true">Esperado</span><span data-field="expected">—</span></td>
             <td class="close-table__counted">
               <label class="close-table__label" for="count-tarjeta">Contado<span class="visually-hidden"> con tarjeta</span></label>
               <div class="field__money">
                 <span class="field__money-sign" aria-hidden="true">$</span>
-                <input class="field__input" id="count-tarjeta" type="text" name="contado_tarjeta" value="342.50" inputmode="decimal" pattern="[0-9]+(\.[0-9]{1,2})?" autocomplete="off" data-field="counted">
+                <input class="field__input" id="count-tarjeta" type="text" name="contado_tarjeta" placeholder="0.00" inputmode="decimal" autocomplete="off" data-field="counted">
               </div>
             </td>
             <td class="close-table__diff">
               <span class="close-table__label" aria-hidden="true">Diferencia</span>
-              <span class="diff" data-state="exact" data-diff-cents="0" data-field="diff">
-                <span class="diff__amount"><span class="diff__sign"></span>$0.00</span>
-                <span class="diff__tag"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-check"></use></svg>Exacto</span>
+              <span class="diff" data-state="pending" data-field="diff">
+                <span class="diff__amount" data-field="diff-amount">—</span>
+                <span class="diff__tag" data-field="diff-tag" hidden></span>
               </span>
             </td>
           </tr>
-          <!-- Surplus, for later (JS will set data-state="over"):
-          <span class="diff" data-state="over" data-diff-cents="300" data-field="diff">
-            <span class="diff__amount"><span class="diff__sign">+</span>$3.00</span>
-            <span class="diff__tag"><svg class="icon icon--sm" aria-hidden="true" focusable="false"><use href="#icon-up"></use></svg>Sobra</span>
-          </span> -->
         </tbody>
       </table>
 
       <!-- Total = sum of Esperado -->
-      <div class="close-summary" data-demo>
+      <div class="close-summary">
         <p class="close-summary__total">
           <span class="close-summary__label">Ingresos totales</span>
-          <span class="close-summary__value" data-field="total" data-total-cents="55250">$552.50</span>
+          <span class="close-summary__value" data-field="total">$0.00</span>
         </p>
-        <!-- Change vs yesterday: data-state "up" (green ▲ más) or "down" (red ▼ menos) -->
-        <p class="close-summary__compare" data-field="compare" data-state="up" data-change-cents="5450">
-          <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-up"></use></svg>
-          <span>$54.50 más que ayer</span>
+        <p class="close-summary__compare" data-field="compare" data-state="up">
+          <svg class="icon" aria-hidden="true" focusable="false"><use href="#icon-up" data-field="compare-icon"></use></svg>
+          <span data-field="compare-text"></span>
         </p>
-        <p class="close-summary__yesterday" data-field="yesterday" data-yesterday-cents="49800">Ayer: $498.00</p>
+        <p class="close-summary__yesterday" data-field="yesterday">Ayer: $0.00</p>
       </div>
 
       <!-- The only way to log out: closing the register always comes first -->

@@ -22,7 +22,7 @@
   table-layout: fixed;
   font-variant-numeric: tabular-nums;
 }
-.close-table .close-table__expected { width: 9.5rem; }
+.close-table .close-table__expected { width: 16rem; }
 .close-table .close-table__counted  { width: 12rem; }
 .close-table .close-table__diff     { width: 16rem; }
 .close-table th,
@@ -54,6 +54,7 @@
 }
 .close-table__expected { font-family: var(--font-ui); font-weight: var(--fw-bold); }
 .close-table__counted .field__input { font-family: var(--font-ui); font-weight: var(--fw-bold); }
+.close-table__tip { font-size: var(--fs-sm); font-weight: var(--fw-regular); color: var(--color-muted); }
 
 /* Cell labels: only visible on phones, where there are no column titles */
 .close-table__label { display: none; }

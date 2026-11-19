@@ -53,4 +53,16 @@ routerApi.get("/add_beverage.html", (req, res) => {
     res.sendFile(path.resolve(__dirname + "../../../FRONTEND/pages/add_beverage.html"));
 });
 
+routerApi.get("/orders.html", (req, res) => {
+    res.sendFile(path.resolve(__dirname + "../../../FRONTEND/pages/orders.html"));
+});
+
+routerApi.get("/payment.html", (req, res) => {
+    res.sendFile(path.resolve(__dirname + "../../../FRONTEND/pages/payment.html"));
+});
+
+routerApi.get("/close_register.html", (req, res) => {
+    res.sendFile(path.resolve(__dirname + "../../../FRONTEND/pages/close_register.html"));
+});
+
 module.exports = routerApi;
