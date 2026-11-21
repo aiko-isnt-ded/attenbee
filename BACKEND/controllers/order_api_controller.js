@@ -66,6 +66,18 @@ exports.addItemToOrder = async (req, res) =>
         const product = products.find(p => p.product_id === product_id);
         if (!product) return res.status(404).json({success: false, message: "Producto no encontrado"});
 
+        const quantity = Number(qty);
+        if (!Number.isInteger(quantity) || quantity <= 0)
+        {
+            return res.status(400).json({success: false, message: "Cantidad inválida"});
+        }
+
+        const tracks_stock = product.total_units !== null && product.total_units !== undefined;
+        if (tracks_stock && quantity > product.total_units)
+        {
+            return res.status(400).json({success: false, message: `Solo quedan ${product.total_units} disponibles de ${product.product_name}`});
+        }
+
         let unit_price = product.price;
 
         if (details && Array.isArray(details))
@@ -86,18 +98,21 @@ exports.addItemToOrder = async (req, res) =>
             item_id: `item-id-${Date.now()}`,
             order_id: targetOrderId,
             product_id: product.product_id,
-            qty: Number(qty),
+            qty: quantity,
             total_price: total_price,
             details: details || []
         };
 
         items.push(new_item);
 
+        if (tracks_stock) product.total_units -= quantity;
+
         const order_items = items.filter(i => Number(i.order_id) === targetOrderId);
         order.pre_total = order_items.reduce((sum, i) => sum + i.total_price, 0);
 
         await writeJSON(item_file_path, items);
         await writeJSON(order_file_path, orders);
+        await writeJSON(product_file_path, products);
 
         res.status(200).json({success: true, message: "Item añadido", data: new_item, order_total: order.pre_total});
     } catch (err)
@@ -143,11 +158,17 @@ exports.removeItem = async (req, res) =>
         const item_id = req.params.item_id;
         let items = await readJSON(item_file_path);
         let orders = await readJSON(order_file_path);
+        let products = await readJSON(product_file_path);
 
         const index = items.findIndex(i => i.item_id === item_id || i._id === item_id);
         if (index === -1) return res.status(404).json({success: false, message: "Item not found"});
 
         const removed = items.splice(index, 1)[0];
+        const product = products.find(p => p.product_id === removed.product_id);
+        if (product && product.total_units !== null && product.total_units !== undefined)
+        {
+            product.total_units += removed.qty;
+        }
         const order_id = removed.order_id;
 
         const order = orders.find(o => Number(o.order_id) === Number(order_id));
@@ -159,6 +180,7 @@ exports.removeItem = async (req, res) =>
 
         await writeJSON(item_file_path, items);
         await writeJSON(order_file_path, orders);
+        await writeJSON(product_file_path, products);
 
         res.status(200).json({success: true, order_total: order ? order.pre_total : 0});
     } catch (err)

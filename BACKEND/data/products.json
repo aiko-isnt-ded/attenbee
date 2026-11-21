@@ -1,14 +1,5 @@
 [
   {
-    "_id": "prod_obj_id_1",
-    "product_id": "cafe-colmena",
-    "category": "cafe",
-    "image": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Latte_and_dark_coffee.jpg?utm_source=commons.wikimedia.org&utm_campaign=index&utm_content=original",
-    "product_name": "Cafesito Colmena",
-    "price": 3000,
-    "total_units": null
-  },
-  {
     "_id": "prod_obj_id_2",
     "product_id": "americano",
     "category": "cafe",
@@ -95,7 +86,43 @@
     "category": "panaderia",
     "image": "../../assets/colmena_logo.png",
     "product_name": "Was",
-    "price": 12300,
-    "total_units": 12
+    "price": 11000,
+    "total_units": 2
+  },
+  {
+    "_id": "prod_1795286410772",
+    "product_id": "cafe-caliente",
+    "category": "cafe",
+    "image": "../../assets/colmena_logo.png",
+    "product_name": "Café Caliente",
+    "price": 5000,
+    "total_units": null
+  },
+  {
+    "_id": "prod_1795286445427",
+    "product_id": "te-frio",
+    "category": "te",
+    "image": "../../assets/colmena_logo.png",
+    "product_name": "Te frio",
+    "price": 1000,
+    "total_units": null
+  },
+  {
+    "_id": "prod_1795288370344",
+    "product_id": "holamundo",
+    "category": "panaderia",
+    "image": "../../assets/colmena_logo.png",
+    "product_name": "HolaMundo",
+    "price": 3000,
+    "total_units": 10
+  },
+  {
+    "_id": "prod_1795291349338",
+    "product_id": "te-frio-2",
+    "category": "te",
+    "image": "../../assets/colmena_logo.png",
+    "product_name": "Te Frío 2",
+    "price": 8000,
+    "total_units": null
   }
 ]

@@ -1,0 +1,6 @@
+{
+  "watch": ["BACKEND/server.js", "BACKEND/controllers", "BACKEND/routes", "BACKEND/models"],
+  "ext": "js",
+  "ignore": ["BACKEND/data"],
+  "exec": "node BACKEND/server.js"
+}

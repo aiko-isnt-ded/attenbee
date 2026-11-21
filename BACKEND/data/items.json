@@ -145,5 +145,205 @@
       "CE",
       "CL"
     ]
+  },
+  {
+    "_id": "item-obj-id-1795216436955",
+    "item_id": "item-id-1795216436955",
+    "order_id": 22,
+    "product_id": "was-2",
+    "qty": 8,
+    "total_price": 88000,
+    "details": [
+      "N"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795286459421",
+    "item_id": "item-id-1795286459421",
+    "order_id": 24,
+    "product_id": "te-frio",
+    "qty": 1,
+    "total_price": 2000,
+    "details": [
+      "N",
+      "PL",
+      "CJE",
+      "CL"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795286940343",
+    "item_id": "item-id-1795286940343",
+    "order_id": 25,
+    "product_id": "te-frio",
+    "qty": 1,
+    "total_price": 1000,
+    "details": [
+      "N",
+      "PA",
+      "CL"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795286946621",
+    "item_id": "item-id-1795286946621",
+    "order_id": 25,
+    "product_id": "croissant",
+    "qty": 4,
+    "total_price": 14000,
+    "details": [
+      "N"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795286956130",
+    "item_id": "item-id-1795286956130",
+    "order_id": 25,
+    "product_id": "americano",
+    "qty": 1,
+    "total_price": 4000,
+    "details": [
+      "N",
+      "PL"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795287072078",
+    "item_id": "item-id-1795287072078",
+    "order_id": 25,
+    "product_id": "americano",
+    "qty": 1,
+    "total_price": 5000,
+    "details": [
+      "N",
+      "PL",
+      "CE",
+      "CL"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795287145772",
+    "item_id": "item-id-1795287145772",
+    "order_id": 25,
+    "product_id": "was",
+    "qty": 1,
+    "total_price": 12300,
+    "details": [
+      "N",
+      "PL"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795287198052",
+    "item_id": "item-id-1795287198052",
+    "order_id": 24,
+    "product_id": "cafe-chofas",
+    "qty": 1,
+    "total_price": 2600,
+    "details": [
+      "N",
+      "PL",
+      "CE"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795287201432",
+    "item_id": "item-id-1795287201432",
+    "order_id": 24,
+    "product_id": "croissant",
+    "qty": 3,
+    "total_price": 10500,
+    "details": [
+      "N"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795287208408",
+    "item_id": "item-id-1795287208408",
+    "order_id": 26,
+    "product_id": "americano",
+    "qty": 1,
+    "total_price": 5000,
+    "details": [
+      "N",
+      "PL",
+      "CJE",
+      "CL"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795287356343",
+    "item_id": "item-id-1795287356343",
+    "order_id": 26,
+    "product_id": "cafe-chofas",
+    "qty": 1,
+    "total_price": 3100,
+    "details": [
+      "N",
+      "PL",
+      "CE",
+      "CL"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795287359164",
+    "item_id": "item-id-1795287359164",
+    "order_id": 26,
+    "product_id": "cafe-fresa",
+    "qty": 5,
+    "total_price": 145000,
+    "details": [
+      "N"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795287364099",
+    "item_id": "item-id-1795287364099",
+    "order_id": 27,
+    "product_id": "te-frio",
+    "qty": 1,
+    "total_price": 2000,
+    "details": [
+      "N",
+      "PL",
+      "CE",
+      "CL"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795287367863",
+    "item_id": "item-id-1795287367863",
+    "order_id": 27,
+    "product_id": "cafe-colmena",
+    "qty": 1,
+    "total_price": 4000,
+    "details": [
+      "N",
+      "PL",
+      "CJE",
+      "CL"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795288584209",
+    "item_id": "item-id-1795288584209",
+    "order_id": 28,
+    "product_id": "holamundo",
+    "qty": 1,
+    "total_price": 3000,
+    "details": [
+      "N"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795290723068",
+    "item_id": "item-id-1795290723068",
+    "order_id": 29,
+    "product_id": "was-2",
+    "qty": 3,
+    "total_price": 33000,
+    "details": [
+      "N"
+    ]
   }
 ]

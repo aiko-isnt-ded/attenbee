@@ -18,6 +18,7 @@
   <link rel="stylesheet" href="../css/products.css">
 
   <!-- JavaScript -->
+  <script src="../js/temperature.js" defer></script>
   <script src="../js/products.js" defer></script>
   <script src="../js/auth.js" defer></script>
 </head>
@@ -452,7 +453,7 @@
           <div class="stepper">
             <div class="stepper__controls">
               <button class="btn stepper__btn" type="button" data-action="qty-decrease" aria-label="Quitar uno">−</button>
-              <input class="stepper__input" id="product-stock" type="number" name="existencias" value="0" min="0" max="99" inputmode="numeric" aria-labelledby="product-stock-label" data-field="stock">
+              <input class="stepper__input" id="product-stock" type="number" name="existencias" value="0" min="0" max="999" inputmode="numeric" aria-labelledby="product-stock-label" data-field="stock">
               <button class="btn stepper__btn" type="button" data-action="qty-increase" aria-label="Agregar uno">+</button>
             </div>
           </div>

@@ -39,11 +39,12 @@ function addProductRow(product)
     slot('stock').textContent = product.total_units;
     const unit = document.createElement('span');
     unit.className = 'product-table__unit';
-    unit.textContent = 'disponibles';
+    unit.textContent = ' disponibles';
     slot('stock').append(unit);
   }
 
-  slot('name').textContent = product.product_name;
+  row.dataset.name = product.product_name;
+  slot('name').innerHTML = tableNameHTML(product.product_name);
   slot('category').textContent = CATEGORY_NAMES[product.category] || product.category;
   slot('price').textContent = '$' + (product.price / 100).toFixed(2);
 
@@ -75,14 +76,11 @@ const field = (name) => form.querySelector('[data-field="' + name + '"]');
 
 function fillPanel(row) {
   const data = row.dataset;
-  const nameCell = row.querySelector('[data-field="name"]');
-  const tempCell = nameCell.querySelector('[data-field="temp"]');
-  const name = nameCell.firstChild.textContent.trim();          // "Capuchino"
-  const fullName = tempCell ? name + ' ' + tempCell.textContent.trim() : name; // "Capuchino Caliente"
+  const fullName = data.name;
 
   field('title').textContent = 'Editar: ' + fullName;
   field('product-id').value = data.productId;
-  field('name').value = name;
+  field('name').value = fullName;
   field('price').value = (Number(data.priceCents) / 100).toFixed(2);
   field('product-name').textContent = ' ' + fullName;
 
@@ -159,14 +157,15 @@ editForm.addEventListener('submit', async (e) =>
       const row = document.querySelector(`[data-product-id="${product_id}"]`);
       if (row)
       {
-        row.dataset.price_cents = String(price_cents);
+        row.dataset.priceCents = String(price_cents);
 
         const name_cell = row.querySelector('[data-field="name"]');
         const temp_cell = name_cell.querySelector('[data-field="temp"]');
 
         if (temp_cell)
         {
-          name_cell.firstChild.textContent = name + ' ';
+          row.dataset.name = name;
+          row.querySelector('[data-field="name"]').innerHTML = tableNameHTML(name);
         } else
         {
           name_cell.textContent = name;
@@ -360,3 +359,11 @@ if (confirm_delete_button)
     }
   })
 }
+
+const stockInput = field('stock');
+form.querySelector('[data-action="qty-decrease"]').addEventListener('click', () => {
+  stockInput.value = Math.max(0, Number(stockInput.value) - 1);
+});
+form.querySelector('[data-action="qty-increase"]').addEventListener('click', () => {
+  stockInput.value = Number(stockInput.value) + 1;
+});

@@ -116,7 +116,7 @@ function renderCatalogProduct(product) {
             data-action="add-product" data-product-id="${product.product_id}"
             data-category="${product.category}" data-price-cents="${product.price}" data-customizable="true">
             <img class="product-card__photo" src="${imgSrc}" alt="" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius);">
-            <h3 class="product-card__name">${product.product_name}</h3>
+            <h3 class="product-card__name">${catalogNameHTML(product.product_name)}</h3>
             <p class="product-card__meta">$${(product.price / 100).toFixed(2)}</p>
           </a>
         `;
@@ -125,7 +125,7 @@ function renderCatalogProduct(product) {
           <article class="product-card product-card--bakery"
                  data-product-id="${product.product_id}" data-category="${product.category}" data-price-cents="${product.price}" data-stock="${product.total_units || 0}">
             <img class="product-card__photo" src="${imgSrc}" alt="" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius);">
-            <h3 class="product-card__name">${product.product_name}</h3>
+            <h3 class="product-card__name">${catalogNameHTML(product.product_name)}</h3>
             <p class="product-card__meta">$${(product.price / 100).toFixed(2)} · ${product.total_units !== null ? product.total_units + ' disponibles' : ''}</p>
             <div class="stepper product-card__stepper">
               <button class="btn stepper__btn" type="button" data-action="qty-decrease" disabled>−</button>
@@ -138,27 +138,37 @@ function renderCatalogProduct(product) {
         const minusBtn = li.querySelector('[data-action="qty-decrease"]');
         const plusBtn = li.querySelector('[data-action="qty-increase"]');
         const qtySpan = li.querySelector('[data-field="qty"]');
+        const metaEl = li.querySelector('.product-card__meta');
+        const priceLabel = `$${(product.price / 100).toFixed(2)}`;
 
-        const stock = Number(product.total_units) || 0;
+        const tracksStock = product.total_units !== null && product.total_units !== undefined;
         const existing = orderItems.find(i => i.product_id === product.product_id);
         let currentQty = existing ? existing.qty : 0;
         if (existing) stepperItemIds[product.product_id] = existing.item_id;
 
+        const maxQty = tracksStock ? Number(product.total_units) + currentQty : Infinity;
+
         const refresh = () => {
             qtySpan.textContent = currentQty;
             minusBtn.disabled = currentQty <= 0;
-            plusBtn.disabled = stock > 0 && currentQty >= stock;
-        };
-        refresh();
+            plusBtn.disabled = currentQty >= maxQty;
+            if (tracksStock) metaEl.textContent = `${priceLabel} · ${maxQty - currentQty} disponibles`;
+};
+refresh();
 
-        const change = async (delta) => {
-            minusBtn.disabled = plusBtn.disabled = true;
-            const ok = await syncStepperItem(product.product_id, currentQty + delta);
-            if (ok) currentQty += delta;
-            refresh();
-        };
-        plusBtn.addEventListener('click', () => change(+1));
-        minusBtn.addEventListener('click', () => change(-1));
+const change = async (delta) => {
+    minusBtn.disabled = plusBtn.disabled = true;
+    const ok = await syncStepperItem(product.product_id, currentQty + delta);
+    if (ok) {
+        currentQty += delta;
+    } else {
+        const actual = orderItems.find(i => i.product_id === product.product_id);
+        currentQty = actual ? actual.qty : 0;
+    }
+    refresh();
+};
+plusBtn.addEventListener('click', () => change(+1));
+minusBtn.addEventListener('click', () => change(-1));
     }
 
     grid.appendChild(li);
@@ -204,7 +214,7 @@ async function loadExistingOrderItems(orderId) {
             
             const listContainer = document.querySelector('[data-order-lines]');
             if (listContainer) {
-                listContainer.innerHTML = ''; // Clear placeholder demo items
+                listContainer.innerHTML = ''; 
                 result.items.forEach(item => {
                     const li = document.createElement('li');
                     li.className = 'order-line';
@@ -214,6 +224,7 @@ async function loadExistingOrderItems(orderId) {
                           <span>$${(item.total_price / 100).toFixed(2)}</span>
                         </div>
                         <div class="order-line__detail">
+                          <span data-field="temp">${tempIcon(tempInfo(item.product_name).temp)}</span>
                           <span>${item.details ? item.details.join(' · ') : ''}</span>
                         </div>
                         <div class="order-line__actions">
