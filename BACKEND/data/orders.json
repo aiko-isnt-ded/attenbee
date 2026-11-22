@@ -346,5 +346,17 @@
     "total_tip_cash": 0,
     "total_pay_card": 60100,
     "total_tip_card": 0
+  },
+  {
+    "_id": "order_obj_id_1795370829088",
+    "order_id": 41,
+    "open_time": "2026-11-22T18:07:09.088Z",
+    "close_time": null,
+    "status": true,
+    "pre_total": 6000,
+    "total_pay_cash": 0,
+    "total_tip_cash": 0,
+    "total_pay_card": 0,
+    "total_tip_card": 0
   }
 ]
