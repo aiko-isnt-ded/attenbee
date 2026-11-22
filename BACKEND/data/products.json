@@ -33,7 +33,7 @@
     "image": "../../assets/colmena_logo.png",
     "product_name": "Croissant",
     "price": 3500,
-    "total_units": 7
+    "total_units": 6
   },
   {
     "_id": "prod_obj_id_5",
@@ -51,7 +51,7 @@
     "image": "../../assets/colmena_logo.png",
     "product_name": "Café Fresa",
     "price": 29000,
-    "total_units": 150
+    "total_units": 148
   },
   {
     "_id": "prod_1794936177182",

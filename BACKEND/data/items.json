@@ -345,5 +345,117 @@
     "details": [
       "N"
     ]
+  },
+  {
+    "_id": "item-obj-id-1795291847211",
+    "item_id": "item-id-1795291847211",
+    "order_id": 31,
+    "product_id": "cafe-caliente",
+    "qty": 1,
+    "total_price": 5500,
+    "details": [
+      "N",
+      "PL",
+      "CE"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795291849128",
+    "item_id": "item-id-1795291849129",
+    "order_id": 31,
+    "product_id": "croissant",
+    "qty": 1,
+    "total_price": 3500,
+    "details": [
+      "N"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795307164976",
+    "item_id": "item-id-1795307164976",
+    "order_id": 32,
+    "product_id": "cafe-caliente",
+    "qty": 1,
+    "total_price": 5000,
+    "details": [
+      "N",
+      "PL"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795307211022",
+    "item_id": "item-id-1795307211022",
+    "order_id": 34,
+    "product_id": "cafe-chofas",
+    "qty": 4,
+    "total_price": 12400,
+    "details": [
+      "N",
+      "PL",
+      "CJE",
+      "CL"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795368465730",
+    "item_id": "item-id-1795368465730",
+    "order_id": 37,
+    "product_id": "cafe-caliente",
+    "qty": 1,
+    "total_price": 5500,
+    "details": [
+      "N",
+      "PL",
+      "CE"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795368652982",
+    "item_id": "item-id-1795368652983",
+    "order_id": 40,
+    "product_id": "cafe-chofas",
+    "qty": 1,
+    "total_price": 2100,
+    "details": [
+      "N",
+      "PL"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795368654755",
+    "item_id": "item-id-1795368654755",
+    "order_id": 40,
+    "product_id": "cafe-fresa",
+    "qty": 2,
+    "total_price": 58000,
+    "details": [
+      "N"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795368671587",
+    "item_id": "item-id-1795368671587",
+    "order_id": 38,
+    "product_id": "cafe-caliente",
+    "qty": 1,
+    "total_price": 6000,
+    "details": [
+      "N",
+      "PL",
+      "CE",
+      "CL"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795368680570",
+    "item_id": "item-id-1795368680570",
+    "order_id": 39,
+    "product_id": "cafe-chofas",
+    "qty": 1,
+    "total_price": 2100,
+    "details": [
+      "N",
+      "PL"
+    ]
   }
 ]
