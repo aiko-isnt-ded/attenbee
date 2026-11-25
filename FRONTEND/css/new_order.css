@@ -9,8 +9,13 @@
 .catalog { gap: var(--space-6); }
 .order-pane { min-height: 28rem; }
 /* Panadería & Product cards: they're not links, and have only buttons attached */
-.product-card--bakery:hover .product-card--otros:hover { border-style: dotted; border-color: var(--color-line-soft); }
+.product-card--bakery:hover, .product-card--otros:hover { border-style: dotted; border-color: var(--color-line-soft); }
 .product-card__stepper { justify-content: space-between; margin-top: auto; padding-top: var(--space-2); }
+
+/* Sold out (0 left): solid red border + the word "Agotado", never colour alone */
+.product-card[data-sold-out],
+.product-card[data-sold-out]:hover { border-style: solid; border-color: var(--color-danger); }
+.product-card[data-sold-out] .product-card__meta { color: var(--color-danger); font-weight: var(--fw-bold); }
 
 /* LAYOUT. Top bar, category buttons and order pane never move.
    Only the product list scrolls, and each category fills the visible list,

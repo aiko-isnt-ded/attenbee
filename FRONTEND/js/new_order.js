@@ -15,6 +15,18 @@ let activeOrderId = null;
 let orderItems = [];        
 const stepperItemIds = {};  
 
+// Option codes from the database -> the words the cashier reads.
+// "N" (nothing chosen) is not shown.
+const DETAIL_LABELS = {
+    PA: 'Para aquí', PL: 'Para llevar', TP: 'Termo propio',
+    MI: 'Miel', SP: 'Splenda', AM: 'Mascabado',
+    CJE: 'Cajeta extra', CE: 'Caramelo extra', CL: 'Con leche'
+};
+
+function detailsText(codes) {
+    return (codes || []).filter(c => c !== 'N').map(c => DETAIL_LABELS[c] || c).join(' · ');
+}
+
 function isValidId(v) {
     return v && v !== 'null' && v !== 'undefined' && !Number.isNaN(Number(v));
 }
@@ -152,7 +164,11 @@ function renderCatalogProduct(product) {
             qtySpan.textContent = currentQty;
             minusBtn.disabled = currentQty <= 0;
             plusBtn.disabled = currentQty >= maxQty;
-            if (tracksStock) metaEl.textContent = `${priceLabel} · ${maxQty - currentQty} disponibles`;
+            if (tracksStock) {
+                const left = maxQty - currentQty;
+                metaEl.textContent = left > 0 ? `${priceLabel} · ${left} disponibles` : `${priceLabel} · Agotado`;
+                li.querySelector('[data-product-id]').toggleAttribute('data-sold-out', left === 0);
+            }
 };
 refresh();
 
@@ -225,14 +241,14 @@ async function loadExistingOrderItems(orderId) {
                         </div>
                         <div class="order-line__detail">
                           <span data-field="temp">${tempIcon(tempInfo(item.product_name).temp)}</span>
-                          <span>${item.details ? item.details.join(' · ') : ''}</span>
+                          <span>${detailsText(item.details)}</span>
                         </div>
                         <div class="order-line__actions">
                           <button class="btn" type="button" data-action="remove-line" data-item-id="${item.item_id}">Quitar</button>
                         </div>
                     `;
                     li.querySelector('[data-action="remove-line"]').addEventListener('click', async () => {
-                        await removeItemFromOrder(item.item_id, orderId);
+                        askToRemove(item, orderId);
                     });
                     listContainer.appendChild(li);
                 });
@@ -251,10 +267,24 @@ async function removeItemFromOrder(itemId, orderId) {
         const result = await response.json();
         if (result.success) {
             await loadExistingOrderItems(orderId);
+            // Catalog cards follow the order again (counter, "disponibles", Agotado)
+            Object.keys(stepperItemIds).forEach(id => delete stepperItemIds[id]);
+            await loadCatalogProducts();
         }
     } catch (err) {
         console.error("Error al quitar item:", err);
     }
+}
+
+// Asks before taking a line out of the order. "Sí, quitar" removes it; Cancelar or Esc keep it.
+function askToRemove(item, orderId) {
+    const modal = document.querySelector('[data-remove-line-modal]');
+    modal.querySelector('[data-field="remove-line-name"]').textContent = `${item.qty} × ${item.product_name}`;
+    modal.querySelector('[data-action="confirm-remove-line"]').onclick = async () => {
+        modal.close();
+        await removeItemFromOrder(item.item_id, orderId);
+    };
+    modal.showModal();
 }
 
 function updateOrderPaneTotal(totalCents) {

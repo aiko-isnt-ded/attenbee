@@ -345,5 +345,112 @@
     "details": [
       "N"
     ]
+  },
+  {
+    "_id": "item-obj-id-1795454581498",
+    "item_id": "item-id-1795454581498",
+    "order_id": 31,
+    "product_id": "was",
+    "qty": 1,
+    "total_price": 12300,
+    "details": [
+      "N",
+      "TP",
+      "CJE"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795455387689",
+    "item_id": "item-id-1795455387689",
+    "order_id": 32,
+    "product_id": "holamundo",
+    "qty": 1,
+    "total_price": 3000,
+    "details": [
+      "N"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795455536699",
+    "item_id": "item-id-1795455536699",
+    "order_id": 33,
+    "product_id": "cafe-chofas",
+    "qty": 1,
+    "total_price": 2600,
+    "details": [
+      "N",
+      "PA",
+      "CJE",
+      "CL"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795455560345",
+    "item_id": "item-id-1795455560345",
+    "order_id": 33,
+    "product_id": "croissant",
+    "qty": 1,
+    "total_price": 3500,
+    "details": [
+      "N"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795455630719",
+    "item_id": "item-id-1795455630719",
+    "order_id": 33,
+    "product_id": "pan-de-muerto",
+    "qty": 1,
+    "total_price": 4000,
+    "details": [
+      "N"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795647101585",
+    "item_id": "item-id-1795647101585",
+    "order_id": 35,
+    "product_id": "cafe-majomut",
+    "qty": 7,
+    "total_price": 189000,
+    "details": [
+      "N"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795647122515",
+    "item_id": "item-id-1795647122515",
+    "order_id": 36,
+    "product_id": "cafe-fresa",
+    "qty": 9,
+    "total_price": 261000,
+    "details": [
+      "N"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795647128617",
+    "item_id": "item-id-1795647128617",
+    "order_id": 37,
+    "product_id": "cafe-caliente",
+    "qty": 1,
+    "total_price": 5000,
+    "details": [
+      "N",
+      "PL"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795647203550",
+    "item_id": "item-id-1795647203550",
+    "order_id": 38,
+    "product_id": "was",
+    "qty": 1,
+    "total_price": 12300,
+    "details": [
+      "N",
+      "TP",
+      "CE"
+    ]
   }
 ]

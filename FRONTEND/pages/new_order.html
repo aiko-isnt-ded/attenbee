@@ -402,5 +402,15 @@
     </li>
   </template>
 
+  <!-- REMOVE LINE: asks before taking a product out of the order. Esc or "Cancelar" closes it. -->
+  <dialog class="modal" id="remove-line-modal" aria-labelledby="remove-line-title" data-remove-line-modal>
+    <h2 class="modal__title" id="remove-line-title">¿Quitar <span data-field="remove-line-name">este producto</span>?</h2>
+    <p>Se quitará del pedido.</p>
+    <div class="modal__actions">
+      <button class="btn" type="button" commandfor="remove-line-modal" command="close" autofocus>Cancelar</button>
+      <button class="btn btn--danger" type="button" data-action="confirm-remove-line">Sí, quitar</button>
+    </div>
+  </dialog>
+
 </body>
 </html>
