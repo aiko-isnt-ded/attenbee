@@ -1,6 +1,5 @@
 const API = 'http://localhost:3000';
 
-try { sessionStorage.removeItem('activeOrderId'); } catch (e) {}
 
 const OPTION_LABELS = {
     MI:  { label: 'Miel' },

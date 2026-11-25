@@ -51,7 +51,11 @@
     "image": "../../assets/colmena_logo.png",
     "product_name": "Café Fresa",
     "price": 29000,
+<<<<<<< HEAD
     "total_units": 141
+=======
+    "total_units": 148
+>>>>>>> cbe4b5ea2ef5f0dbe5a626391af32b124e5f60da
   },
   {
     "_id": "prod_1794936177182",
