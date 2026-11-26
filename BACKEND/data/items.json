@@ -452,5 +452,49 @@
       "TP",
       "CE"
     ]
+  },
+  {
+    "_id": "item-obj-id-1795736020122",
+    "item_id": "item-id-1795736020122",
+    "order_id": 44,
+    "product_id": "was-2",
+    "qty": 1,
+    "total_price": 11000,
+    "details": [
+      "N"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795736043791",
+    "item_id": "item-id-1795736043791",
+    "order_id": 45,
+    "product_id": "was-2",
+    "qty": 1,
+    "total_price": 11000,
+    "details": [
+      "N"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795736052642",
+    "item_id": "item-id-1795736052642",
+    "order_id": 46,
+    "product_id": "pan-de-muerte",
+    "qty": 4,
+    "total_price": 26800,
+    "details": [
+      "N"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795736061354",
+    "item_id": "item-id-1795736061354",
+    "order_id": 39,
+    "product_id": "pan-de-muerte",
+    "qty": 1,
+    "total_price": 6700,
+    "details": [
+      "N"
+    ]
   }
 ]
