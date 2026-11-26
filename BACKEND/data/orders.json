@@ -228,7 +228,6 @@
     "total_tip_card": 0
   },
   {
-<<<<<<< HEAD
     "_id": "order_obj_id_1795454577940",
     "order_id": 31,
     "open_time": "2026-11-23T17:22:57.940Z",
@@ -236,33 +235,11 @@
     "status": false,
     "pre_total": 12300,
     "total_pay_cash": 12300,
-=======
-    "_id": "order_obj_id_1795291844745",
-    "order_id": 31,
-    "open_time": "2026-11-21T20:10:44.745Z",
-    "close_time": "2026-11-21T20:11:14.278Z",
-    "status": false,
-    "pre_total": 9000,
-    "total_pay_cash": 1000,
-    "total_tip_cash": 150,
-    "total_pay_card": 8000,
-    "total_tip_card": 1200
-  },
-  {
-    "_id": "order_obj_id_1795307163162",
-    "order_id": 32,
-    "open_time": "2026-11-22T00:26:03.162Z",
-    "close_time": null,
-    "status": true,
-    "pre_total": 5000,
-    "total_pay_cash": 0,
->>>>>>> cbe4b5ea2ef5f0dbe5a626391af32b124e5f60da
     "total_tip_cash": 0,
     "total_pay_card": 0,
     "total_tip_card": 0
   },
   {
-<<<<<<< HEAD
     "_id": "order_obj_id_1795455382977",
     "order_id": 32,
     "open_time": "2026-11-23T17:36:22.977Z",
@@ -290,11 +267,6 @@
     "_id": "order_obj_id_1795455907494",
     "order_id": 34,
     "open_time": "2026-11-23T17:45:07.494Z",
-=======
-    "_id": "order_obj_id_1795307170976",
-    "order_id": 33,
-    "open_time": "2026-11-22T00:26:10.976Z",
->>>>>>> cbe4b5ea2ef5f0dbe5a626391af32b124e5f60da
     "close_time": null,
     "status": true,
     "pre_total": 0,
@@ -304,7 +276,6 @@
     "total_tip_card": 0
   },
   {
-<<<<<<< HEAD
     "_id": "order_obj_id_1795647092017",
     "order_id": 35,
     "open_time": "2026-11-25T22:51:32.017Z",
@@ -347,98 +318,6 @@
     "close_time": null,
     "status": true,
     "pre_total": 12300,
-=======
-    "_id": "order_obj_id_1795307183181",
-    "order_id": 34,
-    "open_time": "2026-11-22T00:26:23.181Z",
-    "close_time": null,
-    "status": true,
-    "pre_total": 12400,
-    "total_pay_cash": 0,
-    "total_tip_cash": 0,
-    "total_pay_card": 0,
-    "total_tip_card": 0
-  },
-  {
-    "_id": "order_obj_id_1795307225158",
-    "order_id": 35,
-    "open_time": "2026-11-22T00:27:05.158Z",
-    "close_time": null,
-    "status": true,
-    "pre_total": 0,
-    "total_pay_cash": 0,
-    "total_tip_cash": 0,
-    "total_pay_card": 0,
-    "total_tip_card": 0
-  },
-  {
-    "_id": "order_obj_id_1795307229456",
-    "order_id": 36,
-    "open_time": "2026-11-22T00:27:09.456Z",
-    "close_time": null,
-    "status": true,
-    "pre_total": 0,
-    "total_pay_cash": 0,
-    "total_tip_cash": 0,
-    "total_pay_card": 0,
-    "total_tip_card": 0
-  },
-  {
-    "_id": "order_obj_id_1795368462992",
-    "order_id": 37,
-    "open_time": "2026-11-22T17:27:42.992Z",
-    "close_time": "2026-11-22T17:31:18.058Z",
-    "status": false,
-    "pre_total": 5500,
-    "total_pay_cash": 0,
-    "total_tip_cash": 0,
-    "total_pay_card": 5500,
-    "total_tip_card": 0
-  },
-  {
-    "_id": "order_obj_id_1795368468685",
-    "order_id": 38,
-    "open_time": "2026-11-22T17:27:48.685Z",
-    "close_time": "2026-11-22T17:31:16.535Z",
-    "status": false,
-    "pre_total": 6000,
-    "total_pay_cash": 0,
-    "total_tip_cash": 0,
-    "total_pay_card": 6000,
-    "total_tip_card": 0
-  },
-  {
-    "_id": "order_obj_id_1795368474221",
-    "order_id": 39,
-    "open_time": "2026-11-22T17:27:54.221Z",
-    "close_time": "2026-11-22T17:31:22.147Z",
-    "status": false,
-    "pre_total": 2100,
-    "total_pay_cash": 0,
-    "total_tip_cash": 0,
-    "total_pay_card": 2100,
-    "total_tip_card": 0
-  },
-  {
-    "_id": "order_obj_id_1795368650153",
-    "order_id": 40,
-    "open_time": "2026-11-22T17:30:50.153Z",
-    "close_time": "2026-11-22T17:31:06.315Z",
-    "status": false,
-    "pre_total": 60100,
-    "total_pay_cash": 0,
-    "total_tip_cash": 0,
-    "total_pay_card": 60100,
-    "total_tip_card": 0
-  },
-  {
-    "_id": "order_obj_id_1795370829088",
-    "order_id": 41,
-    "open_time": "2026-11-22T18:07:09.088Z",
-    "close_time": null,
-    "status": true,
-    "pre_total": 6000,
->>>>>>> cbe4b5ea2ef5f0dbe5a626391af32b124e5f60da
     "total_pay_cash": 0,
     "total_tip_cash": 0,
     "total_pay_card": 0,

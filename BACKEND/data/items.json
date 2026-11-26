@@ -347,7 +347,6 @@
     ]
   },
   {
-<<<<<<< HEAD
     "_id": "item-obj-id-1795454581498",
     "item_id": "item-id-1795454581498",
     "order_id": 31,
@@ -389,24 +388,6 @@
     "_id": "item-obj-id-1795455560345",
     "item_id": "item-id-1795455560345",
     "order_id": 33,
-=======
-    "_id": "item-obj-id-1795291847211",
-    "item_id": "item-id-1795291847211",
-    "order_id": 31,
-    "product_id": "cafe-caliente",
-    "qty": 1,
-    "total_price": 5500,
-    "details": [
-      "N",
-      "PL",
-      "CE"
-    ]
-  },
-  {
-    "_id": "item-obj-id-1795291849128",
-    "item_id": "item-id-1795291849129",
-    "order_id": 31,
->>>>>>> cbe4b5ea2ef5f0dbe5a626391af32b124e5f60da
     "product_id": "croissant",
     "qty": 1,
     "total_price": 3500,
@@ -415,7 +396,6 @@
     ]
   },
   {
-<<<<<<< HEAD
     "_id": "item-obj-id-1795455630719",
     "item_id": "item-id-1795455630719",
     "order_id": 33,
@@ -452,11 +432,6 @@
     "_id": "item-obj-id-1795647128617",
     "item_id": "item-id-1795647128617",
     "order_id": 37,
-=======
-    "_id": "item-obj-id-1795307164976",
-    "item_id": "item-id-1795307164976",
-    "order_id": 32,
->>>>>>> cbe4b5ea2ef5f0dbe5a626391af32b124e5f60da
     "product_id": "cafe-caliente",
     "qty": 1,
     "total_price": 5000,
@@ -466,7 +441,6 @@
     ]
   },
   {
-<<<<<<< HEAD
     "_id": "item-obj-id-1795647203550",
     "item_id": "item-id-1795647203550",
     "order_id": 38,
@@ -478,95 +452,5 @@
       "TP",
       "CE"
     ]
-=======
-    "_id": "item-obj-id-1795307211022",
-    "item_id": "item-id-1795307211022",
-    "order_id": 34,
-    "product_id": "cafe-chofas",
-    "qty": 4,
-    "total_price": 12400,
-    "details": [
-      "N",
-      "PL",
-      "CJE",
-      "CL"
-    ]
-  },
-  {
-    "_id": "item-obj-id-1795368465730",
-    "item_id": "item-id-1795368465730",
-    "order_id": 37,
-    "product_id": "cafe-caliente",
-    "qty": 1,
-    "total_price": 5500,
-    "details": [
-      "N",
-      "PL",
-      "CE"
-    ]
-  },
-  {
-    "_id": "item-obj-id-1795368652982",
-    "item_id": "item-id-1795368652983",
-    "order_id": 40,
-    "product_id": "cafe-chofas",
-    "qty": 1,
-    "total_price": 2100,
-    "details": [
-      "N",
-      "PL"
-    ]
-  },
-  {
-    "_id": "item-obj-id-1795368654755",
-    "item_id": "item-id-1795368654755",
-    "order_id": 40,
-    "product_id": "cafe-fresa",
-    "qty": 2,
-    "total_price": 58000,
-    "details": [
-      "N"
-    ]
-  },
-  {
-    "_id": "item-obj-id-1795368671587",
-    "item_id": "item-id-1795368671587",
-    "order_id": 38,
-    "product_id": "cafe-caliente",
-    "qty": 1,
-    "total_price": 6000,
-    "details": [
-      "N",
-      "PL",
-      "CE",
-      "CL"
-    ]
-  },
-  {
-    "_id": "item-obj-id-1795368680570",
-    "item_id": "item-id-1795368680570",
-    "order_id": 39,
-    "product_id": "cafe-chofas",
-    "qty": 1,
-    "total_price": 2100,
-    "details": [
-      "N",
-      "PL"
-    ]
-  },
-  {
-    "_id": "item-obj-id-1795371069020",
-    "item_id": "item-id-1795371069020",
-    "order_id": 41,
-    "product_id": "cafe-caliente",
-    "qty": 1,
-    "total_price": 6000,
-    "details": [
-      "N",
-      "PL",
-      "CE",
-      "CL"
-    ]
->>>>>>> cbe4b5ea2ef5f0dbe5a626391af32b124e5f60da
   }
 ]
