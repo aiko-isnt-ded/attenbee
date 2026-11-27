@@ -496,5 +496,31 @@
     "details": [
       "N"
     ]
+  },
+  {
+    "_id": "item-obj-id-1795737598355",
+    "item_id": "item-id-1795737598355",
+    "order_id": 47,
+    "product_id": "el-cafe-de-dorx",
+    "qty": 1,
+    "total_price": 10000,
+    "details": [
+      "N",
+      "PA",
+      "CJE"
+    ]
+  },
+  {
+    "_id": "item-obj-id-1795737708040",
+    "item_id": "item-id-1795737708040",
+    "order_id": 47,
+    "product_id": "cafe-caliente",
+    "qty": 1,
+    "total_price": 5000,
+    "details": [
+      "N",
+      "PA",
+      "CE"
+    ]
   }
 ]

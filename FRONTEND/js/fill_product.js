@@ -6,6 +6,18 @@
    in future versions.
    ========================================================================== */
 
+
+// Translating database values to more readable ones
+const DETAIL_LABELS = {
+    PA: 'Para aquí', PL: 'Para llevar', TP: 'Termo propio',
+    MI: 'Miel', SP: 'Splenda', AM: 'Mascabado',
+    CJE: 'Cajeta extra', CE: 'Caramelo extra', CL: 'Con leche'
+};
+
+function detailsText(codes) {
+    return (codes || []).filter(c => c !== 'N').map(c => DETAIL_LABELS[c] || c).join(' · ');
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     const params = new URLSearchParams(window.location.search);
     const productId = params.get('product');
@@ -177,11 +189,11 @@ async function loadOrderItems(orderId) {
                 li.className = 'order-line';
                 li.innerHTML = `
                     <div class="order-line__main">
-                      <span><span>${item.qty}</span> × <span>${item.product_name}</span></span>
+                      <span><span>${item.qty}</span> × <span>${item.product_name}</span> ${tempIcon(tempInfo(item.product_name).temp)}</span>
                       <span>$${(item.total_price / 100).toFixed(2)}</span>
                     </div>
                     <div class="order-line__detail">
-                      <span>${item.details ? item.details.join(' · ') : ''}</span>
+                      <span>${detailsText(item.details)}</span>
                     </div>
                     <div class="order-line__actions">
                       <button class="btn" type="button" data-action="remove-line" data-item-id="${item.item_id}">Quitar</button>

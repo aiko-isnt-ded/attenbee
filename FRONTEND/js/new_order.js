@@ -236,11 +236,10 @@ async function loadExistingOrderItems(orderId) {
                     li.className = 'order-line';
                     li.innerHTML = `
                         <div class="order-line__main">
-                          <span><span>${item.qty}</span> × <span>${item.product_name}</span></span>
+                          <span><span>${item.qty}</span> × <span>${item.product_name}</span> ${tempIcon(tempInfo(item.product_name).temp)}</span>
                           <span>$${(item.total_price / 100).toFixed(2)}</span>
                         </div>
                         <div class="order-line__detail">
-                          <span data-field="temp">${tempIcon(tempInfo(item.product_name).temp)}</span>
                           <span>${detailsText(item.details)}</span>
                         </div>
                         <div class="order-line__actions">
