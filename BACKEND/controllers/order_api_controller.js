@@ -140,7 +140,8 @@ exports.getOrderWithItems = async (req, res) =>
                 ...item,
                 product_name: prod ? prod.product_name : item.product_id,
                 category: prod ? prod.category : 'otros',
-                unit_price: prod ? prod.price : 0
+                unit_price: prod ? prod.price : 0,
+                temperature: prod ? prod.temperature || null : null
             };
         });
 
@@ -212,7 +213,7 @@ exports.getOpenOrders = async (req, res) =>
             items: items.filter(i => Number(i.order_id) === Number(order.order_id)).map(item =>
             {
                 const prod = products.find(p => p.product_id === item.product_id);
-                return {...item, product_name: prod ? prod.product_name : item.product_id};
+                return {...item, product_name: prod ? prod.product_name : item.product_id, temperature: prod ? prod.temperature || null : null};
             })
         }));
 

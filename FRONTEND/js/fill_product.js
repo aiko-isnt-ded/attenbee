@@ -189,7 +189,7 @@ async function loadOrderItems(orderId) {
                 li.className = 'order-line';
                 li.innerHTML = `
                     <div class="order-line__main">
-                      <span><span>${item.qty}</span> × <span>${item.product_name}</span> ${tempIcon(tempInfo(item.product_name).temp)}</span>
+                      <span><span>${item.qty}</span> × <span>${lineNameHTML(item.product_name, item.temperature)}</span></span>
                       <span>$${(item.total_price / 100).toFixed(2)}</span>
                     </div>
                     <div class="order-line__detail">

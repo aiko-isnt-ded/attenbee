@@ -44,7 +44,8 @@ function addProductRow(product)
   }
 
   row.dataset.name = product.product_name;
-  slot('name').innerHTML = tableNameHTML(product.product_name);
+  if (product.temperature) row.dataset.temperature = product.temperature;
+  slot('name').innerHTML = productNameHTML(product.product_name, product.temperature);
   slot('category').textContent = CATEGORY_NAMES[product.category] || product.category;
   slot('price').textContent = '$' + (product.price / 100).toFixed(2);
 
@@ -77,8 +78,9 @@ const field = (name) => form.querySelector('[data-field="' + name + '"]');
 function fillPanel(row) {
   const data = row.dataset;
   const fullName = data.name;
+  const tempWord = TEMP_WORDS[data.temperature];
 
-  field('title').textContent = 'Editar: ' + fullName;
+  field('title').textContent = 'Editar: ' + (tempWord ? fullName + ' ' + tempWord : fullName);
   field('product-id').value = data.productId;
   field('name').value = fullName;
   field('price').value = (Number(data.priceCents) / 100).toFixed(2);
@@ -159,17 +161,8 @@ editForm.addEventListener('submit', async (e) =>
       {
         row.dataset.priceCents = String(price_cents);
 
-        const name_cell = row.querySelector('[data-field="name"]');
-        const temp_cell = name_cell.querySelector('[data-field="temp"]');
-
-        if (temp_cell)
-        {
-          row.dataset.name = name;
-          row.querySelector('[data-field="name"]').innerHTML = tableNameHTML(name);
-        } else
-        {
-          name_cell.textContent = name;
-        }
+        row.dataset.name = name;
+        row.querySelector('[data-field="name"]').innerHTML = productNameHTML(name, row.dataset.temperature);
 
         row.querySelector('[data-field="price"]').textContent = "$" + (price_cents / 100).toFixed(2);
 
@@ -211,6 +204,15 @@ function updateNewFormFields()
       input.disabled = !needs_stock;
     });
   });
+
+  new_form.querySelectorAll('[data-when-drink]').forEach((elem) =>
+  {
+    elem.hidden = needs_stock;
+    elem.querySelectorAll('input').forEach((input) =>
+    {
+      input.disabled = needs_stock;
+    });
+  });
 }
 
 modal.addEventListener('close', () =>
@@ -245,6 +247,7 @@ new_form.addEventListener('submit', async (e) =>
   const category = form_data.get('category');
   const price_cents = Math.round(Number(form_data.get('price')) * 100);
   const total_units = (category === 'panaderia' || category === "otros") ? Number(form_data.get('total_units')) : null;
+  const temperature = (category === 'cafe' || category === 'te') ? (form_data.get('temperature') || null) : null;
 
   if (!name)
   {
@@ -270,6 +273,7 @@ new_form.addEventListener('submit', async (e) =>
         category: category,
         price: price_cents,
         total_units: total_units,
+        temperature: temperature,
         image: '../../assets/colmena_logo.png'
       })
     });
@@ -345,8 +349,8 @@ if (confirm_delete_button)
         if (active_form_id === id_to_delete)
         {
           form.reset();
-          form.querySelectorAll('[data-when-filled]').forEach((elem) => {el.hidden = true; });
-          form.querySelectorAll('[data-when-empty]').forEach((elem) => {el.hidden = false; });
+          form.querySelectorAll('[data-when-filled]').forEach((elem) => {elem.hidden = true; });
+          form.querySelectorAll('[data-when-empty]').forEach((elem) => {elem.hidden = false; });
         }
 
         id_to_delete = null;

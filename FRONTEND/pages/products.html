@@ -513,6 +513,16 @@
         <p class="field__hint" id="new-price-hint">En pesos. No puede ser negativo.</p>
       </div>
 
+      <!-- temperature: Café and Té only (JS shows it and turns it on) -->
+      <fieldset class="option-group" data-when-drink>
+        <legend class="field__label">Temperatura</legend>
+        <div class="option-group__chips">
+          <label class="chip"><input type="radio" name="temperature" value="" checked><span>Sin temperatura</span></label>
+          <label class="chip"><input type="radio" name="temperature" value="hot"><span>Caliente</span></label>
+          <label class="chip"><input type="radio" name="temperature" value="cold"><span>Frío</span></label>
+        </div>
+      </fieldset>
+
       <!-- total_units: Panadería only (JS shows it and turns it on) -->
       <div class="field" data-when-stock hidden>
         <label class="field__label" for="new-units">Existencias</label>

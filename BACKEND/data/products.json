@@ -9,15 +9,6 @@
     "total_units": null
   },
   {
-    "_id": "prod_obj_id_2",
-    "product_id": "te-prueba",
-    "category": "te",
-    "image": "../../assets/colmena_logo.png",
-    "product_name": "Te Prueba",
-    "price": 3500,
-    "total_units": null
-  },
-  {
     "_id": "prod_obj_id_3",
     "product_id": "pan-de-muerto",
     "category": "panaderia",
@@ -94,18 +85,20 @@
     "product_id": "cafe-caliente",
     "category": "cafe",
     "image": "../../assets/colmena_logo.png",
-    "product_name": "Café Caliente",
+    "product_name": "Café",
     "price": 5000,
-    "total_units": null
+    "total_units": null,
+    "temperature": "hot"
   },
   {
     "_id": "prod_1795286445427",
     "product_id": "te-frio",
     "category": "te",
     "image": "../../assets/colmena_logo.png",
-    "product_name": "Te frio",
+    "product_name": "Te",
     "price": 1000,
-    "total_units": null
+    "total_units": null,
+    "temperature": "cold"
   },
   {
     "_id": "prod_1795288370344",
@@ -117,21 +110,23 @@
     "total_units": 0
   },
   {
-    "_id": "prod_1795291349338",
-    "product_id": "te-frio-2",
-    "category": "te",
-    "image": "../../assets/colmena_logo.png",
-    "product_name": "Te Frío 2",
-    "price": 8000,
-    "total_units": null
-  },
-  {
     "_id": "prod_1795455264499",
     "product_id": "el-cafe-de-dorx",
     "category": "cafe",
     "image": "../../assets/colmena_logo.png",
-    "product_name": "El café de Dorx Frío",
+    "product_name": "El café de Dorx",
     "price": 10000,
-    "total_units": null
+    "total_units": null,
+    "temperature": "cold"
+  },
+  {
+    "_id": "prod_1795740622573",
+    "product_id": "te-prueba",
+    "category": "te",
+    "image": "../../assets/colmena_logo.png",
+    "product_name": "Té Prueba",
+    "price": 4000,
+    "total_units": null,
+    "temperature": null
   }
 ]

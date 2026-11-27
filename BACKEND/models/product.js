@@ -12,7 +12,8 @@ const productSchema = new mongoose.Schema
         required: true
     },
     price: {type: Number, required: true},
-    total_units: {type: Number, default: null}
+    total_units: {type: Number, default: null},
+    temperature: {type: String, enum: ['hot', 'cold'], default: null}
 });
 
 module.exports = mongoose.model('Product', productSchema);

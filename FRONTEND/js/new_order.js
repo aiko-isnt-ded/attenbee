@@ -124,11 +124,11 @@ function renderCatalogProduct(product) {
 
     if (isDrink) {
         li.innerHTML = `
-          <a class="product-card" href="add_beverage.html?product=${product.product_id}&name=${encodeURIComponent(product.product_name)}&price=${product.price}&category=${product.category}&order=${activeOrderId}"
+          <a class="product-card" href="add_beverage.html?product=${product.product_id}&name=${encodeURIComponent(product.product_name)}&price=${product.price}&category=${product.category}&order=${activeOrderId}${product.temperature ? '&temp=' + product.temperature : ''}"
             data-action="add-product" data-product-id="${product.product_id}"
             data-category="${product.category}" data-price-cents="${product.price}" data-customizable="true">
             <img class="product-card__photo" src="${imgSrc}" alt="" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius);">
-            <h3 class="product-card__name">${catalogNameHTML(product.product_name)}</h3>
+            <h3 class="product-card__name">${cardNameHTML(product.product_name, product.temperature)}</h3>
             <p class="product-card__meta">$${(product.price / 100).toFixed(2)}</p>
           </a>
         `;
@@ -137,7 +137,7 @@ function renderCatalogProduct(product) {
           <article class="product-card product-card--bakery"
                  data-product-id="${product.product_id}" data-category="${product.category}" data-price-cents="${product.price}" data-stock="${product.total_units || 0}">
             <img class="product-card__photo" src="${imgSrc}" alt="" style="width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius);">
-            <h3 class="product-card__name">${catalogNameHTML(product.product_name)}</h3>
+            <h3 class="product-card__name">${cardNameHTML(product.product_name, product.temperature)}</h3>
             <p class="product-card__meta">$${(product.price / 100).toFixed(2)} · ${product.total_units !== null ? product.total_units + ' disponibles' : ''}</p>
             <div class="stepper product-card__stepper">
               <button class="btn stepper__btn" type="button" data-action="qty-decrease" disabled>−</button>
@@ -236,7 +236,7 @@ async function loadExistingOrderItems(orderId) {
                     li.className = 'order-line';
                     li.innerHTML = `
                         <div class="order-line__main">
-                          <span><span>${item.qty}</span> × <span>${item.product_name}</span> ${tempIcon(tempInfo(item.product_name).temp)}</span>
+                          <span><span>${item.qty}</span> × <span>${lineNameHTML(item.product_name, item.temperature)}</span></span>
                           <span>$${(item.total_price / 100).toFixed(2)}</span>
                         </div>
                         <div class="order-line__detail">

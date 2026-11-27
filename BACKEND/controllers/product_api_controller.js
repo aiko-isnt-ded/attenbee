@@ -21,7 +21,7 @@ exports.createProduct = async (req, res) =>
 {
     try
     {
-        const {product_name, category, price, total_units, image} = req.body;
+        const {product_name, category, price, total_units, image, temperature} = req.body;
 
         if (!product_name || product_name.trim() === "")
         {
@@ -55,6 +55,7 @@ exports.createProduct = async (req, res) =>
             product_name: product_name.trim(),
             price: Number(price),
             total_units: isStocked ? Number(total_units): null,
+            temperature: !isStocked && (temperature === 'hot' || temperature === 'cold') ? temperature : null,
         };
 
         products.push(new_product);
@@ -81,7 +82,7 @@ exports.loadProducts = async (req, res) =>
         res.status(200).json({success: true, data: products});
     } catch (err)
     {
-        return res.status(500).json({sucecss: false, message: err.message});
+        return res.status(500).json({success: false, message: err.message});
     }
 }
 
