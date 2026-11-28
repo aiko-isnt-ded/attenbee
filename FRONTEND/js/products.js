@@ -56,11 +56,8 @@ function addProductRow(product)
 
   if (product.image)
   {
-    const img = document.createElement('img');
-    img.className = 'product-table__photo';
-    img.alt = '';
-    img.src = product.image;
-    slot('image').replaceWith(img);
+    row.dataset.image = product.image || '';
+    setRowImage(row, product.image);
   }
 
   document.querySelector('[data-products]').append(row);
@@ -74,6 +71,57 @@ document.addEventListener('DOMContentLoaded', loadProduct);
    ========================================================================== */
 const form = document.querySelector('[data-product-form]');
 const field = (name) => form.querySelector('[data-field="' + name + '"]');
+
+const editImageBox = form.querySelector('.product-form__image');
+
+function showImage(box, src)
+{
+  let img = box.querySelector('img.product-form__photo');
+  const placeholder = box.querySelector('.placeholder');
+  if (src)
+  {
+    if (!img)
+    {
+      img = document.createElement('img');
+      img.className = 'product-form__photo';
+      img.alt = '';
+      box.prepend(img);
+    }
+    img.src = src;
+    if (placeholder) placeholder.hidden = true;
+  } else
+  {
+    if (img) img.remove();
+    if (placeholder) placeholder.hidden = false;
+  }
+}
+
+function setRowImage(row, src)
+{
+  if (!src) return;
+  const current = row.querySelector('.product-table__image').querySelector('img, .placeholder');
+  const img = document.createElement('img');
+  img.className = 'product-table__photo';
+  img.alt = '';
+  img.src = src;
+  current.replaceWith(img);
+}
+
+function validImage(file)
+{
+  if (!file) return true;
+  if (!/^image\/(jpeg|png|webp|gif)$/.test(file.type))
+  {
+    alert("La imagen debe ser JPG, PNG, WebP o GIF");
+    return false;
+  }
+  if (file.size > 5 * 1024 * 1024)
+  {
+    alert("La imagen no puede pesar más de 5 MB");
+    return false;
+  }
+  return true;
+}
 
 function fillPanel(row) {
   const data = row.dataset;
@@ -90,6 +138,8 @@ function fillPanel(row) {
   const hasStock = data.stock !== undefined;
   field('stock-field').hidden = !hasStock;
   field('stock').value = hasStock ? data.stock : 0;
+  form.elements.imagen.value = '';
+  showImage(editImageBox, data.image);
 
   // Show the fields, hide the "Toca Editar…" message
   form.querySelectorAll('[data-when-filled]').forEach((el) => { el.hidden = false; });
@@ -111,6 +161,13 @@ document.addEventListener('click', (event) => {
   if (!button) return;
   event.preventDefault();
   fillPanel(button.closest('[data-product-id]'));
+});
+
+form.elements.imagen.addEventListener('change', (e) =>
+{
+  const file = e.target.files[0];
+  if (!validImage(file)) { e.target.value = ''; return; }
+  if (file) showImage(editImageBox, URL.createObjectURL(file));
 });
 
 const editForm = document.querySelector('[data-product-form]');
@@ -143,14 +200,16 @@ editForm.addEventListener('submit', async (e) =>
     return;
   }
 
+  if (!validImage(form.elements.imagen.files[0])) retrun ;
   try
   {
-    const response = await fetch(`http://localhost:3000/products/${product_id}`,
-    {
-      method: "PUT",
-      headers: {'Content-Type': "application/json"},
-      body: JSON.stringify({product_name: name, price: price_cents, total_units: total_units})
-    });
+    const body = new FormData();
+    body.append('product_name', name);
+    body.append('price', price_cents);
+    if (total_units !== null) body.append('total_units', total_units);
+    const file = form.elements.imagen.files[0];
+    if (file) body.append('image', file);
+    const response = await fetch(`http://localhost:3000/products/${product_id}`, {method: "PUT", body});
 
     const result = await response.json();
 
@@ -175,8 +234,15 @@ editForm.addEventListener('submit', async (e) =>
             stock_cell.firstChild.textContent = total_units;
           }
         }
+        
+        if (result.data && result.data.image)
+        {
+          row.dataset.image = result.data.image;
+          setRowImage(row, result.data.image);
+        }
       }
 
+      form.elements.imagen.value = '';
       alert("Producto actualizado exitosamente");
     } else
     {
@@ -190,6 +256,7 @@ editForm.addEventListener('submit', async (e) =>
 
 const modal = document.querySelector('[data-new-product-modal]');
 const new_form = document.querySelector('[data-new-product-form]');
+const new_image_box = new_form.querySelector('.product-form__image');
 
 function updateNewFormFields()
 {
@@ -219,6 +286,7 @@ modal.addEventListener('close', () =>
 {
   new_form.reset();
   new_form.querySelector('[data-field="image-name"]').textContent = "Opcional";
+  showImage(new_image_box, null);
   updateNewFormFields();
 });
 
@@ -234,8 +302,10 @@ new_form.elements.category.forEach((radio) => radio.addEventListener('change', u
 
 modal.querySelector('[data-field="image-input"]').addEventListener('change', (e) =>
 {
-  let file = e.target.files[0];
+  const file = e.target.files[0];
+  if (!validImage(file)) { e.target.value = ''; return; }
   new_form.querySelector('[data-field="image-name"]').textContent = file ? file.name : 'Opcional.';
+  showImage(new_image_box, file ? URL.createObjectURL(file) : null);
 });
 
 new_form.addEventListener('submit', async (e) =>
@@ -261,22 +331,20 @@ new_form.addEventListener('submit', async (e) =>
     return;
   }
 
+  if (!validImage(new_form.elements.image.files[0])) return;
+
   try
   {
-    const response = await fetch('http://localhost:3000/products', 
-    {
-      method: "POST",
-      headers: {"Content-Type": 'application/json'},
-      body: JSON.stringify
-      ({
-        product_name: name,
-        category: category,
-        price: price_cents,
-        total_units: total_units,
-        temperature: temperature,
-        image: '../../assets/colmena_logo.png'
-      })
-    });
+    const body = new FormData();
+    body.append('product_name', name);
+    body.append('category', category);
+    body.append('price', price_cents);
+    if (total_units !== null) body.append('total_units', total_units);
+    if (temperature) body.append('temperature', temperature);
+    const file = new_form.elements.image.files[0];
+    if (file) body.append('image', file);
+
+    const response = await fetch('http://localhost:3000/products', {method: "POST", body})
 
     const result = await response.json();
 

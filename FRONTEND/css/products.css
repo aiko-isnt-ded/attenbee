@@ -93,6 +93,7 @@
 .product-form__image .placeholder { width: 6rem; flex: none; }
 /* The file input is hidden; show the focus ring on its button */
 .product-form__image-btn:has(input:focus-visible) { outline: 3px solid var(--color-brown); outline-offset: 3px; }
+.product-form__photo { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); }
 
 select.field__input { font: inherit; color: var(--color-charcoal); cursor: pointer; }
 .field__hint { font-size: var(--fs-sm); color: var(--color-muted); }

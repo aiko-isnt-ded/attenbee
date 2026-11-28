@@ -1,46 +1,34 @@
-const fs = require('fs').promises;
-const path = require('path');
+const Order = require('../models/order');
+const Item = require('../models/item');
+const Product = require('../models/product');
+const Counter = require('../models/model_counter');
 
-const order_file_path = path.join(__dirname, '../data/orders.json');
-const item_file_path = path.join(__dirname, '../data/items.json');
-const product_file_path = path.join(__dirname, '../data/products.json');
-
-async function readJSON(file_path)
+async function recalcPreTotal(order_id)
 {
-    const data = await fs.readFile(file_path, 'utf8');
-    return JSON.parse(data);
+    const items = await Item.find({order_id}).lean();
+    const total = items.reduce((sum, i) => sum + i.total_price, 0);
+    await Order.updateOne({order_id}, {pre_total: total});
+    return total;
 }
 
-async function writeJSON(file_path, data)
+async function productMap(items)
 {
-    await fs.writeFile(file_path, JSON.stringify(data, null, 2), 'utf8');
+    const ids = [...new Set(items.map(i => i.product_id))];
+    const products = await Product.find({product_id: {$in: ids}}).lean();
+    return new Map(products.map(p => [p.product_id, p]));
 }
 
 exports.createOrder = async (req, res) =>
 {
     try
     {
-        let orders = await readJSON(order_file_path);
-
-        const max_id = orders.reduce((max, o) => (o.order_id > max ? o.order_id : max), 0);
-        const new_order_id = max_id + 1;
-
-        let new_order =
-        {
-            _id: `order_obj_id_${Date.now()}`,
-            order_id: new_order_id,
-            open_time: new Date().toISOString(),
-            close_time: null,
-            status: true,
-            pre_total: 0,
-            total_pay_cash: 0,
-            total_tip_cash: 0,
-            total_pay_card: 0,
-            total_tip_card: 0
-        };
-
-        orders.push(new_order);
-        await writeJSON(order_file_path, orders);
+        const counter = await Counter.findOneAndUpdate
+        (
+            {_id: 'order_id'},
+            {$inc: {seq: 1}},
+            {new: true, upsert: true}
+        );
+        const new_order = await Order.create({order_id: counter.seq});
 
         res.status(200).json({success: true, message: "Orden creada!", data: new_order});
     } catch (err)
@@ -55,15 +43,12 @@ exports.addItemToOrder = async (req, res) =>
     {
         const {order_id, product_id, qty, details} = req.body;
 
-        let orders = await readJSON(order_file_path);
-        let products = await readJSON(product_file_path);
-        let items = await readJSON(item_file_path);
-
-        const targetOrderId = Number(order_id);
-        const order = orders.find(o => Number(o.order_id) === targetOrderId);
+        const target_order_id = Number(order_id);
+        const order = await Order.findOne({order_id: target_order_id});
         if (!order) return res.status(404).json({success: false, message: "Orden no encontrada"});
+        if (!order.status) return res.status(400).json({success: false, message: "El pedido ya fue cerrado"});
 
-        const product = products.find(p => p.product_id === product_id);
+        const product = await Product.findOne({product_id});
         if (!product) return res.status(404).json({success: false, message: "Producto no encontrado"});
 
         const quantity = Number(qty);
@@ -73,48 +58,51 @@ exports.addItemToOrder = async (req, res) =>
         }
 
         const tracks_stock = product.total_units !== null && product.total_units !== undefined;
-        if (tracks_stock && quantity > product.total_units)
+        if (tracks_stock)
         {
-            return res.status(400).json({success: false, message: `Solo quedan ${product.total_units} disponibles de ${product.product_name}`});
+            const reserved = await Product.findOneAndUpdate
+            (
+                {product_id, total_units: {$gte: quantity}},
+                {$inc: {total_units: -quantity}}
+            );
+            if (!reserved)
+            {
+                const current = await Product.findOne({product_id}).lean();
+                return res.status(400).json({success: false, message: `Solo quedan ${current ? current.total_units : 0} disponibles de ${product.product_name}`});
+            }
         }
 
         let unit_price = product.price;
-
-        if (details && Array.isArray(details))
+        if (Array.isArray(details))
         {
             details.forEach(detail =>
             {
                 if (detail === 'PA' || detail === 'TP') unit_price -= 500;
-                if (detail === 'CJE' || detail === 'CE' || detail === "CL") unit_price += 500;
+                if (detail === 'CJE' || detail === 'CE' || detail === 'CL') unit_price += 500;
             });
         }
-
         if (unit_price < 0) unit_price = 0;
-        const total_price = unit_price * Number(qty);
 
-        let new_item =
+        let new_item;
+        try
         {
-            _id: `item-obj-id-${Date.now()}`,
-            item_id: `item-id-${Date.now()}`,
-            order_id: targetOrderId,
-            product_id: product.product_id,
-            qty: quantity,
-            total_price: total_price,
-            details: details || []
-        };
+            new_item = await Item.create
+            ({
+                order_id: target_order_id,
+                product_id: product.product_id,
+                qty: quantity,
+                total_price: unit_price * quantity,
+                details: Array.isArray(details) ? details : []
+            });
+        } catch (err)
+        {
+            if (tracks_stock) await Product.updateOne({product_id}, {$inc: {total_units: quantity}});
+            throw err;
+        }
 
-        items.push(new_item);
+        const order_total = await recalcPreTotal(target_order_id);
 
-        if (tracks_stock) product.total_units -= quantity;
-
-        const order_items = items.filter(i => Number(i.order_id) === targetOrderId);
-        order.pre_total = order_items.reduce((sum, i) => sum + i.total_price, 0);
-
-        await writeJSON(item_file_path, items);
-        await writeJSON(order_file_path, orders);
-        await writeJSON(product_file_path, products);
-
-        res.status(200).json({success: true, message: "Item añadido", data: new_item, order_total: order.pre_total});
+        res.status(200).json({success: true, message: "Item añadido", data: new_item, order_total});
     } catch (err)
     {
         return res.status(500).json({success: false, message: err.message});
@@ -126,16 +114,15 @@ exports.getOrderWithItems = async (req, res) =>
     try
     {
         const targetOrderId = Number(req.params.order_id);
-        let orders = await readJSON(order_file_path);
-        let items = await readJSON(item_file_path);
-        let products = await readJSON(product_file_path);
-
-        const order = orders.find(o => Number(o.order_id) === targetOrderId);
+        const order = await Order.findOne({order_id: targetOrderId}).lean();
         if (!order) return res.status(404).json({success: false, message: "Orden no encontrada"});
 
-        const order_items = items.filter(i => Number(i.order_id) === targetOrderId).map(item =>
+        const items = await Item.find({order_id: targetOrderId}).sort({_id: 1}).lean();
+        const products = await productMap(items);
+
+        const order_items = items.map(item =>
         {
-            const prod = products.find(p => p.product_id === item.product_id);
+            const prod = products.get(item.product_id);
             return {
                 ...item,
                 product_name: prod ? prod.product_name : item.product_id,
@@ -156,34 +143,18 @@ exports.removeItem = async (req, res) =>
 {
     try
     {
-        const item_id = req.params.item_id;
-        let items = await readJSON(item_file_path);
-        let orders = await readJSON(order_file_path);
-        let products = await readJSON(product_file_path);
+        const removed = await Item.findOneAndDelete({item_id: req.params.item_id});
+        if (!removed) return res.status(404).json({success: false, message: "Item not found"});
 
-        const index = items.findIndex(i => i.item_id === item_id || i._id === item_id);
-        if (index === -1) return res.status(404).json({success: false, message: "Item not found"});
+        await Product.updateOne
+        (
+            {product_id: removed.product_id, total_units: {$ne: null}},
+            {$inc: {total_units: removed.qty}}
+        );
 
-        const removed = items.splice(index, 1)[0];
-        const product = products.find(p => p.product_id === removed.product_id);
-        if (product && product.total_units !== null && product.total_units !== undefined)
-        {
-            product.total_units += removed.qty;
-        }
-        const order_id = removed.order_id;
+        const order_total = await recalcPreTotal(removed.order_id);
 
-        const order = orders.find(o => Number(o.order_id) === Number(order_id));
-        if (order)
-        {
-            const order_items = items.filter(i => Number(i.order_id) === Number(order_id));
-            order.pre_total = order_items.reduce((sum, i) => sum + i.total_price, 0);
-        }
-
-        await writeJSON(item_file_path, items);
-        await writeJSON(order_file_path, orders);
-        await writeJSON(product_file_path, products);
-
-        res.status(200).json({success: true, order_total: order ? order.pre_total : 0});
+        res.status(200).json({success: true, order_total});
     } catch (err)
     {
         return res.status(500).json({success: false, message: err.message});
@@ -197,22 +168,26 @@ exports.getOpenOrders = async (req, res) =>
         const from = req.query.from ? new Date(req.query.from) : null;
         const to = req.query.to ? new Date(req.query.to) : null;
 
-        if ((from && isNaN(from)) || to && isNaN(to)) return res.status(400).json({success: false, message: "Rango inválido de fechas"});
+        if ((from && isNaN(from)) || (to && isNaN(to))) return res.status(400).json({success: false, message: "Rango inválido de fechas"});
 
-        const orders = await readJSON(order_file_path);
-        const items = await readJSON(item_file_path);
-        const products = await readJSON(product_file_path);
-
-        const result = orders.filter(o => o.status == true).filter(o =>
+        const filter = {status: true};
+        if (from || to)
         {
-            const t = new Date(o.open_time);
-            return (!from || t >= from) && (!to || t < to);
-        }).sort((a,b) => new Date(a.open_time) - new Date(b.open_time)).map(order =>
+            filter.open_time = {};
+            if (from) filter.open_time.$gte = from;
+            if (to) filter.open_time.$lt = to;
+        }
+
+        const orders = await Order.find(filter).sort({open_time: 1}).lean();
+        const items = await Item.find({order_id: {$in: orders.map(o => o.order_id)}}).sort({_id: 1}).lean();
+        const products = await productMap(items);
+
+        const result = orders.map(order =>
         ({
             ...order,
             items: items.filter(i => Number(i.order_id) === Number(order.order_id)).map(item =>
             {
-                const prod = products.find(p => p.product_id === item.product_id);
+                const prod = products.get(item.product_id);
                 return {...item, product_name: prod ? prod.product_name : item.product_id, temperature: prod ? prod.temperature || null : null};
             })
         }));
@@ -243,8 +218,7 @@ exports.addPayment = async (req, res) =>
             return res.status(400).json({success: false, message: "Montos inválidos"});
         }
 
-        const orders = await readJSON(order_file_path);
-        const order = orders.find(o => o.order_id === target_order_id);
+        const order = await Order.findOne({order_id: target_order_id});
         if (!order) return res.status(404).json({success: false, message: "Order not found"});
         if (!order.status) return res.status(400).json({success: false, message: "El pedido ya fue cerrado"});
 
@@ -271,24 +245,22 @@ exports.addPayment = async (req, res) =>
         if (close)
         {
             order.status = false;
-            order.close_time = new Date().toISOString();
+            order.close_time = new Date();
         }
 
-        await writeJSON(order_file_path, orders);
+        await order.save();
         res.status(200).json({success: true, remaining: remaining - amount});
     } catch (err)
     {
         return res.status(500).json({success: false, message: err.message});
     }
-}
+};
 
 exports.closeOrder = async (req, res) =>
 {
     try
     {
-        const target_order_id = Number(req.params.order_id);
-        const orders = await readJSON(order_file_path);
-        const order = orders.find(o => o.order_id === target_order_id);
+        const order = await Order.findOne({order_id: Number(req.params.order_id)});
         if (!order) return res.status(404).json({success: false, message: "Order not found"});
         if (!order.status) return res.status(400).json({success: false, message: "El pedido ya fue cerrado"});
 
@@ -299,17 +271,16 @@ exports.closeOrder = async (req, res) =>
         }
 
         order.status = false;
-        order.close_time = new Date().toISOString();
-
-        await writeJSON(order_file_path, orders);
+        order.close_time = new Date();
+        await order.save();
 
         res.status(200).json({success: true, order});
-        
     } catch (err)
     {
         return res.status(500).json({success: false, message: err.message});
     }
-}
+};
+
 
 exports.getDaySummary = async (req, res) =>
 {
@@ -320,16 +291,12 @@ exports.getDaySummary = async (req, res) =>
         const prev_from = new Date(req.query.prev_from);
         if (isNaN(from) || isNaN(to) || isNaN(prev_from)) return res.status(400).json({success: false, message: "Rango de fechas inválido"});
 
-        const orders = await readJSON(order_file_path);
-        const opened_between = (o,a,b) => 
-        { 
-            const t = new Date(o.open_time); 
-            return t >= a && t < b;
-        };
+        const orders = await Order.find({open_time: {$gte: prev_from, $lt: to}}).lean();
+        const opened_between = (o, a, b) => o.open_time >= a && o.open_time < b;
 
         const today = orders.filter(o => opened_between(o, from, to));
         const yesterday = orders.filter(o => opened_between(o, prev_from, from));
-        const sum = (list, key) => list.reduce((s,o) => s + (o[key] || 0), 0);
+        const sum = (list, key) => list.reduce((s, o) => s + (o[key] || 0), 0);
 
         const open_orders = today.filter(o => o.status === true && o.pre_total > 0).map(o => o.order_id);
 
@@ -344,4 +311,4 @@ exports.getDaySummary = async (req, res) =>
     {
         return res.status(500).json({success: false, message: err.message});
     }
-}
+};
